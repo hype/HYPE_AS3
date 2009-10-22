@@ -1,5 +1,0 @@
-#Tue Sep 29 22:39:36 EDT 2009
-com.powerflasher.fdt.typeProblems.functionWithoutType.AS3=Warning
-com.powerflasher.fdt.unresolvable.unresolvableMemberReferenceInDynamic.AS3=Disabled
-com.powerflasher.fdt.unresolvable.unresolvableVariableReference.AS3=Error
-eclipse.preferences.version=1
