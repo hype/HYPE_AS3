@@ -1,4 +1,4 @@
-package hype.framework.collection {
+package hype.framework.core {
 
 	public class ObjectCollection {
 		
