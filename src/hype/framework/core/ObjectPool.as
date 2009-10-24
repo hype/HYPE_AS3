@@ -1,123 +1,62 @@
 package hype.framework.core {
-	import hype.framework.behavior.AbstractBehavior;
-	import hype.framework.color.IColorist;
-	import hype.framework.layout.ILayout;
-	import hype.framework.trigger.AbstractTrigger;
-
-	import flash.display.DisplayObject;
-	import flash.display.Sprite;
-	import flash.geom.Point;
-	import flash.utils.Dictionary;
 
 	public class ObjectPool {
 		
+		private var _objectClass:Class;
 		private var _max:uint;
 		private var _count:uint;
-		private var _readyList:Array;
-		private var _objectTable:Dictionary;
+		private var _activeSet:ObjectSet;
+		private var _inactiveSet:ObjectSet;
 		
-		public var setup:Function;
-		public var create:Function;
-		public var destroy:Function;
-		public var layout:ILayout;
-		public var colorist:IColorist;
+		public var onCreate:Function;
+		public var onRequest:Function;
+		public var onRelease:Function;
 		
-		public function ObjectPool(max:uint) {
+		public function ObjectPool(objectClass:Class, max:uint) {
+			_objectClass = objectClass;
 			_max = max;
 			_count = 0;
 			
-			_readyList = new Array();
-			_objectTable = new Dictionary(false);
+			_activeSet = new ObjectSet();
+			_inactiveSet = new ObjectSet();
 		}
 		
-		public function map(f:Function):void {
-			for (var p:* in _objectTable) {
-				if (_readyList.indexOf(p) == -1) {
-					f(p);
-				}
-			}
+		public function get activeSet():ObjectSet {
+			return _activeSet;
 		}
 		
-		public function applyLayout():void {
-			var pt:Point;
-			
-			if (layout != null) {
-				for (var p:* in _objectTable) {
-					if (_readyList.indexOf(p) == -1) {
-						pt = layout.getNextPoint();
-						(p as DisplayObject).x = pt.x;
-						(p as DisplayObject).y = pt.y;
-					}
-				}		
-			}			
-		}
-		
-		public function applyColorist():void {
-			if (colorist != null) {
-				for (var p:* in _objectTable) {
-					if (_readyList.indexOf(p) == -1) {
-						colorist.colorChildren(p as Sprite);
-					}
-				}		
-			}			
-		}
-		
-		public function requestAll():void {
+		public function request():Object {
 			var obj:Object;
 			
-			do {
-				obj = requestObject();
-			} while (obj != null);
-		}
-		
-		public function returnAll():void {
-			for (var p:* in _objectTable) {
-				returnObject(p);
-			}
-		}
-		
-		public function requestObject():Object {
-			var object:Object;
-			var pt:Point;		
-
-			if (_readyList.length > 0) {
-				object = _readyList.shift();
+			if (_inactiveSet.length > 0) {
+				obj = _inactiveSet.pull();
+				_activeSet.insert(obj);
+				onRequest(this, obj);
+				
+				return obj;
+			} else if (_count < _max) {
+				obj = new _objectClass();
+				++_count;
+				_activeSet.insert(obj);
+				onCreate(this, obj);
+				onRequest(this, obj);
+				
+				return obj;
 			} else {
-				
-				if (_count < _max) {
-					object = create();
-					_objectTable[object] = true;
-					++_count;
-				}
-			}	
-			
-			if (object != null && layout != null) {
-				pt = layout.getNextPoint();
-				(object as DisplayObject).x = pt.x;
-				(object as DisplayObject).y = pt.y;
+				return null;
 			}
-			
-			if (object != null && colorist != null) {
-				colorist.colorChildren(object as Sprite);
-			}
-			
-			if (object != null && setup != null) {	
-				setup(object);
-			}
-				
-			return object;
-		}		
+		}
 		
-		public function returnObject(object:Object):Boolean {
-			
-			if (_objectTable[object] == true && _readyList.indexOf(object) == -1) {
-				AbstractBehavior.removeBehaviorsFromObject(object);
-				AbstractTrigger.removeTriggersFromObject(object);
-				_readyList.push(object);
-			
-				if (destroy != null) {
-					destroy(object);
-				}
+		public function createAll():void {
+			while(_count < _max) {
+				request();
+			}
+		}
+		
+		public function release(obj:Object):Boolean {
+			if (_activeSet.remove(obj)) {
+				_inactiveSet.insert(obj);
+				onRelease(this, obj);
 				
 				return true;
 			} else {

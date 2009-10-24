@@ -1,9 +1,10 @@
 package hype.extended.layout {
+	import hype.framework.layout.AbstractLayout;
 	import hype.framework.layout.ILayout;
 
 	import flash.geom.Point;
 
-	public class GridLayout implements ILayout {
+	public class GridLayout extends AbstractLayout implements ILayout {
 		var _index:uint;
 		var _x:Number;
 		var _y:Number;

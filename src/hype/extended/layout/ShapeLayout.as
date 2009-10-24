@@ -1,11 +1,12 @@
 package hype.extended.layout {
+	import hype.framework.layout.AbstractLayout;
 	import hype.framework.layout.ILayout;
 
 	import flash.display.Sprite;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
-	public class ShapeLayout implements ILayout {
+	public class ShapeLayout extends AbstractLayout implements ILayout {
 
 		private var _target : Sprite;
 		private var _rect : Rectangle;

@@ -5,6 +5,9 @@ package hype.framework.sound {
 	import flash.media.SoundMixer;
 	import flash.utils.ByteArray;
 
+	/**
+	 * Analyzes sound frequency data and aggregates the resulting data
+	 */
 	public class SoundAnalyzer extends AbstractRhythm implements IRhythm {
 		private const A:Number =  1.669;
 		private const B:Number = -0.453;
@@ -36,10 +39,22 @@ package hype.framework.sound {
 			_octaveList[7] = [163, 256];
 		}
 		
+		/**
+		 * @private
+		 */
 		public function run():void {
 			_invalid = true;
 		}
 		
+		/**
+		 * Get the activity of a frequency at a specified index
+		 * 
+		 * @param index Index of the data to utilize (0-255)
+		 * @param min Minimum value to return
+		 * @param max Maximum value to return
+		 * 
+		 * @return Value for the specified index mapped to the min/max
+		 */
 		public function getFrequencyIndex(index:uint, min:Number=0, max:Number=1):Number {
 			if (_invalid) {
 				computeSpectrum();
@@ -51,6 +66,16 @@ package hype.framework.sound {
 			return _frequencyList[index] * (max - min) + min;
 		}
 		
+		/**
+		 * Get the activity of a frequency range (average)
+		 * 
+		 * @param start Initial index of the data to utilize (0-255)
+		 * @param end Last index of the data to utilize (0-255)		 * 
+		 * @param min Minimum value to return
+		 * @param max Maximum value to return
+		 * 
+		 * @return Value for the specified range mapped to the min/max
+		 */		
 		public function getFrequencyRange(start:uint, end:uint, min:Number=0, max:Number=1):Number {
 			var i:uint;
 			var value:Number = 0;
@@ -73,6 +98,15 @@ package hype.framework.sound {
 			return value;
 		}
 		
+		/**
+		 * Get the activity of a specific octave (0-7)
+		 * 
+		 * @param octave Octave to interrogate (0-7)
+		 * @param min Minimum value to return
+		 * @param max Maximum value to return
+		 * 
+		 * @return Value for the specified index mapped to the min/max
+		 */		
 		public function getOctave(octave:uint, min:Number=0, max:Number=1):Number {
 			var value:Number = 0;
 			var i:uint;
