@@ -4,6 +4,7 @@ package hype.framework.trigger {
 	 * Interfaces all triggers must implement
 	 */
 	public interface ITrigger {
+		
 		/**
 		 * Method to run when determining if the trigger should run
 		 * 

@@ -6,12 +6,19 @@ package hype.framework.interactive {
 	import flash.ui.Keyboard;
 
 	/**
-	 * @author 
+	 * An global adjuster that allows users to move and delete Sprites.
+	 * 
+	 * <p>A Sprite that's been added to an Adjuster can be selected (it will
+	 * get a highlight) and can then be dragged around or deleted by pressing
+	 * the backspace key.</p>
 	 */
 	public class Adjuster extends Sprite {
 		private var _activeClip:Sprite;
 		private var _hotKey:HotKey;
 		
+		/**
+		 * Constructor
+		 */
 		public function Adjuster() {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
@@ -21,17 +28,27 @@ package hype.framework.interactive {
 			stage.addEventListener(MouseEvent.MOUSE_DOWN, onDeselect);
 		}
 		
-		public function add(clip:Sprite):void {
-			clip.addEventListener(MouseEvent.MOUSE_DOWN, onSelectClip);
-			clip.mouseEnabled = true;
-			clip.mouseChildren = false;
+		/**
+		 * Add a sprite to be controlled by this Adjuster
+		 * 
+		 * @param clip The Sprite to add
+		 */
+		public function add(sprite:Sprite):void {
+			sprite.addEventListener(MouseEvent.MOUSE_DOWN, onSelectClip);
+			sprite.mouseEnabled = true;
+			sprite.mouseChildren = false;
 		}
 		
-		public function remove(clip:Sprite):void {
-			clip.removeEventListener(MouseEvent.MOUSE_DOWN, onSelectClip);
-			clip.removeEventListener(MouseEvent.MOUSE_DOWN, onSelectClip);
+		/**
+		 * Remove a sprite from control by this Adjuster
+		 * 
+		 * @param sprite The Sprite to remove
+		 */
+		public function remove(sprite:Sprite):void {
+			sprite.removeEventListener(MouseEvent.MOUSE_DOWN, onSelectClip);
+			sprite.removeEventListener(MouseEvent.MOUSE_DOWN, onSelectClip);
 			
-			if (clip == _activeClip) {
+			if (sprite == _activeClip) {
 				graphics.clear();
 				
 				stage.removeEventListener(MouseEvent.MOUSE_MOVE, onTrackClip);

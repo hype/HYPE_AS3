@@ -43,6 +43,7 @@ package net.hires.debug {
 	import flash.utils.getTimer;	
 
 	/**
+	 * @private
 	 * <b>Hi-ReS! Stats</b> FPS, MS and MEM, all in one.
 	 */
 	public class Stats extends Sprite {	

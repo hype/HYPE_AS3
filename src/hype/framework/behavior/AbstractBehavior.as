@@ -3,6 +3,9 @@ package hype.framework.behavior {
 	import hype.framework.rhythm.AbstractRhythm;
 	import hype.framework.rhythm.RhythmManager;
 
+	/**
+	 * Abstract class that all Behaviors must inherit from
+	 */
 	public class AbstractBehavior {
 		public static var manager:RhythmManager;
 		
@@ -11,6 +14,11 @@ package hype.framework.behavior {
 		private var _target:Object;
 		private var _metaPropertyTable:Object;
 		
+		/**
+		 * Constructor
+		 * 
+		 * @param target Target object of this behavior
+		 */
 		public function AbstractBehavior(target:Object) {
 			if (AbstractRhythm.manager == null) {
 				AbstractRhythm.manager = new RhythmManager();
@@ -30,18 +38,36 @@ package hype.framework.behavior {
 			manager.addRhythm(this, runBehavior);
 		}
 		
+		/**
+		 * Add a new meta property
+		 * 
+		 * @param name Name of the new meta-property
+		 * @param getter Function to get the value of the meta-property
+		 * @param setter Function to set the value of the meta-property
+		 */
 		public static function addMetaProperty(name:String, getter:Function, setter:Function):void {
 			_metaPropertyTable[name] = new Accessor(getter, setter);
 		}
 		
+		/**
+		 * @private
+		 */
 		public static function getScale(target:Object):Number {
 			return target["scaleX"];
 		}
 		
+		/**
+		 * @private
+		 */
 		public static function setScale(target:Object, value:Number):void {
 			target["scaleX"] = target["scaleY"] = value;
 		}
 		
+		/**
+		 * Remove all behaviors from the specified object
+		 * 
+		 * @param object Object to remove all behaviors from
+		 */
 		public static function removeBehaviorsFromObject(object:Object):void {
 			var list:Array = manager.getRhythmsOfType(AbstractBehavior);
 			var max:int = list.length;
@@ -55,35 +81,66 @@ package hype.framework.behavior {
 			
 		}
 		
+		/**
+		 * @private
+		 */
 		public function runBehavior():void {
 			(this as IBehavior).run(_target);
 		}
 		
+		/**
+		 * Store this behavior by name
+		 * 
+		 * @param name Name of this behavior
+		 */
 		public function store(name:String):void {
-			BehaviorStore.store(name, this);
+			BehaviorStore.store(this, name);
 		}
 		
+		/**
+		 * Start running this behavior
+		 * 
+		 * @param type Time type to use
+		 * @param interval Interval to run the behavior
+		 * 
+		 * @see hype.framework.core.TimeType
+		 */
 		public function start(type:String="enter_frame", interval:uint=1):Boolean {
 			return manager.startRhythm(this, type, interval);
 		}
 		
+		/**
+		 * Stop the behavior
+		 */
 		public function stop():Boolean {
 			return manager.stopRhythm(this);
 		}
 		
+		/**
+		 * Destroy the behavior
+		 */
 		public function destroy():void {
 			_target = null;
 			manager.removeRhythm(this);
 		}
 		
+		/**
+		 * Flag show whether the behavior is running
+		 */
 		public function get isRunning():Boolean {
 			return manager.getRhythmInfo(this).isRunning;		
 		}
 		
+		/**
+		 * Target of the behavior
+		 */
 		public function get target():Object {
 			return _target;
 		}
 		
+		/**
+		 * @private
+		 */
 		protected function getProperty(name:String):Number {
 			var accessor:Accessor = Accessor(_metaPropertyTable[name]);
 			
@@ -94,6 +151,9 @@ package hype.framework.behavior {
 			}
 		}
 		
+		/**
+		 * @private
+		 */
 		protected function setProperty(name:String, value:Number):void {
 			var accessor:Accessor = Accessor(_metaPropertyTable[name]);
 			

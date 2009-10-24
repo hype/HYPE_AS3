@@ -2,18 +2,38 @@ package hype.framework.behavior {
 	import hype.framework.behavior.AbstractBehavior;
 	import hype.framework.behavior.IBehavior;
 
+	/**
+	 * Behavior class that runs a function at a set interval
+	 */
 	public class SimpleBehavior extends AbstractBehavior implements IBehavior {
 		
 		private var _callback:Function;
 		
-		public function SimpleBehavior(target:Object, method:Function) {
+		/**
+		 * Constructor
+		 * 
+		 * @param target Target object
+		 * @param callback Function to use as the behaviors run method
+		 */
+		public function SimpleBehavior(target:Object, callback:Function) {
 			super(target);
 			
+			_callback = callback;
+		}
+		
+		/**
+		 * The function you to use for this behavior
+		 */
+		public function set callback(method:Function):void {
 			_callback = method;
 		}
 		
+		public function get callback():Function {
+			return _callback;
+		}		
+		
 		public function run(target:Object):void {
-			_callback(this, target);
+			_callback(target);
 		}
 	}
 }

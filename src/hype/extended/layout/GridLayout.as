@@ -4,14 +4,26 @@ package hype.extended.layout {
 
 	import flash.geom.Point;
 
+	/**
+	 * Layout that produces a simple grid
+	 */
 	public class GridLayout extends AbstractLayout implements ILayout {
-		var _index:uint;
-		var _x:Number;
-		var _y:Number;
-		var _xSpace:Number;
-		var _ySpace:Number;
-		var _columns:uint;
+		private var _index:uint;
+		private var _x:Number;
+		private var _y:Number;
+		private var _xSpace:Number;
+		private var _ySpace:Number;
+		private var _columns:uint;
 
+		/**
+		 * Constructor
+		 * 
+		 * @param x Initial x position of the grid
+		 * @param y Initial y position of the grid
+		 * @param xSpace Horizontal space between points in the grid
+		 * @param ySpace Vertical space between points in the grid
+		 * @param columns The number of columns in the grid
+		 */
 		public function GridLayout(x:Number, y:Number, xSpace:Number, ySpace:Number, columns:uint) {
 			_index = 0;
 			_x = x;

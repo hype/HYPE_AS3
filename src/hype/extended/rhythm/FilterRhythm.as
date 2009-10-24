@@ -5,12 +5,21 @@ package hype.extended.rhythm {
 	import flash.display.BitmapData;
 	import flash.geom.Point;
 
+	/**
+	 * Rhythm to continuously apply a set of filters to a BitmapData instance
+	 */
 	public class FilterRhythm extends AbstractRhythm implements IRhythm {
 		private static var _zeroPoint:Point = new Point(0, 0);
 		
 		private var _filterList:Array;
 		private var _bitmapData:BitmapData;
 		
+		/**
+		 * Constructor
+		 * 
+		 * @param filterList Array of filters to apply
+		 * @param bitmapData BitmapData instance to apply the filters to
+		 */
 		public function FilterRhythm(filterList:Array, bitmapData:BitmapData) {
 			super();
 			

@@ -1,5 +1,8 @@
 package hype.framework.rhythm {
 
+	/**
+	 * @private
+	 */
 	public class RhythmInfo {
 		public var rhythm:Object;
 		public var method:Function;

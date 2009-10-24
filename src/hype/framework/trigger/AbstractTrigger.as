@@ -87,7 +87,7 @@ package hype.framework.trigger {
 		}
 		
 		/**
-		 * Check to see if the trigger is running
+		 * Boolean specifing if the trigger is running
 		 */
 		public function get isRunning():Boolean {
 			return manager.getRhythmInfo(this).isRunning;		

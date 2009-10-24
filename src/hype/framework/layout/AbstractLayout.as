@@ -2,13 +2,21 @@ package hype.framework.layout {
 	import flash.display.DisplayObject;
 	import flash.geom.Point;
 
+	/**
+	 * Abstract base class all Layouts must inherit from
+	 */
 	public class AbstractLayout {
 		
-		public function applyLayout(d:DisplayObject):void {
+		/**
+		 * Get the next point from the layout and apply it to a DisplayObject
+		 * 
+		 * @param object The DisplayObject to position
+		 */
+		public function applyLayout(object:DisplayObject):void {
 			var pt:Point = ILayout(this).getNextPoint();
 			
-			d.x = pt.x;
-			d.y = pt.y;
+			object.x = pt.x;
+			object.y = pt.y;
 		}
 		
 	}

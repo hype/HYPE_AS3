@@ -1,7 +1,7 @@
 package hype.framework.core {
 
 	/**
-	 * @author bhall
+	 * @private
 	 */
 	public class Accessor {
 		public var getter:Function;

@@ -6,11 +6,20 @@ package hype.extended.layout {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
+	/**
+	 * Layout that produces random points all of which are on a specified shape
+	 */
 	public class ShapeLayout extends AbstractLayout implements ILayout {
 
 		private var _target : Sprite;
 		private var _rect : Rectangle;
 
+		/**
+		 * Constructor
+		 * 
+		 * @param target Sprite that is used to define the shape where points
+		 * should be placed
+		 */
 		public function ShapeLayout(target : Sprite) {
 			_target = target;	
 			

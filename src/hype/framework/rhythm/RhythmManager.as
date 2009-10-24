@@ -6,7 +6,10 @@ package hype.framework.rhythm {
 	import flash.utils.Dictionary;
 	import flash.utils.clearInterval;
 	import flash.utils.setInterval;
-
+	
+	/**
+	 * @private
+	 */
 	public class RhythmManager {
 		private var _rhythmTable:Dictionary;
 		private var _enterFrameHead:RhythmInfo;

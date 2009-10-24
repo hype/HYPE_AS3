@@ -2,13 +2,21 @@ package hype.framework.behavior {
 	import flash.utils.Dictionary;
 
 	/**
-	 * @author bhall
+	 * Global store that can hold behaviors by target and name
+	 * 
+	 * @see hype.framework.behavior.AbstractBehavior#store AbstractBehavior.store()
 	 */
 	public class BehaviorStore {
 		
 		private static var _table:Dictionary = new Dictionary(true);
 		
-		public static function store(name:String, behavior:AbstractBehavior):void {
+		/**
+		 * Store a behavior
+		 * 
+		 * @param name Name to store the behavior under
+		 * @param behavior The behavior to store
+		 */
+		public static function store(behavior:AbstractBehavior, name:String):void {
 			if (_table[behavior.target] == null) {
 				_table[behavior.target] = new Object();
 			}
@@ -16,6 +24,14 @@ package hype.framework.behavior {
 			_table[behavior.target][name] = behavior;	
 		}
 		
+		/**
+		 * Get a behavior from the store
+		 * 
+		 * @param target Object which the behavior targets
+		 * @param name Name of the behavior
+		 * 
+		 * @return The behavior, null if not found
+		 */
 		public static function retreive(target:Object, name:String):AbstractBehavior {
 			var targetTable:Object = _table[target];
 			
@@ -26,6 +42,14 @@ package hype.framework.behavior {
 			}
 		}
 		
+		/**
+		 * Remove a behavior from the store
+		 * 
+		 * @param target Object which the behavior targets
+		 * @param name Name of the behavior
+		 * 
+		 * @return Whether the behavior was found and removed successfully
+		 */
 		public static function remove(target:Object, name:String):Boolean {
 			var targetTable:Object = _table[target];
 			

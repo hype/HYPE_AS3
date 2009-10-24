@@ -10,6 +10,9 @@ package hype.framework.display {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
+	/**
+	 * Captures a specifed target DisplayObject to a bitmap and displays it. 
+	 */
 	public class BitmapCanvas extends Sprite {
 		private var _target:DisplayObject;
 		private var _rect:Rectangle;
@@ -24,6 +27,14 @@ package hype.framework.display {
 		private var _captureMethod:Function;
 		private var _rhythm:SimpleRhythm;
 		
+		/**
+		 * Constructor
+		 * 
+		 * @param width Width of the bitmap (pixels)
+		 * @param height Height of the bitmap (pixels)
+		 * @param transparent Boolean specifying if the bitmap is transparent
+		 * @param fillColor Default fill color of the bitmap
+		 */
 		public function BitmapCanvas(width:Number, height:Number, transparent:Boolean=true, fillColor:uint = 0xFFFFFF) {
 			var bitmapData:BitmapData;
 			
@@ -44,26 +55,55 @@ package hype.framework.display {
 			addChild(_bitmap);
 		}
 		
+		/**
+		 * Target being captured to bitmap
+		 */
 		public function get target():DisplayObject {
 			return _target;
 		}
 		
+		/**
+		 * The instance of Bitmap displayed by this BitmapCanvas
+		 */
 		public function get bitmap():Bitmap {
 			return _bitmap;
 		}
 		
+		/**
+		 * Whether this BitmapCanvas is currently capturing
+		 */
 		public function get isCapturing():Boolean {
 			return _captureFlag;
 		}
 		
+		/**
+		 * A matrix to apply to the bitmap as it is capturing
+		 */
 		public function get matrix():Matrix {
 			return _matrix;
 		}
 		
+		/**
+		 * A matrix to apply to the bitmap as it is capturing
+		 */
 		public function set matrix(value:Matrix):void {
 			_matrix = value;
 		}
 		
+		/**
+		 * Start capturing the target into the bitmap
+		 * 
+		 * @param target DisplayObject to capture
+		 * @param continuous Flag specifying if the bitmap should be cleared
+		 * after each capture (true to NOT erase after each capture)
+		 * @param type Time type to use
+		 * @param interval Interval between captures
+		 * 
+		 * @return Whether the capture started or not (false if capture is
+		 * already occurring)
+		 * 
+		 * @see hype.framework.core.TimeType
+		 */
 		public function startCapture(target:DisplayObject, continuous:Boolean = false, type:String="enter_frame", interval:int=1):Boolean {
 			if (!_captureFlag) {
 				_target = target;
@@ -84,6 +124,9 @@ package hype.framework.display {
 			}
 		}
 		
+		/**
+		 * Stop capturing
+		 */
 		public function stopCapture():Boolean {
 			if (_captureFlag) {
 				removeEventListener(Event.ENTER_FRAME, _captureMethod);

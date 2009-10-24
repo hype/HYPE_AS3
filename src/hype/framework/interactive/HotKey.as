@@ -4,13 +4,19 @@ package hype.framework.interactive {
 	import flash.utils.Dictionary;
 
 	/**
-	 * @author 
+	 * Maps functions to key combinations 
 	 */
 	public class HotKey {
 		private var _owner:InteractiveObject;
 		private var _comboTable:Dictionary;
 		private var _keyTable:Object;
 		
+		/**
+		 * Constructor
+		 * 
+		 * @param owner InteractiveObject to listen to for keyboard events 
+		 * (usually an instance of Stage)
+		 */
 		public function HotKey(owner:InteractiveObject) {
 			_owner = owner;
 			_owner.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
@@ -20,7 +26,14 @@ package hype.framework.interactive {
 			_keyTable = new Object();
 		}
 		
-		public function addHotKey(f:Function, key:uint, ...rest):void {
+		/**
+		 * Setup a function to be triggerd by a key combination
+		 * 
+		 * @param callback Function to call
+		 * @param key The keyboard code to listen for
+		 * @param ...rest Additional keyboard codes to listen for 
+		 */
+		public function addHotKey(callback:Function, key:uint, ...rest):void {
 			var max:uint = rest["length"];
 			var i:uint;
 			var keyList:Array;
@@ -32,20 +45,32 @@ package hype.framework.interactive {
 				keyList.push(rest[i]);
 			}
 			
-			_comboTable[f] = keyList;
+			_comboTable[callback] = keyList;
 		}
 		
-		public function removeHotKey(f:Function):Boolean {
-			if (_comboTable[f] != null) {
-				_comboTable[f] = null;
+		/**
+		 * Remove a funciton from keyboard control
+		 * 
+		 * @param callback Function to remove
+		 */
+		public function removeHotKey(callback:Function):Boolean {
+			if (_comboTable[callback] != null) {
+				_comboTable[callback] = null;
 				return true;
 			} else {
 				return false;
 			}
 		}
 		
-		public function isKeyDown(id:uint):Boolean {
-			return (_keyTable[id] == true);
+		/**
+		 * Check to see if a specific keyboard key is currently pressed down
+		 * 
+		 * @param code Keyboard code of the key to check
+		 * 
+		 * @return Whether the key in question is currently pressed 
+		 */
+		public function isKeyDown(code:uint):Boolean {
+			return (_keyTable[code] == true);
 		}
 		
 		private function onKeyDown(event:KeyboardEvent):void {

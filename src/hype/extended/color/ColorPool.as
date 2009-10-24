@@ -6,11 +6,19 @@ package hype.extended.color {
 	import flash.display.Sprite;
 	import flash.geom.ColorTransform;
 
+	/**
+	 * Colorist that applies colors from a specified pool
+	 */
 	public class ColorPool implements IColorist {
 		
 		private var _colorList:Array;
 		private var _colorTable:Object;
 		
+		/**
+		 * Constructor
+		 * 
+		 * @param ...rest Colors to be added to the pool (uint)
+		 */
 		public function ColorPool(...rest) {
 			var max:uint = rest["length"];
 			var i:uint;
@@ -23,10 +31,17 @@ package hype.extended.color {
 			}
 		}
 		
-		public function addColor(value:uint):Boolean {
-			if (!hasColor(value)) {
-				_colorList.push(value);
-				_colorTable[value] = true;
+		/**
+		 * Add a color to the pool (prevents duplicates)
+		 * 
+		 * @param color Color to add to the pool (uint)
+		 * 
+		 * @return Whether the color was added
+		 */
+		public function addColor(color:uint):Boolean {
+			if (!hasColor(color)) {
+				_colorList.push(color);
+				_colorTable[color] = true;
 				
 				return true;
 			} else {
@@ -34,10 +49,20 @@ package hype.extended.color {
 			}
 		}
 		
-		public function hasColor(value:uint):Boolean {
-			return (_colorTable[value] == true);
+		/**
+		 * Determine if the pool contains the specified color
+		 * 
+		 * @param color Color to test
+		 * 
+		 * @return Whether this pool contains the color
+		 */
+		public function hasColor(color:uint):Boolean {
+			return (_colorTable[color] == true);
 		}
 		
+		/**
+		 * Resets the color pool (removes all colors)
+		 */
 		public function reset():void {
 			_colorList = new Array();
 			_colorTable = new Object();
