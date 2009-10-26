@@ -32,6 +32,9 @@ package hype.framework.behavior {
 			return _callback;
 		}		
 		
+		/**
+		 * @private
+		 */
 		public function run(target:Object):void {
 			_callback(target);
 		}

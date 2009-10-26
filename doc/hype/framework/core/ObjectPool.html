@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="ObjectPool,hype.framework.core.ObjectPool,onCreate,onRelease,onRequest,activeSet,createAll,release,request" name="keywords">
+<meta content="ObjectPool,hype.framework.core.ObjectPool,onCreateObject,onReleaseObject,onRequestObject,activeSet,createAll,release,request" name="keywords">
 <title>hype.framework.core.ObjectPool</title>
 </head>
 <body>
@@ -59,19 +59,19 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">ObjectPool</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onCreate">onCreate</a> : Function<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onCreateObject">onCreateObject</a> : Function<div class="summaryTableDescription">
    Callback for when new objects are created
    </div>
 </td><td class="summaryTableOwnerCol">ObjectPool</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onRelease">onRelease</a> : Function<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onReleaseObject">onReleaseObject</a> : Function<div class="summaryTableDescription">
    Callback for when objects are released (returned to the pool)
    </div>
 </td><td class="summaryTableOwnerCol">ObjectPool</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onRequest">onRequest</a> : Function<div class="summaryTableDescription">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onRequestObject">onRequestObject</a> : Function<div class="summaryTableDescription">
    Callback for when new objects are successfully requested
    </div>
 </td><td class="summaryTableOwnerCol">ObjectPool</td>
@@ -142,34 +142,34 @@ showHideInherited();
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get activeSet():<a href="../core/ObjectSet.html">ObjectSet</a></code>
 <br>
 </div>
-<a name="onCreate"></a>
+<a name="onCreateObject"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">onCreate</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">onCreateObject</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public var onCreate:Function</code><p>
+<code>public var onCreateObject:Function</code><p>
    Callback for when new objects are created
    </p></div>
-<a name="onRelease"></a>
+<a name="onReleaseObject"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">onRelease</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">onReleaseObject</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public var onRelease:Function</code><p>
+<code>public var onReleaseObject:Function</code><p>
    Callback for when objects are released (returned to the pool)
    </p></div>
-<a name="onRequest"></a>
+<a name="onRequestObject"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">onRequest</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">onRequestObject</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public var onRequest:Function</code><p>
+<code>public var onRequestObject:Function</code><p>
    Callback for when new objects are successfully requested
    </p></div>
 <a name="constructorDetail"></a>

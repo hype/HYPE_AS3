@@ -7,12 +7,14 @@ package hype.framework.behavior {
 	 * Abstract class that all Behaviors must inherit from
 	 */
 	public class AbstractBehavior {
+		/**
+		 * @private
+		 */
 		public static var manager:RhythmManager;
 		
 		private static var _metaPropertyTable:Object;
 		
 		private var _target:Object;
-		private var _metaPropertyTable:Object;
 		
 		/**
 		 * Constructor
@@ -30,7 +32,7 @@ package hype.framework.behavior {
 			
 			if (_metaPropertyTable == null) {
 				_metaPropertyTable = new Object();
-				addMetaProperty("scale", getScale, setScale);
+				addMetaProperty("scale", AbstractBehavior.getScale, setScale);
 			}
 			
 			_target = target;
@@ -46,6 +48,7 @@ package hype.framework.behavior {
 		 * @param setter Function to set the value of the meta-property
 		 */
 		public static function addMetaProperty(name:String, getter:Function, setter:Function):void {
+			
 			_metaPropertyTable[name] = new Accessor(getter, setter);
 		}
 		
@@ -145,7 +148,7 @@ package hype.framework.behavior {
 			var accessor:Accessor = Accessor(_metaPropertyTable[name]);
 			
 			if (accessor) {
-				return accessor.getter(name);
+				return accessor.getter(target);
 			} else {
 				return _target[name];
 			}
@@ -158,7 +161,7 @@ package hype.framework.behavior {
 			var accessor:Accessor = Accessor(_metaPropertyTable[name]);
 			
 			if (accessor) {
-				accessor.setter(name, value);
+				accessor.setter(target, value);
 			} else {
 				_target[name] = value;
 			}

@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="FunctionTracker,hype.extended.behavior.FunctionTracker,argumentList,run" name="keywords">
+<meta content="FunctionTracker,hype.extended.behavior.FunctionTracker,argumentList" name="keywords">
 <title>hype.extended.behavior.FunctionTracker</title>
 </head>
 <body>
@@ -45,6 +45,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 </table>
 <p></p>
+  Behavior that runs a specific function and maps it to a property of the target object
   <p></p>
 <br>
 <hr>
@@ -65,17 +66,15 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#argumentList">argumentList</a> : Array<div class="summaryTableDescription"></div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#argumentList">argumentList</a> : Array<div class="summaryTableDescription">
+   Arguments to send to the function
+   </div>
 </td><td class="summaryTableOwnerCol">FunctionTracker</td>
 </tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../framework/behavior/AbstractBehavior.html#isRunning">isRunning</a> : Boolean<div class="summaryTableDescription">
    Flag show whether the behavior is running
    </div>
-</td><td class="summaryTableOwnerCol"><a href="../../framework/behavior/AbstractBehavior.html">AbstractBehavior</a></td>
-</tr>
-<tr class="hideInheritedProperty">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../framework/behavior/AbstractBehavior.html#manager">manager</a> : RhythmManager<div class="summaryTableDescription">[static]</div>
 </td><td class="summaryTableOwnerCol"><a href="../../framework/behavior/AbstractBehavior.html">AbstractBehavior</a></td>
 </tr>
 <tr class="hideInheritedProperty">
@@ -105,7 +104,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#FunctionTracker()">FunctionTracker</a>(target:Object, prop:String, f:Function, argumentList:Array)</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+   Constructor
+   
+   </div>
 </td><td class="summaryTableOwnerCol">FunctionTracker</td>
 </tr>
 <tr class="hideInheritedMethod">
@@ -136,13 +138,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    
    </div>
 </td><td class="summaryTableOwnerCol"><a href="../../framework/behavior/AbstractBehavior.html">AbstractBehavior</a></td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#run()">run</a>(target:Object):void</div>
-<div class="summaryTableDescription"></div>
-</td><td class="summaryTableOwnerCol">FunctionTracker</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -189,7 +184,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>argumentList:Array</code>&nbsp;&nbsp;[read-write]<span class="label">Implementation</span>
+<code>argumentList:Array</code>&nbsp;&nbsp;[read-write]<p>
+   Arguments to send to the function
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get argumentList():Array</code>
 <br>
@@ -205,7 +202,10 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function FunctionTracker(target:Object, prop:String, f:Function, argumentList:Array)</code><span class="label">Parameters</span>
+<code>public function FunctionTracker(target:Object, prop:String, f:Function, argumentList:Array)</code><p>
+   Constructor
+   
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">target</span>:Object</code></td>
@@ -227,22 +227,6 @@ showHideInherited();
 </tr>
 <tr>
 <td width="20px"></td><td><code><span class="label">argumentList</span>:Array</code></td>
-</tr>
-</table>
-</div>
-<a name="methodDetail"></a>
-<div class="detailSectionHeader">Method detail</div>
-<a name="run()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">run</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function run(target:Object):void</code><span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code><span class="label">target</span>:Object</code></td>
 </tr>
 </table>
 </div>

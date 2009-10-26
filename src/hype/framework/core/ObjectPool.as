@@ -14,17 +14,17 @@ package hype.framework.core {
 		/**
 		 * Callback for when new objects are created
 		 */
-		public var onCreate:Function;
+		public var onCreateObject:Function;
 		
 		/**
 		 * Callback for when new objects are successfully requested
 		 */
-		public var onRequest:Function;
+		public var onRequestObject:Function;
 		
 		/**
 		 * Callback for when objects are released (returned to the pool)
 		 */
-		public var onRelease:Function;
+		public var onReleaseObject:Function;
 		
 		/**
 		 * Constructor
@@ -39,6 +39,8 @@ package hype.framework.core {
 			
 			_activeSet = new ObjectSet();
 			_inactiveSet = new ObjectSet();
+			
+			onCreateObject = onRequestObject = onReleaseObject = function(obj:Object):void{};
 		}
 		
 		/**
@@ -59,15 +61,15 @@ package hype.framework.core {
 			if (_inactiveSet.length > 0) {
 				obj = _inactiveSet.pull();
 				_activeSet.insert(obj);
-				onRequest(this, obj);
+				onRequestObject(obj);
 				
 				return obj;
 			} else if (_count < _max) {
 				obj = new _objectClass();
 				++_count;
 				_activeSet.insert(obj);
-				onCreate(this, obj);
-				onRequest(this, obj);
+				onCreateObject(obj);
+				onRequestObject(obj);
 				
 				return obj;
 			} else {
@@ -94,7 +96,7 @@ package hype.framework.core {
 		public function release(object:Object):Boolean {
 			if (_activeSet.remove(object)) {
 				_inactiveSet.insert(object);
-				onRelease(this, object);
+				onReleaseObject(object);
 				
 				return true;
 			} else {
