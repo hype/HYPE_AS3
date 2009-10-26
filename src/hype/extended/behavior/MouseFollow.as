@@ -14,12 +14,23 @@ package hype.extended.behavior {
 
 	import flash.display.DisplayObject;
 
+	/**
+	 * Makes the target track the mouse
+	 */
 	public class MouseFollow extends AbstractBehavior implements IBehavior {
 
+		/**
+		 * Constructor
+		 * 
+		 * @param target Target object
+		 */
 		public function MouseFollow(target:Object) {
 			super(target);
 		}
 
+		/**
+		 * @private
+		 */
 		public function run(target:Object):void {
 			var myTarget:DisplayObject = target as DisplayObject;
 			

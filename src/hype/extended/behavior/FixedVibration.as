@@ -1,18 +1,11 @@
-/**
- *
- *   Joshua Davis
- *   http://www.joshuadavis.com
- *   studio@joshuadavis.com
- *
- *   Sep 26, 2009
- *
- */
-
 package hype.extended.behavior {
 	import hype.framework.behavior.AbstractBehavior;
 	import hype.framework.behavior.IBehavior;
 	import hype.framework.core.HypeMath;
 
+	/**
+	 * Vibrates a property with in a set range
+	 */
 	public class FixedVibration extends AbstractBehavior implements IBehavior {
 
 		private var _prop:String;
@@ -22,6 +15,17 @@ package hype.extended.behavior {
 		private var _range:Number; 
 		private var _speed:Number;
 
+		/**
+		 * Constructor
+		 * 
+		 * @param target Target object
+		 * @param prop Target property
+		 * @param spring Springiness of movement
+		 * @param ease Ease of movement
+		 * @param min Minimum range of the vibration
+		 * @param max Maximum range of the vibration
+		 * @param isRelative Whether min and max are absolute or relative to the property's current value
+		 */
 		public function FixedVibration(target:Object, prop:String, spring:Number, ease:Number, min:Number, max:Number, isRelative:Boolean) {
 			super(target);
 
@@ -38,6 +42,9 @@ package hype.extended.behavior {
 			_speed = 0;
 		}
 
+		/**
+		 * @private
+		 */
 		public function run(target:Object):void {
 			var goal:Number;
 			var value:Number = getProperty(_prop);

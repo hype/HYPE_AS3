@@ -14,6 +14,9 @@ package hype.extended.behavior {
 
 	import flash.display.DisplayObject;
 
+	/**
+	 * Follow the mouse with springiness
+	 */
 	public class MouseFollowSpring extends AbstractBehavior implements IBehavior {
 
 		private var _spring:Number;
@@ -21,6 +24,13 @@ package hype.extended.behavior {
 		private var _xSpeed:Number;
 		private var _ySpeed:Number;
 
+		/**
+		 * Constructor
+		 * 
+		 * @param target Target object
+		 * @param spring Springiness of the movement
+		 * @param ease Ease of the movement
+		 */
 		public function MouseFollowSpring(target:Object, spring:Number, ease:Number) {
 			super(target);
 			_spring = spring;
@@ -29,6 +39,9 @@ package hype.extended.behavior {
 			_ySpeed = 0;
 		}
 
+		/**
+		 * @private
+		 */
 		public function run(target:Object):void {
 			var myTarget:DisplayObject = target as DisplayObject;
 			

@@ -14,15 +14,27 @@ package hype.extended.behavior {
 
 	import flash.display.DisplayObject;
 
+	/**
+	 * Makes the target follow the mouse with ease
+	 */
 	public class MouseFollowEase extends AbstractBehavior implements IBehavior {
 
 		private var _ease:Number;
 
+		/**
+		 * Constructor
+		 * 
+		 * @param target Target object
+		 * @param ease Ease of the movement
+		 */
 		public function MouseFollowEase(target:Object, ease:Number) {
 			super(target);
 			_ease = ease;
 		}
 
+		/**
+		 * @private
+		 */
 		public function run(target:Object):void {
 			var myTarget:DisplayObject = target as DisplayObject;
 			

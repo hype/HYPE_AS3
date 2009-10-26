@@ -1,18 +1,11 @@
-/**
- *
- *   Joshua Davis
- *   http://www.joshuadavis.com
- *   studio@joshuadavis.com
- *
- *   Sep 27, 2009
- *
- */
- 
 package hype.extended.behavior {
 	import hype.framework.behavior.AbstractBehavior;
 	import hype.framework.behavior.IBehavior;
 	import hype.framework.core.HypeMath;
 
+	/**
+	 * Vibrates a property in an unbounded manner
+	 */
 	public class VariableVibration extends AbstractBehavior implements IBehavior {
 
 		private var _prop:String;
@@ -21,6 +14,15 @@ package hype.extended.behavior {
 		private var _vibrationRange:Number; 
 		private var _speed:Number;
 
+		/**
+		 * Constructor
+		 * 
+		 * @param target Target object
+		 * @param prop Target property
+		 * @param spring Springiness of the vibration
+		 * @param ease Ease of the vibration
+		 * @param vibrationRange The amount the vibration can vary (total distance, so 4 would result in a vibration from -2 to 2)
+		 */
 		public function VariableVibration(target:Object, prop:String, spring:Number, ease:Number, vibrationRange:Number) {
 			super(target);
 			
@@ -31,6 +33,9 @@ package hype.extended.behavior {
 			_speed = 0;
 		}
 
+		/**
+		 * @private
+		 */
 		public function run(target:Object):void {
 			var goal:Number;
 			var value:Number = getProperty(_prop);

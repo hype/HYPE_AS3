@@ -3,7 +3,7 @@ package hype.extended.behavior {
 	import hype.framework.behavior.IBehavior;
 
 	/**
-	 * @author bhall
+	 * Oscillates a property with a specifed wave function
 	 */
 	public class Oscillator extends AbstractBehavior implements IBehavior {
 		private static const TWO_PI:Number = Math.PI * 2;
@@ -21,6 +21,17 @@ package hype.extended.behavior {
 		private var _ampStep:Number;
 		private var _ampGoal:Number;
 		
+		/**
+		 * Constructor
+		 * 
+		 * @param target Target object
+		 * @param prop Target property
+		 * @param waveFunction Function that specifies the wave (from -1 to 1)
+		 * @param freq Frequency of the wave (in number of steps)
+		 * @param min Minimum value of the property
+		 * @param max Maximum value of the property
+		 * @param start Initial value of the wave function
+		 */
 		public function Oscillator(target:Object, prop:String, waveFunction:Function, freq:Number, min:Number, max:Number, start:Number=0) {
 			super(target);
 			
@@ -36,22 +47,40 @@ package hype.extended.behavior {
 			_step = start;
 		}
 		
+		/**
+		 * Sine wave function
+		 */
 		public static function sineWave(step:Number):Number {
 			return Math.sin(TWO_PI * step);
 		}
 		
+		/**
+		 * Square wave function
+		 */
 		public static function squareWave(step:Number):Number {
 			return step < 0.5 ? 1 : -1;
 		}
 		
+		/**
+		 * Triangle wave function
+		 */
 		public static function triangleWave(step:Number):Number {
 			return 1 - 4 * Math.abs(Math.round(step) - step);
 		}
 		
+		/**
+		 * Saw wave function
+		 */
 		public static function sawWave(step:Number):Number {
 			return 2 * ( step - Math.round(step));
 		}			
 		
+		/**
+		 * Change the frequency of the wave
+		 * 
+		 * @param freq New frequency
+		 * @param steps Number of steps to take to change frequency
+		 */
 		public function changeFrequency(freq:Number, steps:int=0):void {
 			if (steps > 0) {
 				_freqGoal = 1/freq;
@@ -61,6 +90,13 @@ package hype.extended.behavior {
 			}
 		}
 		
+		/**
+		 * Change the range of the behavior
+		 * 
+		 * @param min New minimum value of the property
+		 * @param max New maximum value of the property
+		 * @param steps Number of steps to take to change the range
+		 */
 		public function changeRange(min:Number, max:Number, steps:int=0):void {
 			if (steps > 0) {
 				_ampGoal = max - min;
@@ -73,6 +109,9 @@ package hype.extended.behavior {
 			}
 		}
 		
+		/**
+		 * @private
+		 */
 		public function run(target:Object) : void {
 			this.setProperty(_prop, (_waveFunction(_step) / 2 + 0.5) * _amp + _min);
 			
