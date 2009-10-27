@@ -15,7 +15,7 @@ package hype.extended.behavior {
 	import flash.display.DisplayObject;
 
 	/**
-	 * Follow the mouse with springiness
+	 * Makes the target follow the mouse with springiness
 	 */
 	public class MouseFollowSpring extends AbstractBehavior implements IBehavior {
 

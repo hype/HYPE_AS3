@@ -9,7 +9,8 @@ package hype.framework.interactive {
 	public class HotKey {
 		private var _owner:InteractiveObject;
 		private var _comboTable:Dictionary;
-		private var _keyTable:Object;
+		private var _keyCodeTable:Object;
+		private var _charCodeTable:Object;
 		
 		/**
 		 * Constructor
@@ -23,7 +24,8 @@ package hype.framework.interactive {
 			_owner.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
 			
 			_comboTable = new Dictionary();
-			_keyTable = new Object();
+			_keyCodeTable = new Object();
+			_charCodeTable = new Object();
 		}
 		
 		/**
@@ -33,16 +35,16 @@ package hype.framework.interactive {
 		 * @param key The keyboard code to listen for
 		 * @param ...rest Additional keyboard codes to listen for 
 		 */
-		public function addHotKey(callback:Function, key:uint, ...rest):void {
+		public function addHotKey(callback:Function, key:*, ...rest):void {
 			var max:uint = rest["length"];
 			var i:uint;
 			var keyList:Array;
 			
 			keyList = new Array();
-			keyList[0] = key;
+			keyList[0] = parseKey(key);
 			
 			for (i=0; i<max; ++i) {
-				keyList.push(rest[i]);
+				keyList.push(parseKey(rest[i]));
 			}
 			
 			_comboTable[callback] = keyList;
@@ -70,17 +72,30 @@ package hype.framework.interactive {
 		 * @return Whether the key in question is currently pressed 
 		 */
 		public function isKeyDown(code:uint):Boolean {
-			return (_keyTable[code] == true);
+			return (_keyCodeTable[code] == true);
+		}
+
+		/**
+		 * Check to see if a specific character key is currently pressed down
+		 * 
+		 * @param char Character to check
+		 * 
+		 * @return Whether the key in question is currently pressed 
+		 */
+		public function isCharDown(char:String):Boolean {
+			return (_charCodeTable[char.toLowerCase().charCodeAt(0)] == true);
 		}
 		
 		private function onKeyDown(event:KeyboardEvent):void {
 			var comboList:Array;
 			var i:uint;
 			var numKeys:uint;
-			var found:Boolean;		
+			var found:Boolean;
+			var data:KeyData;
 			
-			if (_keyTable[event.keyCode] != true) {
-				_keyTable[event.keyCode] = true;
+			if (_keyCodeTable[event.keyCode] != true) {
+				_keyCodeTable[event.keyCode] = true;
+				_charCodeTable[event.charCode] = true;
 				
 				for (var f:* in _comboTable) {
 					comboList = _comboTable[f];
@@ -88,9 +103,18 @@ package hype.framework.interactive {
 
 					found = true;
 					for(i=0; i<numKeys; ++i) {
-						if (_keyTable[comboList[i]] != true) {
-							found = false;
-							break;
+						data = comboList[i];
+						
+						if (data.isKeyCode) {						
+							if (_keyCodeTable[data.code] != true) {
+								found = false;
+								break;
+							}
+						} else {
+							if (_charCodeTable[data.code] != true) {
+								found = false;
+								break;
+							}
 						}
 					}
 					
@@ -102,7 +126,22 @@ package hype.framework.interactive {
 		}
 		
 		private function onKeyUp(event:KeyboardEvent):void {
-			delete _keyTable[event.keyCode];
+			delete _keyCodeTable[event.keyCode];
+			delete _charCodeTable[event.charCode];
+		}
+		
+		private function parseKey(key:*):KeyData {
+			if (key is int) {				
+				return new KeyData(int(key), true);
+				
+			} else if (key is String) {			
+				return new KeyData(String(key).toLowerCase().charCodeAt(0), false);
+					
+			} else {
+				
+				throw new Error("Bad keycode/character");
+				return null;
+			}
 		}
 	}
 }

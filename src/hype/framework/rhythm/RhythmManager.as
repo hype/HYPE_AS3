@@ -50,6 +50,8 @@ package hype.framework.rhythm {
 					_removeList.push(rhythm);
 				} else {
 					stopRhythm(rhythm);
+					_rhythmTable[rhythm] = null;
+					delete _rhythmTable[rhythm];
 				}
 				return true;
 			} else {
@@ -263,10 +265,14 @@ package hype.framework.rhythm {
 		
 		protected function processRemovalQueue():void {
 			var max:int = _removeList.length;
+			var rhythm:Object;
 			var i:int;
 			
 			for (i=0; i<max; ++i) {
-				stopRhythm(_removeList.pop());
+				rhythm = _removeList.pop();
+				stopRhythm(rhythm);
+				_rhythmTable[rhythm] = null;
+				delete _rhythmTable[rhythm];
 			}
 		}
 	}

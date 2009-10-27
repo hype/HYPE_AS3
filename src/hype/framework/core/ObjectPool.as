@@ -1,4 +1,6 @@
 package hype.framework.core {
+	import hype.framework.behavior.AbstractBehavior;
+	import hype.framework.trigger.AbstractTrigger;
 
 	/**
 	 * Creates and manages pools of objects
@@ -78,9 +80,9 @@ package hype.framework.core {
 		}
 		
 		/**
-		 * Create all of the objects the pool can contain at once.
+		 * Request all of the objects the pool can contain at once.
 		 */
-		public function createAll():void {
+		public function requestAll():void {
 			while(_count < _max) {
 				request();
 			}
@@ -96,6 +98,8 @@ package hype.framework.core {
 		public function release(object:Object):Boolean {
 			if (_activeSet.remove(object)) {
 				_inactiveSet.insert(object);
+				AbstractBehavior.removeBehaviorsFromObject(object);
+				AbstractTrigger.removeTriggersFromObject(object);
 				onReleaseObject(object);
 				
 				return true;

@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="ObjectPool,hype.framework.core.ObjectPool,onCreateObject,onReleaseObject,onRequestObject,activeSet,createAll,release,request" name="keywords">
+<meta content="ObjectPool,hype.framework.core.ObjectPool,onCreateObject,onReleaseObject,onRequestObject,activeSet,release,request,requestAll" name="keywords">
 <title>hype.framework.core.ObjectPool</title>
 </head>
 <body>
@@ -98,14 +98,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#createAll()">createAll</a>():void</div>
-<div class="summaryTableDescription">
-   Create all of the objects the pool can contain at once.</div>
-</td><td class="summaryTableOwnerCol">ObjectPool</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
 <a class="signatureLink" href="#release()">release</a>(object:Object):Boolean</div>
 <div class="summaryTableDescription">
    Release an object back into the pool.</div>
@@ -117,6 +109,14 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a class="signatureLink" href="#request()">request</a>():Object</div>
 <div class="summaryTableDescription">
    Request a new object.</div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#requestAll()">requestAll</a>():void</div>
+<div class="summaryTableDescription">
+   Request all of the objects the pool can contain at once.</div>
 </td><td class="summaryTableOwnerCol">ObjectPool</td>
 </tr>
 </table>
@@ -201,20 +201,10 @@ showHideInherited();
 </div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
-<a name="createAll()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">createAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function createAll():void</code><p>
-   Create all of the objects the pool can contain at once.
-   </p></div>
 <a name="release()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">release</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">release</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
 </tr>
 </table>
 <div class="detailBody">
@@ -257,6 +247,16 @@ showHideInherited();
 </tr>
 </table>
 </div>
+<a name="requestAll()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">requestAll</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function requestAll():void</code><p>
+   Request all of the objects the pool can contain at once.
+   </p></div>
 <br>
 <br>
 <hr>

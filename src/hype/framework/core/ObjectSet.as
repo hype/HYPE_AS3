@@ -76,14 +76,13 @@ package hype.framework.core {
 		 * @return Whether the object was added to the set
 		 */
 		public function insert(obj:Object):Boolean {
-			var node:ObjectNode = new ObjectNode();
+			var node:ObjectNode = new ObjectNode(obj);
 			
 			if (_table[obj] == null) {
-				node.obj = obj;
 				
 				_table[obj] = node;
 				
-				if (null == _tail) {
+				if (_tail == null) {
 					_head = _tail = node;
 				} else {
 					_tail.next = node;
@@ -109,11 +108,17 @@ package hype.framework.core {
 		public function remove(object:Object):Boolean {
 			var node:ObjectNode = ObjectNode(_table[object]);
 			
-			if (null == node)  {
+			if (node == null)  {
 				return false;
 			} else {
-				node.prev.next = node.next;
-				node.next.prev = node.prev;
+				if (node.prev) {
+					node.prev.next = node.next;
+				}
+				
+				if (node.next) {
+					node.next.prev = node.prev;
+				}
+				
 				node.next = null;
 				node.prev = null;
 				node.obj = null;
@@ -132,14 +137,20 @@ package hype.framework.core {
 		 */
 		public function pull():Object {
 			var obj:Object;
-			var node:ObjectNode = _tail;
+			var oldNode:ObjectNode;
 		
 			if (_tail != null) {
-				_tail = node.prev;
-				obj = node.obj;
-				node.prev.next = null;
-				node.prev = null;
-				node.obj = null;
+				oldNode = _tail;
+				obj = _tail.obj;
+				_tail = _tail.prev;
+				
+				if (_tail != null) {
+					_tail.next = null;
+				} 
+				
+				oldNode.obj = null;
+				oldNode.next = null;
+				oldNode.prev = null;
 				_table[obj] = null;
 				delete _table[obj];
 				--_length;
