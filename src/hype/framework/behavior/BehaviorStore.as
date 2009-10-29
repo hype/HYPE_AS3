@@ -32,7 +32,7 @@ package hype.framework.behavior {
 		 * 
 		 * @return The behavior, null if not found
 		 */
-		public static function retreive(target:Object, name:String):AbstractBehavior {
+		public static function retrieve(target:Object, name:String):AbstractBehavior {
 			var targetTable:Object = _table[target];
 			
 			if (targetTable) {

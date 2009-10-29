@@ -6,7 +6,7 @@ package hype.framework.interactive {
 	/**
 	 * @author bhall
 	 */
-	public class EasyButton extends SimpleButton {
+	public dynamic class EasyButton extends SimpleButton {
 		
 		public var onPress:Function;
 		public var onRelease:Function;
