@@ -53,6 +53,14 @@ package hype.framework.core {
 		}
 		
 		/**
+		 * Is the pool full (all objects in activeSet)
+		 */
+		public function get isFull():Boolean {
+			return _max == _count;
+		}
+				
+		
+		/**
 		 * Request a new object. If no objects are available, null is returned.
 		 * 
 		 * @return The new or recycled object
