@@ -35,17 +35,15 @@ package hype.extended.color {
 		 * Add a color to the pool (prevents duplicates)
 		 * 
 		 * @param color Color to add to the pool (uint)
-		 * 
-		 * @return Whether the color was added
+		 * @param count Number of times to add this color
 		 */
-		public function addColor(color:uint):Boolean {
-			if (!hasColor(color)) {
+		public function addColor(color:uint, count:uint=1):void {
+			var i:uint;
+			
+			_colorTable[color] = true;
+			
+			for (i=0; i<count; ++i) {
 				_colorList.push(color);
-				_colorTable[color] = true;
-				
-				return true;
-			} else {
-				return false;
 			}
 		}
 		
