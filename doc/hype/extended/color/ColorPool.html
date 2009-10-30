@@ -67,7 +67,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#addColor()">addColor</a>(color:uint):Boolean</div>
+<a class="signatureLink" href="#addColor()">addColor</a>(color:uint, count:uint = 1):void</div>
 <div class="summaryTableDescription">
    Add a color to the pool (prevents duplicates)
    
@@ -136,22 +136,20 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function addColor(color:uint):Boolean</code><p>
+<code>public function addColor(color:uint, count:uint = 1):void</code><p>
    Add a color to the pool (prevents duplicates)
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">color</span>:uint</code> &mdash; Color to add to the pool (uint)
-   
    </td>
 </tr>
-</table>
-<p></p>
-<span class="label">Returns</span>
-<table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; Whether the color was added
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">count</span>:uint</code> (default = <code>1</code>)<code></code> &mdash; Number of times to add this color
    </td>
 </tr>
 </table>
