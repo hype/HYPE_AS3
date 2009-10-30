@@ -91,25 +91,6 @@ package hype.extended.behavior {
 		}
 		
 		/**
-		 * Change the range of the behavior
-		 * 
-		 * @param min New minimum value of the property
-		 * @param max New maximum value of the property
-		 * @param steps Number of steps to take to change the range
-		 */
-		public function changeRange(min:Number, max:Number, steps:int=0):void {
-			if (steps > 0) {
-				_ampGoal = max - min;
-				_minGoal = min;
-				_ampStep = (_ampGoal - _amp) / steps;
-				_minStep = (_minGoal - _min) / steps;	
-			} else {
-				_amp = max - min;
-				_min = min;
-			}
-		}
-		
-		/**
 		 * @private
 		 */
 		public function run(target:Object) : void {
