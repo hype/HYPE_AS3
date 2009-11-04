@@ -20,13 +20,26 @@ package hype.framework.interactive {
 		 */
 		public function HotKey(owner:InteractiveObject) {
 			_owner = owner;
-			_owner.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
-			_owner.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			_owner.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown, false, 0, true);
+			_owner.addEventListener(KeyboardEvent.KEY_UP, onKeyUp, false, 0, true);
 			
 			_comboTable = new Dictionary();
 			_keyCodeTable = new Object();
 			_charCodeTable = new Object();
 		}
+		
+		/**
+		 * Destroy all listeners used by this instance and clear out all data
+		 * Note: Any further calls will result in runtime errors!
+		 */
+		 public function destroy():void {
+		 	_owner.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
+		 	_owner.removeEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+		 	
+		 	_comboTable = null;
+			_keyCodeTable = null;
+			_charCodeTable = null;
+		 }
 		
 		/**
 		 * Setup a function to be triggerd by a key combination

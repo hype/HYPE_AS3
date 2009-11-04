@@ -134,10 +134,18 @@ package hype.framework.sound {
 			var data:ByteArray = new ByteArray();
 			var i:uint;
 
-			SoundMixer.computeSpectrum(data, true);
+			try {
+				SoundMixer.computeSpectrum(data, true);
 			
-			for (i=0; i<256; ++i) {
-				_frequencyList[i] = Math.min(1, data.readFloat() / _offsetList[i]);
+				for (i=0; i<256; ++i) {
+					_frequencyList[i] = data.readFloat() / _offsetList[i];
+				}
+			
+				_frequencyList[0] = _frequencyList[1];
+			} catch (e:SecurityError) {
+				for (i=0; i<256; ++i) {
+					_frequencyList[i] = 0;
+				}
 			}
 		}
 	}
