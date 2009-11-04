@@ -80,7 +80,7 @@ package hype.framework.sound {
 			var i:uint;
 			var value:Number = 0;
 			start = Math.max(0, start);
-			end = Math.min(255, end);
+			end = Math.min(256, end);
 			
 			if (_invalid) {
 				computeSpectrum();
