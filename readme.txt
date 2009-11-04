@@ -1,6 +1,7 @@
 
-HYPE v1.0
+the HYPE framework
 -------------------------------------------------------------------------------
+
 
 
 Installation & Setup
@@ -33,6 +34,7 @@ it. This just makes sure that Flash knows about where that MXP just stashed the
 HYPE source code.
 
 
+
 Play Time!
 -------------------------------------------------------------------------------
 
@@ -42,7 +44,7 @@ something, but I'm going to keep calling it a circle so don't get confused!).
 Now select your circle and open the Modify > Convert to Symbol... menu. Name
 your symbol "Circle" and hit OK.
 
-Now, select your instance of Circle on the stage and give it an instance name
+Next select your instance of Circle on the stage and give it an instance name
 of "circle" (I generally capitalize symbol names and leave instance names lower
 case - it helps to keep track of which is which!).
 
@@ -68,7 +70,7 @@ and assigning it to a variable named b. We're passing the constructor 3
 arguments. The first says that we'll be making our circle instance follow the
 mouse, the second says how much spring there will be to it's movement and the
 third says how quickly the circle can move toward the mouse (0.1 means it can,
-at most move 10% of the way to the mouse on each step).
+at most, move 10% of the way to the mouse on each step).
 
 Now if you run your movie... nothing will happen! We have to start our behavior
 for it to work! To do so add this line:
@@ -86,6 +88,7 @@ you're done - but do it! HYPE is best learned through play!
 Now, as for our example, back when Flash 3 came out this was some cutting edge
 stuff... but 10 years later it is, to say the very least, passe. Let's make it
 a bit more hip.
+
 
 
 Blitting a Bitmap
@@ -138,6 +141,7 @@ Run your code and check it out! Still passe, but a bit more sexy. Now let's
 really dial it up and blur it out over time!
 
 
+
 Blurring the Lines (and the fills)
 -------------------------------------------------------------------------------
 
@@ -183,6 +187,7 @@ This tells the rhythm that it must use ENTER_FRAME as it's timing mechanism
 and you'll see it blurs out much more slowly.
 
 
+
 The Beginning
 -------------------------------------------------------------------------------
 
@@ -198,12 +203,16 @@ Get playing!
 
 Branden Hall & Joshua Davis
 
+
+
 -------------------------------------------------------------------------------
 
 Change Log
 -------------------------------------------------------------------------------
 
-1.0.0 / Intial release
+1.0.0 / Initial release
+
+
 
 Credits
 -------------------------------------------------------------------------------
@@ -211,7 +220,14 @@ Credits
 HYPE was developed and is copyrighted by Branden Hall & Joshua Davis, 2009.
 See license.txt for licensing information.
 
+Joshua and Branden would sincerely like to thank their families for the support
+and understanding during the development of HYPE and throughout their careers!
+
 Mr. Doob's Stats is included courtesy of Mr. Doob.
 (http://code.google.com/p/mrdoob/wiki/stats)
+
+LOVE to bevin keley aka blevin blectum for letting us use two of her tracks,
+"Retrice" and "Foyer Fire", from her Gular Flutter album, for our SoundAnalyzer
+examples. (http://blevin.LSR1.com)
 
 
