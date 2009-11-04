@@ -211,7 +211,10 @@ Change Log
 -------------------------------------------------------------------------------
 
 1.0.0 / Initial release
-
+1.0.1 / Bug fixes:
+        - Fixed memory leaks in Adjuster & HotKey - thanks to @SiRobertson
+	- Fixed issue with SoundAnalyzer, frequency index 0 was  always 0.
+          Now it duplicates index 1 (seems to be bug in SoundMixer)
 
 
 Credits
