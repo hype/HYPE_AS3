@@ -213,14 +213,14 @@ Change Log
 
 1.0.1 / Bug fixes / Updates :
 
-        - Fixed memory leaks in Adjuster & HotKey - thanks to @SiRobertson
+    - Fixed memory leaks in Adjuster & HotKey - thanks to @SiRobertson
 
-	- Fixed issue with SoundAnalyzer, frequency index 0 was always 0.
-          Now it duplicates index 1 (seems to be bug in SoundMixer)
-	  updated 03_soundAnalyzer and 04_soundAnalyzer
+    - Fixed issue with SoundAnalyzer, frequency index 0 was always 0.
+      Now it duplicates index 1 (seems to be bug in SoundMixer).
+	  Updated 03_soundAnalyzer and 04_soundAnalyzer.
 
-	- Added 05_soundAnalyzer and 06_soundAnalyzer to demonstrate
-	  soundAnalyzer.getFrequencyRange
+    - Added 05_soundAnalyzer and 06_soundAnalyzer to demonstrate
+      soundAnalyzer.getFrequencyRange
 
 1.0.0 / Initial release
 
