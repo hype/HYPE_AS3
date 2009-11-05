@@ -13,13 +13,13 @@ package hype.extended.behavior {
 		private var _xSpeed:Number;
 		private var _ySpeed:Number;
 		
-		public function SimpleBallistic(target:Object, friction:Number, minForce:Number, maxForce:Number, gravity:Number, gravityAngle:Number=90) {
+		public function SimpleBallistic(target:Object, _drag:Number, minForce:Number, maxForce:Number, gravity:Number, gravityAngle:Number=90) {
 			var angle:Number = Math.PI * 2 * Math.random();
 			var force:Number = minForce + (Math.random() * (maxForce - minForce));
 			
 			super(target);
 			
-			_friction = friction;
+			_friction = _drag;
 			
 			_gravityX = Math.cos(gravityAngle * HypeMath.D2R) * gravity;
 			_gravityY = Math.sin(gravityAngle * HypeMath.D2R) * gravity;
