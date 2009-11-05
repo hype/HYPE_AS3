@@ -3,6 +3,8 @@ package hype.extended.behavior {
 	import hype.framework.behavior.IBehavior;
 	import hype.framework.core.HypeMath;
 
+	import flash.display.DisplayObject;
+
 	public class SimpleBallistic extends AbstractBehavior implements IBehavior {
 		
 		private var _friction:Number;
@@ -27,8 +29,7 @@ package hype.extended.behavior {
 		}
 		
 		public function run(target:Object):void {
-			var xPos:Number = getProperty("x");
-			var yPos:Number = getProperty("y");
+			var clip:DisplayObject = target as DisplayObject;
 			
 			_xSpeed += _gravityX;
 			_ySpeed += _gravityY;
@@ -36,8 +37,8 @@ package hype.extended.behavior {
 			_xSpeed *= _friction;
 			_ySpeed *= _friction;
 			
-			setProperty("x", xPos + _xSpeed);
-			setProperty("y", yPos + _ySpeed);
+			clip.x += _xSpeed;
+			clip.y += _ySpeed;
 		}
 	}
 }
