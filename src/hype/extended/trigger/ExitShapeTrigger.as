@@ -23,7 +23,7 @@ package hype.extended.trigger {
 		 * @param shapeFlag True if the actual shape of the shape is to be used
 		 * false if only the bounding box should be used
 		 */
-		public function ExitShapeTrigger(callback:Function, target:Object, shape:DisplayObject, enterOnceFlag:Boolean=false, shapeFlag:Boolean=false) {
+		public function ExitShapeTrigger(callback:Function, target:Object, shape:DisplayObject, shapeFlag:Boolean=false, enterOnceFlag:Boolean=false) {
 			super(callback, target);
 			_shape = shape;
 			_shapeFlag = shapeFlag;
