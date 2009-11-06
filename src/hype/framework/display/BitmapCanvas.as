@@ -138,6 +138,13 @@ package hype.framework.display {
 			}
 		}
 		
+		/**
+		 * Clear the canvas back to base color and alpha
+		 */
+		public function clear():void {
+			_bitmap.bitmapData.fillRect(_rect, _fillColorAlpha);
+		}
+		
 		private function capture(...rest):void {
 			_bitmap.bitmapData.fillRect(_rect, _fillColorAlpha);
 			_bitmap.bitmapData.draw(_target, _matrix);
