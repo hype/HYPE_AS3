@@ -7,7 +7,14 @@ package hype.extended.trigger {
 	 */
 	public class RandomTrigger extends AbstractTrigger implements ITrigger {
 		private var _chance:uint;
-		
+
+		/**
+		 * Constructor
+		 * 
+		 * @param callback Function to call when this trigger fires
+		 * @param target Target object to track
+		 * @param chance The probabiliy
+		 */		
 		public function RandomTrigger(callback:Function, target:Object, chance:uint) {
 			super(callback, target);
 			
