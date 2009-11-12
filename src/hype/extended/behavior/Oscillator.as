@@ -90,7 +90,7 @@ package hype.extended.behavior {
 		public function changeFrequency(freq:Number, steps:int=0, changeOffset:Boolean=false):void {
 			if (steps > 0) {
 				if (changeOffset) {
-					_offsetGoal = _offset * freq/(1/_freq);
+					_offsetGoal = _offset * (1/_freq)/freq;
 					_offsetStep = (_offsetGoal - _offset) / steps;
 				}
 				
