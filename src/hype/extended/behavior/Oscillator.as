@@ -50,7 +50,7 @@ package hype.extended.behavior {
 			_step = 0;
 			
 			_offsetStep = 0;
-			_offsetGoal = _offset = offset - Math.floor(offset);
+			_offsetGoal = _offset = offset;
 		}
 		
 		/**
@@ -98,7 +98,7 @@ package hype.extended.behavior {
 				_freqStep = (_freqGoal - _freq) / steps;	
 			} else {
 				if (changeOffset) {
-					_offset = _offset * freq/(1/_freq);
+					_offset = _offset * (1/_freq)/freq;
 				}
 				
 				_freq = 1/freq;
