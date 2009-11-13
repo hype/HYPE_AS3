@@ -13,7 +13,6 @@ package hype.framework.core {
 		private var _count:uint;
 		private var _activeSet:ObjectSet;
 		private var _inactiveSet:ObjectSet;
-		private var _makeObject:Function;
 		
 		/**
 		 * Callback for when new objects are created
@@ -39,11 +38,9 @@ package hype.framework.core {
 		public function ObjectPool(content:*, max:uint) {
 			
 			if (content is Class) {
-				_objectClass = content as Class;
-				_makeObject = makeSingleObject;
+				_classList = [content as Class];
 			} else if (content is Array) {
 				_classList = content as Array;
-				_makeObject = makeRandomObject;
 			} else {
 				throw new Error("Bad argument passed to ObjectPool. First argument must be class or array of classes");
 			}
@@ -70,6 +67,20 @@ package hype.framework.core {
 			return _max == _count;
 		}
 				
+		/**
+		 * Add an additional class
+		 * 
+		 * @param objectClass class you would like to add
+		 * @param numTimes Number of times to add the class (defaults to 1)
+		 */		
+		 public function addClass(objectClass:Class, numTimes:uint=1):void {
+		 	var i:int;
+		 	
+		 	for (i=0; i<numTimes; ++i) {
+		 		_classList.push(objectClass);
+		 	}
+		 }
+				
 		
 		/**
 		 * Request a new object. If no objects are available, null is returned.
@@ -86,7 +97,7 @@ package hype.framework.core {
 				
 				return obj;
 			} else if (_count < _max) {
-				obj = _makeObject();
+				obj = makeRandomObject();
 				++_count;
 				_activeSet.insert(obj);
 				onCreateObject(obj);
@@ -125,10 +136,6 @@ package hype.framework.core {
 			} else {
 				return false;
 			}
-		}
-		
-		private function makeSingleObject():Object {
-			return new _objectClass();
 		}
 		
 		private function makeRandomObject():Object {
