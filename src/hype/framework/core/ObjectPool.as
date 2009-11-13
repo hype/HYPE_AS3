@@ -8,10 +8,12 @@ package hype.framework.core {
 	public class ObjectPool {
 		
 		private var _objectClass:Class;
+		private var _classList:Array;
 		private var _max:uint;
 		private var _count:uint;
 		private var _activeSet:ObjectSet;
 		private var _inactiveSet:ObjectSet;
+		private var _makeObject:Function;
 		
 		/**
 		 * Callback for when new objects are created
@@ -31,11 +33,20 @@ package hype.framework.core {
 		/**
 		 * Constructor
 		 * 
-		 * @param objectClass Class of objects to pool
+		 * @param content Either a single class or array of classes (classes are chosen randomly if a list is passed)
 		 * @param max The maximum number of objects to create
 		 */
-		public function ObjectPool(objectClass:Class, max:uint) {
-			_objectClass = objectClass;
+		public function ObjectPool(content:*, max:uint) {
+			
+			if (content is Class) {
+				_objectClass = content as Class;
+				_makeObject = makeSingleObject;
+			} else if (content is Array) {
+				_classList = content as Array;
+				_makeObject = makeRandomObject;
+			} else {
+				throw new Error("Bad argument passed to ObjectPool. First argument must be class or array of classes");
+			}
 			_max = max;
 			_count = 0;
 			
@@ -75,7 +86,7 @@ package hype.framework.core {
 				
 				return obj;
 			} else if (_count < _max) {
-				obj = new _objectClass();
+				obj = _makeObject();
 				++_count;
 				_activeSet.insert(obj);
 				onCreateObject(obj);
@@ -114,6 +125,15 @@ package hype.framework.core {
 			} else {
 				return false;
 			}
+		}
+		
+		private function makeSingleObject():Object {
+			return new _objectClass();
+		}
+		
+		private function makeRandomObject():Object {
+			var i:int = int(Math.random() * _classList.length);
+			return new _classList[i];
 		}
 	}
 }
