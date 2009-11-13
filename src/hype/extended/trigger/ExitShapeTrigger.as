@@ -20,8 +20,8 @@ package hype.extended.trigger {
 		 * @param target Target object to track
 		 * @param shape DisplayObject that defines the shape
 		 * @param enterOnceFlag True if the target must enter the shape at least once to fire trigger 
-		 * @param shapeFlag True if the actual shape of the shape is to be used
-		 * false if only the bounding box should be used
+		 * @param shapeFlag True if the actual shape of the shape is to be used (defaults to false)
+		 * @param enterOnceFlag True if the object must enter the shape at least once (defaults to false)
 		 */
 		public function ExitShapeTrigger(callback:Function, target:Object, shape:DisplayObject, shapeFlag:Boolean=false, enterOnceFlag:Boolean=false) {
 			super(callback, target);

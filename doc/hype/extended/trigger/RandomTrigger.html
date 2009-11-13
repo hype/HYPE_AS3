@@ -4,22 +4,22 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="ExitShapeTrigger,hype.extended.trigger.ExitShapeTrigger,run" name="keywords">
-<title>hype.extended.trigger.ExitShapeTrigger</title>
+<meta content="RandomTrigger,hype.extended.trigger.RandomTrigger,run" name="keywords">
+<title>hype.extended.trigger.RandomTrigger</title>
 </head>
 <body>
 <script type="text/javascript" language="javascript" src="../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../cookies.js"></script><script type="text/javascript" language="javascript">
 <!--
-				asdocTitle = 'ExitShapeTrigger - HYPE';
+				asdocTitle = 'RandomTrigger - HYPE';
 				var baseRef = '../../../';
 				window.onload = configPage;
 			--></script>
 <table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
 <tr>
-<td align="left" class="titleTableTitle">API Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?hype/extended/trigger/ExitShapeTrigger.html&amp;hype/extended/trigger/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
+<td align="left" class="titleTableTitle">API Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?hype/extended/trigger/RandomTrigger.html&amp;hype/extended/trigger/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
 </tr>
 <tr class="titleTableRow2">
-<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;ExitShapeTrigger</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;RandomTrigger</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
 </tr>
 <tr class="titleTableRow3">
 <td colspan="2">&nbsp;</td>
@@ -27,7 +27,7 @@
 </table>
 <script type="text/javascript" language="javascript">
 <!--
-if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class ExitShapeTrigger"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class RandomTrigger"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
 --></script>
 <div class="MainContent">
 <table cellspacing="0" cellpadding="0" class="classHeaderTable">
@@ -35,17 +35,17 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">hype.extended.trigger</a></td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class ExitShapeTrigger</td>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class RandomTrigger</td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ExitShapeTrigger <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../framework/trigger/AbstractTrigger.html">AbstractTrigger</a></td>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">RandomTrigger <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="../../framework/trigger/AbstractTrigger.html">AbstractTrigger</a></td>
 </tr>
 <tr>
 <td class="classHeaderTableLabel">Implements</td><td><a href="../../framework/trigger/ITrigger.html">ITrigger</a></td>
 </tr>
 </table>
 <p></p>
-  Trigger that fires when an object has exited from a shape.
+  Trigger that fires randomly given a set proability.
   <p></p>
 <br>
 <hr>
@@ -101,12 +101,12 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#ExitShapeTrigger()">ExitShapeTrigger</a>(callback:Function, target:Object, shape:DisplayObject, shapeFlag:Boolean = false, enterOnceFlag:Boolean = false)</div>
+<a class="signatureLink" href="#RandomTrigger()">RandomTrigger</a>(callback:Function, target:Object, chance:uint)</div>
 <div class="summaryTableDescription">
    Constructor
    
    </div>
-</td><td class="summaryTableOwnerCol">ExitShapeTrigger</td>
+</td><td class="summaryTableOwnerCol">RandomTrigger</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -132,7 +132,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summarySignature">
 <a class="signatureLink" href="#run()">run</a>(target:Object):Boolean</div>
 <div class="summaryTableDescription"></div>
-</td><td class="summaryTableOwnerCol">ExitShapeTrigger</td>
+</td><td class="summaryTableOwnerCol">RandomTrigger</td>
 </tr>
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
@@ -171,14 +171,14 @@ showHideInherited();
 <div class="MainContent">
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
-<a name="ExitShapeTrigger()"></a>
+<a name="RandomTrigger()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">ExitShapeTrigger</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+<td class="detailHeaderName">RandomTrigger</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function ExitShapeTrigger(callback:Function, target:Object, shape:DisplayObject, shapeFlag:Boolean = false, enterOnceFlag:Boolean = false)</code><p>
+<code>public function RandomTrigger(callback:Function, target:Object, chance:uint)</code><p>
    Constructor
    
    </p><span class="label">Parameters</span>
@@ -198,21 +198,7 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">shape</span>:DisplayObject</code> &mdash; DisplayObject that defines the shape
-   </td>
-</tr>
-<tr>
-<td class="paramSpacer">&nbsp;</td>
-</tr>
-<tr>
-<td width="20px"></td><td><code><span class="label">shapeFlag</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; True if the target must enter the shape at least once to fire trigger 
-   </td>
-</tr>
-<tr>
-<td class="paramSpacer">&nbsp;</td>
-</tr>
-<tr>
-<td width="20px"></td><td><code><span class="label">enterOnceFlag</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; True if the actual shape of the shape is to be used (defaults to false)
+<td width="20px"></td><td><code><span class="label">chance</span>:uint</code> &mdash; The probabiliy
    </td>
 </tr>
 </table>

@@ -139,7 +139,7 @@ package hype.framework.display {
 		}
 		
 		/**
-		 * Clear the canvas back to base color and alpha
+		 * Clear the canvas back to it's base color (by default, 0xFFFFFFFF)
 		 */
 		public function clear():void {
 			_bitmap.bitmapData.fillRect(_rect, _fillColorAlpha);

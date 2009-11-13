@@ -210,6 +210,36 @@ Branden Hall & Joshua Davis
 Change Log
 -------------------------------------------------------------------------------
 
+1.0.2 / Bug fixes / Enhancements / Updates :
+
+    - jDavis made tons of changes to almost every .fla to polish things like
+      variable name consistency, removing addChild(clipContainer) if not
+      needed, etc. website also reflects all updates.
+
+    - added RandomTrigger.as to extended/trigger - used in SimpleBallistic
+      examples 02 and 03
+
+    - added PixelColorist.as to extended/color - used in Color
+      examples 03, 04 and 05 - applies color to object in relation to a
+      specific pixel color found on a linked image
+
+    - added SimpleBallistic.as to extended/behavior - new examples added.
+
+    - modified ExitShapeTrigger.as / constructor to support new enterOnceFlag
+      argument. Defaults to false. If true the target MUST enter the shape at
+      least once before the trigger will fire
+
+    - modified Oscillator.as / Added new argument to constructor
+      (linkOffset - links offset to frequency). The frequency is now modified
+      through a property. Added new amplitude property. Added new offset
+      property. Added new linkOffset property.
+
+    - added new function clear to BitmapCanvas.as / which clears the canvas
+      back to it's base color
+
+    - new examples / BitmapCanvas, Color, SimpleBallistic, and Oscillator
+
+    - fixed Setup Classpath.jsfl so it works properly for our PC friends
 
 1.0.1 / Bug fixes / Updates :
 
@@ -217,7 +247,7 @@ Change Log
 
     - Fixed issue with SoundAnalyzer, frequency index 0 was always 0.
       Now it duplicates index 1 (seems to be bug in SoundMixer).
-	  Updated 03_soundAnalyzer and 04_soundAnalyzer.
+      Updated 03_soundAnalyzer and 04_soundAnalyzer.
 
     - Added 05_soundAnalyzer and 06_soundAnalyzer to demonstrate
       soundAnalyzer.getFrequencyRange
