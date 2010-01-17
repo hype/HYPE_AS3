@@ -12,5 +12,6 @@ package hype.framework.color {
 		 * @param sprite Sprite to color
 		 */
 		function colorChildren(sprite:Sprite):void;
+		function getColor():uint;
 	}
 }

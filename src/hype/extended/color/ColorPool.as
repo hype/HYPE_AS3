@@ -81,5 +81,9 @@ package hype.extended.color {
 				}
 			}
 		}
+		
+		public function getColor():uint {
+			return _colorList[Math.floor(Math.random() * _colorList.length)];
+		}
 	}
 }

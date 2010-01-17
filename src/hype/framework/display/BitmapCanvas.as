@@ -1,32 +1,23 @@
 package hype.framework.display {
-	import hype.framework.rhythm.SimpleRhythm;
+	import hype.framework.canvas.GridCanvas;
+	import hype.framework.canvas.ICanvas;
+	import hype.framework.canvas.SimpleCanvas;
 
 	import flash.display.Bitmap;
-	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
-	import flash.events.Event;
-	import flash.geom.Matrix;
-	import flash.geom.Point;
+	import flash.filters.BitmapFilter;
 	import flash.geom.Rectangle;
 
 	/**
 	 * Captures a specifed target DisplayObject to a bitmap and displays it. 
 	 */
-	public class BitmapCanvas extends Sprite {
-		private var _target:DisplayObject;
-		private var _rect:Rectangle;
-		private var _zeroPoint:Point;
-		private var _transparent:Boolean;
-		private var _fillColor:uint;
-		private var _fillColorAlpha:uint;
+	public class BitmapCanvas extends Sprite implements ICanvas {
+
+		private var _canvas:SimpleCanvas;
+		private var _largeCanvas:GridCanvas;
 		private var _bitmap:Bitmap;
-		private var _matrix:Matrix;
-		
-		private var _captureFlag:Boolean;
-		private var _captureMethod:Function;
-		private var _rhythm:SimpleRhythm;
-		
+
 		/**
 		 * Constructor
 		 * 
@@ -36,22 +27,9 @@ package hype.framework.display {
 		 * @param fillColor Default fill color of the bitmap
 		 */
 		public function BitmapCanvas(width:Number, height:Number, transparent:Boolean=true, fillColor:uint = 0xFFFFFF) {
-			var bitmapData:BitmapData;
+			_canvas = new SimpleCanvas(width, height, transparent, fillColor);
 			
-			_rect = new Rectangle(0, 0, width, height);
-			_transparent = transparent;
-			_fillColor = fillColor;
-			_fillColorAlpha = _fillColor << 8 & (transparent ? 0xFF : 0x00);
-			
-			_zeroPoint = new Point(0, 0);
-			
-			_captureFlag = false;
-			
-			bitmapData = new BitmapData(width, height, transparent, fillColor);
-			
-			_rhythm = new SimpleRhythm(null);
-			
-			_bitmap = new Bitmap(bitmapData);
+			_bitmap = new Bitmap(_canvas.bitmapData);
 			addChild(_bitmap);
 		}
 		
@@ -59,8 +37,15 @@ package hype.framework.display {
 		 * Target being captured to bitmap
 		 */
 		public function get target():DisplayObject {
-			return _target;
+			return _canvas.target;
 		}
+		
+		/**
+		 * Set target being captured to bitmap
+		 */
+		public function set target(value:DisplayObject):void {
+			_canvas.target = value;
+		}		
 		
 		/**
 		 * The instance of Bitmap displayed by this BitmapCanvas
@@ -69,25 +54,35 @@ package hype.framework.display {
 			return _bitmap;
 		}
 		
+		public function get rect():Rectangle {
+			return _canvas.rect;
+		}
+		
 		/**
 		 * Whether this BitmapCanvas is currently capturing
 		 */
 		public function get isCapturing():Boolean {
-			return _captureFlag;
+			return _canvas.isCapturing;
 		}
 		
-		/**
-		 * A matrix to apply to the bitmap as it is capturing
-		 */
-		public function get matrix():Matrix {
-			return _matrix;
+		public function get transparent():Boolean {
+			return _canvas.transparent;
 		}
 		
-		/**
-		 * A matrix to apply to the bitmap as it is capturing
-		 */
-		public function set matrix(value:Matrix):void {
-			_matrix = value;
+		public function get fillColor():int {
+			return _canvas.fillColor;
+		}
+		
+		public function get largeCanvas():GridCanvas {
+			return _largeCanvas;		
+		}
+		
+		public function setupLargeCanvas(scale:Number):void {
+			_largeCanvas = new GridCanvas(Math.ceil(_canvas.rect.width * scale), 
+											Math.ceil(_canvas.rect.height * scale),
+											scale, 
+											_canvas.transparent, 
+											_canvas.fillColor);	
 		}
 		
 		/**
@@ -104,37 +99,29 @@ package hype.framework.display {
 		 * 
 		 * @see hype.framework.core.TimeType
 		 */
-		public function startCapture(target:DisplayObject, continuous:Boolean = false, type:String="enter_frame", interval:int=1):Boolean {
-			if (!_captureFlag) {
-				_target = target;
-				
-				if (continuous) {
-					_captureMethod = captureContinuous;
-				} else {
-					_captureMethod = capture;
-				}
-				
-				_rhythm.callback = _captureMethod;
-				_rhythm.start(type, interval);
-				_captureFlag = true;
-				
-				return true;
-			} else {
-				return false;
+		public function startCapture(target:DisplayObject, continuous:Boolean=false, type:String="enter_frame", interval:int=1):Boolean {
+			if (_largeCanvas) {
+				_largeCanvas.startCapture(target, continuous, type, interval);
 			}
+			
+			return _canvas.startCapture(target, continuous, type, interval);
 		}
 		
 		/**
 		 * Stop capturing
 		 */
 		public function stopCapture():Boolean {
-			if (_captureFlag) {
-				removeEventListener(Event.ENTER_FRAME, _captureMethod);
-				_captureFlag = false;
-				
-				return true;
-			} else {
-				return false;
+			if (_largeCanvas) {
+				_largeCanvas.stopCapture();
+			}
+			
+			return _canvas.stopCapture();
+		}
+		
+		public function capture(continuous:Boolean=true):void {
+			_canvas.capture(continuous);
+			if (_largeCanvas) {
+				_largeCanvas.capture(continuous);
 			}
 		}
 		
@@ -142,17 +129,18 @@ package hype.framework.display {
 		 * Clear the canvas back to it's base color (by default, 0xFFFFFFFF)
 		 */
 		public function clear():void {
-			_bitmap.bitmapData.fillRect(_rect, _fillColorAlpha);
+			_canvas.clear();
 		}
 		
-		private function capture(...rest):void {
-			_bitmap.bitmapData.fillRect(_rect, _fillColorAlpha);
-			_bitmap.bitmapData.draw(_target, _matrix);
-		}		
-		
-		private function captureContinuous(...rest):void {
-			_bitmap.bitmapData.draw(_target, _matrix);
+		public function applyFilter(filter:BitmapFilter):void {
+			_canvas.applyFilter(filter);
+			if (_largeCanvas) {
+				_largeCanvas.applyFilter(filter);
+			}
 		}
 		
+		public function getPixel32(x:int, y:int):int {
+			return _canvas.getPixel32(x, y);
+		}
 	}
 }
