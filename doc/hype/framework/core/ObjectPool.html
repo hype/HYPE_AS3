@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="ObjectPool,hype.framework.core.ObjectPool,onCreateObject,onReleaseObject,onRequestObject,activeSet,isFull,release,request,requestAll" name="keywords">
+<meta content="ObjectPool,hype.framework.core.ObjectPool,onCreateObject,onReleaseObject,onRequestObject,activeSet,isFull,addClass,release,request,requestAll" name="keywords">
 <title>hype.framework.core.ObjectPool</title>
 </head>
 <body>
@@ -94,9 +94,19 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#ObjectPool()">ObjectPool</a>(objectClass:Class, max:uint)</div>
+<a class="signatureLink" href="#ObjectPool()">ObjectPool</a>(content:*, max:uint)</div>
 <div class="summaryTableDescription">
    Constructor
+   
+   </div>
+</td><td class="summaryTableOwnerCol">ObjectPool</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#addClass()">addClass</a>(objectClass:Class, numTimes:uint = 1):void</div>
+<div class="summaryTableDescription">
+   Add an additional class
    
    </div>
 </td><td class="summaryTableOwnerCol">ObjectPool</td>
@@ -201,13 +211,13 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function ObjectPool(objectClass:Class, max:uint)</code><p>
+<code>public function ObjectPool(content:*, max:uint)</code><p>
    Constructor
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">objectClass</span>:Class</code> &mdash; Class of objects to pool
+<td width="20px"></td><td><code><span class="label">content</span>:*</code> &mdash; Either a single class or array of classes (classes are chosen randomly if a list is passed)
    </td>
 </tr>
 <tr>
@@ -221,10 +231,35 @@ showHideInherited();
 </div>
 <a name="methodDetail"></a>
 <div class="detailSectionHeader">Method detail</div>
+<a name="addClass()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">addClass</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public function addClass(objectClass:Class, numTimes:uint = 1):void</code><p>
+   Add an additional class
+   
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">objectClass</span>:Class</code> &mdash; class you would like to add
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">numTimes</span>:uint</code> (default = <code>1</code>)<code></code> &mdash; Number of times to add the class (defaults to 1)
+   </td>
+</tr>
+</table>
+</div>
 <a name="release()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">release</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+<td class="detailHeaderName">release</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">

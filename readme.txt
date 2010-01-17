@@ -147,22 +147,23 @@ Blurring the Lines (and the fills)
 
 A Rhythm is just code that is run over time. Like Behaviors that can be started
 and stopped. The only non-simple rhythm that comes with HYPE v1.0 is the
-FilterRhythm - which just runs a filter repeatedly on an instance of
-BitmapData, which is exactly what we need!
+FilterCanvasRhythm - which just runs a filter repeatedly on an instance of
+BitmapCanvas, which is exactly what we need!
 
 First add the import statement to the top of your code:
 
- import hype.extended.rhythm.FilterRhythm;
+ import hype.extended.rhythm.FilterCanvasRhythm;
 
 Then add the following to the bottom of your code:
 
  var blur:BlurFilter = new BlurFilter(5, 5, 3);
- var blurRhythm:FilterRhythm = new FilterRhythm([blur], canvas.bitmap.bitmapData);
+ var blurRhythm:FilterCanvasRhythm = new FilterCanvasRhythm([blur], canvas);
  blurRhythm.start();
 
 This code makes a new BlurFilter (this is a built-in class). Then, it makes an
-instance of FilterRhythm and tells it the only filter it will use is the blur
-filter instance and to use the BitmapData instance that's part of our canvas!
+instance of FilterCanvasRhythm and tells it the only filter it will use is the 
+blur filter instance and to use the BitmapData instance that's part of our 
+canvas!
 
 Finally, the code tells the rhythm to get started. Now run the code. Yes it's
 still a mouse follower, and is thus lame, but at least it looks all cool and
@@ -209,6 +210,27 @@ Branden Hall & Joshua Davis
 
 Change Log
 -------------------------------------------------------------------------------
+
+1.1.0 / Enhancements / Updates :
+    - added ability for ObjectPool's constructor to accept either single
+      classes or an array of classes that are randomly chosen from
+
+    - added new CanvasFilterRhythm class that makes filtering instances of
+      BitmapCanvas easier
+
+    - created new ICanvas interface and two classes that implement it,
+      SimpleCanvas and GridCanvas
+
+    - modified BitmapCanvas to use new ICanvas classes and added new
+      setupLargeCanvas(scale:int) method
+
+    - added new CanvasPNGEncoder for creating PNGs from ICanvas classes
+
+    - added new ContextSavePNG - a simple class to assist in encoding and
+      saving large PNGs from BitmapCanvas instances
+
+    - created two new BitmapCanvas examples, 06 and 07, to show new PNG
+      encoding capabilities
 
 1.0.2 / Bug fixes / Enhancements / Updates :
 
@@ -266,6 +288,9 @@ and understanding during the development of HYPE and throughout their careers!
 
 Mr. Doob's Stats is included courtesy of Mr. Doob.
 (http://code.google.com/p/mrdoob/wiki/stats)
+
+CanvasPNGEncoder is based on PNGEncoder from AS3CoreLib. See license.doc for
+licensing information.
 
 LOVE to bevin keley aka blevin blectum for letting us use two of her tracks,
 "Retrice" and "Foyer Fire", from her Gular Flutter album, for our SoundAnalyzer

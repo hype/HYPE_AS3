@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<macromedia-extension name="HYPE" version="1.0.2" type="actionscript" requires-restart="false">
+<macromedia-extension name="HYPE" version="1.1.0" type="actionscript" requires-restart="false">
 
 	<!-- Describe the extension -->
 
@@ -42,13 +42,22 @@
 		<file name="src/hype/extended/color/PixelColorist.as" destination="$flash/ActionScript 3.0/Classes/hype/extended/color/" />
 		<file name="src/hype/extended/layout/GridLayout.as" destination="$flash/ActionScript 3.0/Classes/hype/extended/layout/" />
 		<file name="src/hype/extended/layout/ShapeLayout.as" destination="$flash/ActionScript 3.0/Classes/hype/extended/layout/" />
+		<file name="src/hype/extended/rhythm/FilterCanvasRhythm.as" destination="$flash/ActionScript 3.0/Classes/hype/extended/rhythm/" />
 		<file name="src/hype/extended/rhythm/FilterRhythm.as" destination="$flash/ActionScript 3.0/Classes/hype/extended/rhythm/" />
 		<file name="src/hype/extended/trigger/ExitShapeTrigger.as" destination="$flash/ActionScript 3.0/Classes/hype/extended/trigger/" />
 		<file name="src/hype/extended/trigger/RandomTrigger.as" destination="$flash/ActionScript 3.0/Classes/hype/extended/trigger/" />
+		<file name="src/hype/extended/util/ContextSavePNG.as" destination="$flash/ActionScript 3.0/Classes/hype/extended/util/" />
 		<file name="src/hype/framework/behavior/AbstractBehavior.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/behavior/" />
 		<file name="src/hype/framework/behavior/BehaviorStore.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/behavior/" />
 		<file name="src/hype/framework/behavior/IBehavior.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/behavior/" />
 		<file name="src/hype/framework/behavior/SimpleBehavior.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/behavior/" />
+		<file name="src/hype/framework/canvas/CanvasPNGEncoder.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/canvas/" />
+		<file name="src/hype/framework/canvas/GridCanvas.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/canvas/" />
+		<file name="src/hype/framework/canvas/ICanvas.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/canvas/" />
+		<file name="src/hype/framework/canvas/SimpleCanvas.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/canvas/" />
+		<file name="src/hype/framework/canvas/filter/BlurFilterScaler.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/canvas/filter/" />
+		<file name="src/hype/framework/canvas/filter/GlowFilterScaler.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/canvas/filter/" />
+		<file name="src/hype/framework/canvas/filter/IFilterScaler.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/canvas/filter/" />
 		<file name="src/hype/framework/color/IColorist.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/color/" />
 		<file name="src/hype/framework/core/Accessor.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/core/" />
 		<file name="src/hype/framework/core/HypeMath.as" destination="$flash/ActionScript 3.0/Classes/hype/framework/core/" />

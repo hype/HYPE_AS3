@@ -5,7 +5,7 @@ package hype.framework.canvas {
 	import flash.utils.getTimer;
 
 	/**
-	 * Class that encodes an ICanvas into a valid PNG
+	 * Class that encodes an ICanvas into a PNG
 	 */	
 	public class CanvasPNGEncoder {
 		public static var FRAME_TIME:int = 35;

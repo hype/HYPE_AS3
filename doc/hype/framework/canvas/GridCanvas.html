@@ -4,22 +4,22 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="BitmapCanvas,hype.framework.display.BitmapCanvas,bitmap,fillColor,isCapturing,largeCanvas,rect,target,transparent,applyFilter,capture,clear,getPixel32,setupLargeCanvas,startCapture,stopCapture" name="keywords">
-<title>hype.framework.display.BitmapCanvas</title>
+<meta content="GridCanvas,hype.framework.canvas.GridCanvas,fillColor,isCapturing,rect,target,transparent,applyFilter,capture,clear,getPixel32,registerFilterScaler,startCapture,stopCapture" name="keywords">
+<title>hype.framework.canvas.GridCanvas</title>
 </head>
 <body>
 <script type="text/javascript" language="javascript" src="../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../cookies.js"></script><script type="text/javascript" language="javascript">
 <!--
-				asdocTitle = 'BitmapCanvas - HYPE';
+				asdocTitle = 'GridCanvas - HYPE';
 				var baseRef = '../../../';
 				window.onload = configPage;
 			--></script>
 <table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
 <tr>
-<td align="left" class="titleTableTitle">API Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?hype/framework/display/BitmapCanvas.html&amp;hype/framework/display/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
+<td align="left" class="titleTableTitle">API Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?hype/framework/canvas/GridCanvas.html&amp;hype/framework/canvas/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
 </tr>
 <tr class="titleTableRow2">
-<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;BitmapCanvas</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;GridCanvas</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
 </tr>
 <tr class="titleTableRow3">
 <td colspan="2">&nbsp;</td>
@@ -27,25 +27,23 @@
 </table>
 <script type="text/javascript" language="javascript">
 <!--
-if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class BitmapCanvas"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class GridCanvas"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
 --></script>
 <div class="MainContent">
 <table cellspacing="0" cellpadding="0" class="classHeaderTable">
 <tr>
-<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">hype.framework.display</a></td>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">hype.framework.canvas</a></td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class BitmapCanvas</td>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class GridCanvas</td>
 </tr>
 <tr>
-<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">BitmapCanvas <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> flash.display.Sprite</td>
-</tr>
-<tr>
-<td class="classHeaderTableLabel">Implements</td><td><a href="../canvas/ICanvas.html">ICanvas</a></td>
+<td class="classHeaderTableLabel">Implements</td><td><a href="ICanvas.html">ICanvas</a></td>
 </tr>
 </table>
 <p></p>
-  Captures a specifed target DisplayObject to a bitmap and displays it. 
+  Captures a specifed target DisplayObject to a series of bitmaps.
+  Supports images larger than Flash can support by splitting the image into a grid.
   <p></p>
 <br>
 <hr>
@@ -58,39 +56,34 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#bitmap">bitmap</a> : Bitmap<div class="summaryTableDescription">[read-only]
-   The instance of Bitmap displayed by this BitmapCanvas
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fillColor">fillColor</a> : int<div class="summaryTableDescription">[read-only]
+   The fill color of the image
    </div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fillColor">fillColor</a> : int<div class="summaryTableDescription">[read-only]</div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#isCapturing">isCapturing</a> : Boolean<div class="summaryTableDescription">[read-only]
-   Whether this BitmapCanvas is currently capturing
+   Whether this GridCanvas is currently capturing
    </div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#largeCanvas">largeCanvas</a> : <a href="../canvas/GridCanvas.html">GridCanvas</a>
-<div class="summaryTableDescription">[read-only]</div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#rect">rect</a> : Rectangle<div class="summaryTableDescription">[read-only]</div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#rect">rect</a> : Rectangle<div class="summaryTableDescription">[read-only]
+   The rectangle that describes the boundary of the image
+   </div>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#target">target</a> : DisplayObject<div class="summaryTableDescription">
    Target being captured to bitmap
    </div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#transparent">transparent</a> : Boolean<div class="summaryTableDescription">[read-only]</div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#transparent">transparent</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Whether the image is transparent or not
+   </div>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 </table>
 </div>
@@ -104,26 +97,28 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#BitmapCanvas()">BitmapCanvas</a>(width:Number, height:Number, transparent:Boolean = true, fillColor:uint = 0xFFFFFF)</div>
+<a class="signatureLink" href="#GridCanvas()">GridCanvas</a>(width:int, height:int, scale:Number = 1, transparent:Boolean = true, fillColor:uint = 0xFFFFFFFF, gridSize:int = 1024, border:int = 128)</div>
 <div class="summaryTableDescription">
    Constructor
    
    </div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#applyFilter()">applyFilter</a>(filter:BitmapFilter):void</div>
-<div class="summaryTableDescription"></div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+<div class="summaryTableDescription">
+   Apply a BitmapFilter to the canvas
+   </div>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#capture()">capture</a>(continuous:Boolean = true):void</div>
 <div class="summaryTableDescription"></div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
@@ -132,21 +127,27 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription">
    Clear the canvas back to it's base color (by default, 0xFFFFFFFF)
    </div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#getPixel32()">getPixel32</a>(x:int, y:int):int</div>
-<div class="summaryTableDescription"></div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+<div class="summaryTableDescription">
+   Get the 32-bit colot value for a particular pixel
+   
+   </div>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#setupLargeCanvas()">setupLargeCanvas</a>(scale:Number):void</div>
-<div class="summaryTableDescription"></div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+<a class="signatureLink" href="#registerFilterScaler()">registerFilterScaler</a>(filterClass:String, scaler:<a href="filter/IFilterScaler.html">IFilterScaler</a>):void</div>
+<div class="summaryTableDescription">
+   Register a fully-qualified filter to a filter scaler
+   
+   </div>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
@@ -156,7 +157,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    Start capturing the target into the bitmap
    
    </div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
@@ -165,7 +166,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <div class="summaryTableDescription">
    Stop capturing
    </div>
-</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+</td><td class="summaryTableOwnerCol">GridCanvas</td>
 </tr>
 </table>
 </div>
@@ -176,28 +177,16 @@ showHideInherited();
 <div class="MainContent">
 <a name="propertyDetail"></a>
 <div class="detailSectionHeader">Property detail</div>
-<a name="bitmap"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">bitmap</td><td class="detailHeaderType">property</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>bitmap:Bitmap</code>&nbsp;&nbsp;[read-only]<p>
-   The instance of Bitmap displayed by this BitmapCanvas
-   </p><span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get bitmap():Bitmap</code>
-<br>
-</div>
 <a name="fillColor"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">fillColor</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">fillColor</td><td class="detailHeaderType">property</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>fillColor:int</code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
+<code>fillColor:int</code>&nbsp;&nbsp;[read-only]<p>
+   The fill color of the image
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get fillColor():int</code>
 <br>
@@ -210,22 +199,10 @@ showHideInherited();
 </table>
 <div class="detailBody">
 <code>isCapturing:Boolean</code>&nbsp;&nbsp;[read-only]<p>
-   Whether this BitmapCanvas is currently capturing
+   Whether this GridCanvas is currently capturing
    </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get isCapturing():Boolean</code>
-<br>
-</div>
-<a name="largeCanvas"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">largeCanvas</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>largeCanvas:<a href="../canvas/GridCanvas.html">GridCanvas</a></code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
-<br>
-<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get largeCanvas():<a href="../canvas/GridCanvas.html">GridCanvas</a></code>
 <br>
 </div>
 <a name="rect"></a>
@@ -235,7 +212,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>rect:Rectangle</code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
+<code>rect:Rectangle</code>&nbsp;&nbsp;[read-only]<p>
+   The rectangle that describes the boundary of the image
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get rect():Rectangle</code>
 <br>
@@ -263,34 +242,43 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>transparent:Boolean</code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
+<code>transparent:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Whether the image is transparent or not
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get transparent():Boolean</code>
 <br>
 </div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
-<a name="BitmapCanvas()"></a>
+<a name="GridCanvas()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">BitmapCanvas</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
+<td class="detailHeaderName">GridCanvas</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function BitmapCanvas(width:Number, height:Number, transparent:Boolean = true, fillColor:uint = 0xFFFFFF)</code><p>
+<code>public function GridCanvas(width:int, height:int, scale:Number = 1, transparent:Boolean = true, fillColor:uint = 0xFFFFFFFF, gridSize:int = 1024, border:int = 128)</code><p>
    Constructor
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">width</span>:Number</code> &mdash; Width of the bitmap (pixels)
+<td width="20px"></td><td><code><span class="label">width</span>:int</code> &mdash; Width of the bitmap (pixels)
    </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">height</span>:Number</code> &mdash; Height of the bitmap (pixels)
+<td width="20px"></td><td><code><span class="label">height</span>:int</code> &mdash; Height of the bitmap (pixels)
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">scale</span>:Number</code> (default = <code>1</code>)<code></code> &mdash; Scale amount for the image
    </td>
 </tr>
 <tr>
@@ -304,7 +292,21 @@ showHideInherited();
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">fillColor</span>:uint</code> (default = <code>0xFFFFFF</code>)<code></code> &mdash; Default fill color of the bitmap
+<td width="20px"></td><td><code><span class="label">fillColor</span>:uint</code> (default = <code>0xFFFFFFFF</code>)<code></code> &mdash; Default fill color of the bitmap
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">gridSize</span>:int</code> (default = <code>1024</code>)<code></code> &mdash; Size of each grid square (defaults to 1024px)
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">border</span>:int</code> (default = <code>128</code>)<code></code> &mdash; Size of the overlap for each grid square (defaults to 128)
    </td>
 </tr>
 </table>
@@ -318,7 +320,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function applyFilter(filter:BitmapFilter):void</code><span class="label">Parameters</span>
+<code>public function applyFilter(filter:BitmapFilter):void</code><p>
+   Apply a BitmapFilter to the canvas
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">filter</span>:BitmapFilter</code></td>
@@ -356,37 +360,55 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function getPixel32(x:int, y:int):int</code><span class="label">Parameters</span>
+<code>public function getPixel32(x:int, y:int):int</code><p>
+   Get the 32-bit colot value for a particular pixel
+   
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">x</span>:int</code></td>
+<td width="20px"></td><td><code><span class="label">x</span>:int</code> &mdash; horizonal position of pixel
+   </td>
 </tr>
 <tr>
 <td class="paramSpacer">&nbsp;</td>
 </tr>
 <tr>
-<td width="20px"></td><td><code><span class="label">y</span>:int</code></td>
+<td width="20px"></td><td><code><span class="label">y</span>:int</code> &mdash; verital position of pixel
+   
+   </td>
 </tr>
 </table>
 <p></p>
 <span class="label">Returns</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20"></td><td><code>int</code></td>
+<td width="20"></td><td><code>int</code> &mdash; integer color in the form 0xRRGGBBAA
+   </td>
 </tr>
 </table>
 </div>
-<a name="setupLargeCanvas()"></a>
+<a name="registerFilterScaler()"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
-<td class="detailHeaderName">setupLargeCanvas</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+<td class="detailHeaderName">registerFilterScaler</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
 </tr>
 </table>
 <div class="detailBody">
-<code>public function setupLargeCanvas(scale:Number):void</code><span class="label">Parameters</span>
+<code>public function registerFilterScaler(filterClass:String, scaler:<a href="filter/IFilterScaler.html">IFilterScaler</a>):void</code><p>
+   Register a fully-qualified filter to a filter scaler
+   
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">scale</span>:Number</code></td>
+<td width="20px"></td><td><code><span class="label">filterClass</span>:String</code> &mdash; Fully qualified class name as a string (i.e. "flash.filters::GlowFilter")
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">scaler</span>:<a href="filter/IFilterScaler.html">IFilterScaler</a></code> &mdash; Instance of a class that implements IFilterScaler
+   </td>
 </tr>
 </table>
 </div>
