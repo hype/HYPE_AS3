@@ -210,6 +210,9 @@ Branden Hall & Joshua Davis
 
 Change Log
 -------------------------------------------------------------------------------
+1.1.1 / Updates :
+    - moved all examples that use ContextSavePNG to their own folder and added
+      a new example
 
 1.1.0 / Enhancements / Updates :
     - added ability for ObjectPool's constructor to accept either single
