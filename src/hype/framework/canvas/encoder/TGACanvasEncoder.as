@@ -39,8 +39,8 @@ package hype.framework.canvas.encoder {
 			_tga.writeByte(0);
 			// color map type
 			_tga.writeByte(0);
-			// image type
-			_tga.writeByte(2);
+			// image type - RLE encoded true color
+			_tga.writeByte(10);
 			// color map
 			_tga.writeByte(0);
 			_tga.writeByte(0);
@@ -58,7 +58,7 @@ package hype.framework.canvas.encoder {
 			// pixel depth
 			_tga.writeByte(32);
 			// image descriptor
-			_tga.writeByte(32);
+			_tga.writeByte(40);
 			
 			_row = 0;
 			_col = 0;
@@ -68,15 +68,73 @@ package hype.framework.canvas.encoder {
 		
 		private function encodeOverTime(r:SimpleRhythm):void {
 			var i:int;
+			var max:int;
+			var j:int;
 			var s:uint = getTimer();
+			var pixel:uint;
+			var nextPixel:uint;
+			var count:uint;
+			var buffer:Array = new Array();
 			while (getTimer() - s < 35) {
 				if (_row == _height) {
 					onEncodeComplete(_tga);
 					r.stop();
 					return;
 				} else {
-					for (i=0; i<_width; ++i) {
-						_tga.writeUnsignedInt(_canvas.getPixel32(i, _row));
+					i = 0;
+					while (i < _width) {
+						count = 0;
+						
+						pixel = _canvas.getPixel32(i, _row);
+						
+						if (i == _width - 1) {
+							_tga.writeByte(0);
+							_tga.writeUnsignedInt(pixel);
+							++i
+						} else {
+							nextPixel = _canvas.getPixel32(i+1, _row);
+							
+							// handle runs of the same color
+							if (pixel == nextPixel) {
+								do {
+									++i;
+									++count;								
+								} while (i < _width - 1 && count < 127 && _canvas.getPixel32(i+1, _row) == pixel);
+							
+								_tga.writeByte(128 + count);
+								_tga.writeUnsignedInt(pixel);
+								
+								++i;
+								
+							// handle runs of different colors
+							} else {
+								while (i < _width - 2 && buffer.length < 128 && pixel != nextPixel) {
+									++i;
+									buffer.push(pixel);
+									pixel = nextPixel;
+									nextPixel = _canvas.getPixel32(i+1, _row);
+								}
+								
+								if (i == _width - 2) {
+									buffer.push(pixel);
+									buffer.push(nextPixel);
+									i += 2;
+								}
+								
+								if (buffer.length == 128) {
+									buffer.push(pixel);
+									++i;
+								}
+								
+								_tga.writeByte(buffer.length - 1);
+								max = buffer.length;
+								for (j=0; j<max; ++j) {
+									_tga.writeUnsignedInt(buffer[j]);
+								}
+								
+								buffer = new Array();
+							}
+						}
 					}
 					
 					++_row;
