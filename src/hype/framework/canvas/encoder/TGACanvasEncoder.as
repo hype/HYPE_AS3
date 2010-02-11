@@ -82,15 +82,17 @@ package hype.framework.canvas.encoder {
 					return;
 				} else {
 					i = 0;
+					// handle a single row of the image
 					while (i < _width) {
 						count = 0;
 						
 						pixel = _canvas.getPixel32(i, _row);
 						
+						// handle the special case of the last pixel
 						if (i == _width - 1) {
 							_tga.writeByte(0);
 							_tga.writeUnsignedInt(pixel);
-							++i
+							++i;
 						} else {
 							nextPixel = _canvas.getPixel32(i+1, _row);
 							

@@ -28,8 +28,6 @@ package hype.framework.canvas.encoder {
 		public function PNGCanvasEncoder() {
 			var c:uint;
 			
-			_png = new ByteArray();
-			_mode = ROW_MODE;
 			_encodeRhythm = new SimpleRhythm(encodeOverTime);		
 			_crcTable = [];
 
@@ -57,6 +55,9 @@ package hype.framework.canvas.encoder {
 		 * @param image The ICanvas that will be converted into the PNG format.
 		 */			
 	    override public function encode(img:ICanvas):void {
+	    	_png = new ByteArray();
+	    	_mode = ROW_MODE;
+	    	
 	    	_img = img;
 	        // Write PNG signature
 	        _png.writeUnsignedInt(0x89504e47);

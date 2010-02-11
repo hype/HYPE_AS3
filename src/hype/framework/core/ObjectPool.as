@@ -95,6 +95,8 @@ package hype.framework.core {
 				_activeSet.insert(obj);
 				onRequestObject(obj);
 				
+				trace("recycle");
+				
 				return obj;
 			} else if (_count < _max) {
 				obj = makeRandomObject();

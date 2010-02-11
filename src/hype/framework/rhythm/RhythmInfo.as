@@ -40,5 +40,13 @@ package hype.framework.rhythm {
 			counter = 0;
 		}
 
+		public function toString():String {
+			var str:String;
+			str = (prev == null) ? "   " : "<- ";
+			str += type;
+			str += (next == null) ? "   " : " ->";
+			
+			return str;
+		}
 	}
 }

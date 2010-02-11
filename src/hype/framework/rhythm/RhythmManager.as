@@ -31,6 +31,26 @@ package hype.framework.rhythm {
 			_removeList = new Array();
 		}
 		
+		public function toString():String {
+			var str:String = "ENTER_FRAME\n";
+			var t:RhythmInfo = _enterFrameHead;
+			while (t != _enterFrameTail) {
+				str += t.toString() + "\n";
+				t = t.next;
+			}
+			str += t.toString() + "\n\n";
+			
+			str += "EXIT_FRAME\n";
+			t = _exitFrameHead;
+			while (t != _exitFrameTail) {
+				str += t.toString() + "\n";
+				t = t.next;
+			}
+			str += t.toString() + "\n\n";
+			
+			return str;
+		}
+		
 		public function addRhythm(rhythm:Object, method:Function=null):Boolean {
 			if (_rhythmTable[rhythm] == null) {
 				if (method == null) {

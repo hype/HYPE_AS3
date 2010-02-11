@@ -45,6 +45,10 @@ package hype.framework.display {
 		 */
 		public function set target(value:DisplayObject):void {
 			_canvas.target = value;
+			if (_largeCanvas) {
+				_largeCanvas.target = target; 
+			}			
+			
 		}		
 		
 		/**

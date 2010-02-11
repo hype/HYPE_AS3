@@ -145,6 +145,7 @@ package hype.extended.util {
 				onEncodeComplete();
 			}
 			
+			_progressDisplay.graphics.clear();
 			_stage.removeChild(_progressDisplay);
 			
 			_data = data;
