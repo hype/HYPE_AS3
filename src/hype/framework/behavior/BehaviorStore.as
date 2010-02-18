@@ -91,5 +91,12 @@ package hype.framework.behavior {
 				_pauseFlag = false;
 			}			
 		}
+		
+		/**
+		 * Whether all behaviors in the store are paused
+		 */
+		public static function get isPaused():Boolean {
+			return _pauseFlag;
+		}
 	}
 }
