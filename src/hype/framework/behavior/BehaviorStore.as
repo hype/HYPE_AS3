@@ -9,6 +9,7 @@ package hype.framework.behavior {
 	public class BehaviorStore {
 		
 		private static var _table:Dictionary = new Dictionary(true);
+		private static var _pauseFlag:Boolean = false;
 		
 		/**
 		 * Store a behavior
@@ -53,13 +54,41 @@ package hype.framework.behavior {
 		public static function remove(target:Object, name:String):Boolean {
 			var targetTable:Object = _table[target];
 			
-			if (targetTable && targetTable[name]) {
+			if (targetTable && targetTable[name]) {	
 				targetTable[name] = null;
 				delete targetTable[name];
 					
 				return true;
 			} else {
 				return false;
+			}			
+		}
+		
+		public static function pause():void {
+			var targetTable:Object;
+			var behavior:AbstractBehavior;
+			
+			if (!_pauseFlag) {
+				for each (targetTable in _table) {
+					for each (behavior in targetTable) {
+						behavior.stop();
+					}
+				}
+				_pauseFlag = true;
+			}
+		}
+		
+		public static function resume():void {
+			var targetTable:Object;
+			var behavior:AbstractBehavior;
+			
+			if (_pauseFlag) {
+				for each (targetTable in _table) {
+					for each (behavior in targetTable) {
+						behavior.resume();
+					}
+				}
+				_pauseFlag = false;
 			}			
 		}
 	}

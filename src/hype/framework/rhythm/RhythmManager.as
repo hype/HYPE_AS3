@@ -106,10 +106,23 @@ package hype.framework.rhythm {
 			return result;
 		}
 		
-		public function startRhythm(rhythm:Object, type:String, interval:int):Boolean {
+		public function startRhythm(rhythm:Object, type:String=null, interval:int=-1):Boolean {
 			var rhythmInfo:RhythmInfo;
 			
 			rhythmInfo = _rhythmTable[rhythm];
+			
+			if (type == null) {
+				type = rhythmInfo.type;
+			}
+			
+			if (interval == -1) {
+				interval = rhythmInfo.interval;
+			}
+			
+			if (type == null || interval == -1) {
+				throw new Error("HYPE Error: You must either reuse a RhythmInfo object or specify a type and interval for the rhythm");
+			}
+					
 			
 			if (rhythmInfo != null && !rhythmInfo.isRunning && interval > 0) {
 				
@@ -197,6 +210,8 @@ package hype.framework.rhythm {
 								if (_enterFrameTail == rhythmInfo) {
 									_enterFrameTail = rhythmInfo.prev;
 									_enterFrameTail.next = null;
+								} else {
+									rhythmInfo.next.prev = rhythmInfo.prev;
 								}
 							}
 							
@@ -206,7 +221,9 @@ package hype.framework.rhythm {
 								if (_enterFrameHead == rhythmInfo) {
 									_enterFrameHead = rhythmInfo.next;
 									_enterFrameHead.prev = null;
-								}								
+								} else {
+									rhythmInfo.prev.next = rhythmInfo.next;							
+								}
 							}
 							
 						}				
@@ -224,7 +241,9 @@ package hype.framework.rhythm {
 								if (_exitFrameTail == rhythmInfo) {
 									_exitFrameTail = rhythmInfo.prev;
 									_exitFrameTail.next = null;
-								}								
+								} else {
+									rhythmInfo.next.prev = rhythmInfo.prev;
+								}							
 							}
 							
 							if (rhythmInfo.next != null) {
@@ -233,6 +252,8 @@ package hype.framework.rhythm {
 								if (_exitFrameHead == rhythmInfo) {
 									_exitFrameHead = rhythmInfo.next;
 									_enterFrameHead.prev = null;
+								} else {
+									rhythmInfo.prev.next = rhythmInfo.next;							
 								}								
 							}												
 						}					
@@ -243,8 +264,9 @@ package hype.framework.rhythm {
 						break;											
 				}
 				
-				rhythmInfo.destroy();
-				_rhythmTable[rhythm] = null;
+				rhythmInfo.isRunning = false;
+				rhythmInfo.next = null;
+				rhythmInfo.prev = null;
 				
 				return true;
 				

@@ -69,11 +69,11 @@ package hype.framework.behavior {
 			
 			for (i=0; i<max; ++i) {
 				if ((list[i] as AbstractBehavior).target == object) {
+					manager.stopRhythm(list[i]);
 					manager.removeRhythm(list[i]);
 				}
-			}
-			
-		}
+			}		
+		}				
 		
 		/**
 		 * @private
@@ -101,6 +101,10 @@ package hype.framework.behavior {
 		 */
 		public function start(type:String="enter_frame", interval:uint=1):Boolean {
 			return manager.startRhythm(this, type, interval);
+		}
+		
+		public function resume():Boolean {
+			return manager.startRhythm(this);
 		}
 		
 		/**

@@ -1,7 +1,9 @@
 package hype.extended.util {
 	import hype.framework.canvas.encoder.AbstractCanvasEncoder;
 	import hype.framework.canvas.encoder.PNGCanvasEncoder;
+	import hype.framework.core.TimeType;
 	import hype.framework.display.BitmapCanvas;
+	import hype.framework.rhythm.SimpleRhythm;
 
 	import flash.display.Sprite;
 	import flash.display.Stage;
@@ -18,8 +20,10 @@ package hype.extended.util {
 	 */
 	public class ContextSaveImage {
 		private static const BAR_WIDTH:Number = 100;
-		private static const BAR_HEIGHT:Number = 5;		
-		
+		private static const BAR_HEIGHT:Number=5;		
+		private static const BAR_STEP:Number = 4;
+		private static const BAR_SEGMENTS:Number = 30;
+
 		private var _stage:Stage;
 		private var _progressDisplay:Sprite;
 		private var _encoder:AbstractCanvasEncoder;
@@ -30,7 +34,9 @@ package hype.extended.util {
 		private var _saveItem:ContextMenuItem;
 		private var _waitMenu:ContextMenu;
 		private var _waitItem:ContextMenuItem;	
-		private var _data:ByteArray;	
+		private var _data:ByteArray;
+		private var _busyOffset:int = 0;
+		private var _busyRhythm:SimpleRhythm;	
 		
 		private var _fileReference:FileReference;
 
@@ -82,6 +88,8 @@ package hype.extended.util {
 			_progressDisplay = new Sprite();
 
 			_canvas = canvas;
+			
+			_busyRhythm = new SimpleRhythm(drawBusy);
 			
 			if (encoderClass == null) {
 				encoderClass = PNGCanvasEncoder;
@@ -148,6 +156,38 @@ package hype.extended.util {
 			}
 		}
 		
+		private function drawBusy(rhythm:SimpleRhythm):void {
+			var segmentSize:Number = BAR_WIDTH/BAR_SEGMENTS;
+			var x:Number = (_stage.stageWidth - BAR_WIDTH) / 2;
+			var y:Number = (_stage.stageHeight - BAR_HEIGHT) / 2;
+			var i:int;
+			
+			rhythm;
+			
+			_busyOffset = (_busyOffset + 1) % BAR_STEP;
+			
+			_progressDisplay.graphics.clear();
+			
+			for (i=0; i<BAR_SEGMENTS; ++i) {
+				if ((i - _busyOffset) % BAR_STEP == 0) {
+					_progressDisplay.graphics.beginFill(0xFFFFFF);
+				} else {
+					_progressDisplay.graphics.beginFill(0x000000, 0.8);
+				}
+				
+				_progressDisplay.graphics.drawRect(x + (i * segmentSize), y, segmentSize, BAR_HEIGHT);
+				_progressDisplay.graphics.endFill();
+			}
+			
+			_progressDisplay.graphics.lineStyle(0, 0x000000);
+			_progressDisplay.graphics.drawRect(x, y, BAR_WIDTH, BAR_HEIGHT);
+
+			_progressDisplay.graphics.beginFill(0x000000, 0.8);
+			
+			
+						
+		}
+		
 		private function onContextEncodeComplete(data:ByteArray):void {
 			if (onEncodeComplete != null) {
 				onEncodeComplete();
@@ -162,6 +202,8 @@ package hype.extended.util {
 		
 		private function onContextSave(event:ContextMenuEvent):void {
 			_fileReference.save(_data, "hype." + _encoder.fileExtension.toLowerCase());	
+			_busyRhythm.start();
+			_stage.addChild(_progressDisplay);
 		}
 		
 		private function onContextSaveComplete(event:Event):void {
@@ -169,6 +211,9 @@ package hype.extended.util {
 			if(onSaveComplete != null) {
 				onSaveComplete();
 			}
+			_busyRhythm.stop();
+			_progressDisplay.graphics.clear();
+			_stage.removeChild(_progressDisplay);
 		}
 		
 		private function onContextSaveError(event:IOErrorEvent):void {
@@ -177,6 +222,11 @@ package hype.extended.util {
 			if (onSaveError != null) {
 				onSaveError();
 			}
+			
+			_busyRhythm.stop();
+			_progressDisplay.graphics.clear();
+			_stage.removeChild(_progressDisplay);			
+			
 		}
 		
 		private function onContextSaveCancel(event:Event):void {
@@ -185,6 +235,10 @@ package hype.extended.util {
 			if (onSaveCancel != null) {
 				onSaveCancel();
 			}
+			
+			_busyRhythm.stop();
+			_progressDisplay.graphics.clear();
+			_stage.removeChild(_progressDisplay);			
 		}
 	}
 }

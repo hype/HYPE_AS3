@@ -33,6 +33,13 @@ package hype.framework.rhythm {
 		}
 		
 		/**
+		 * Destroy this rhythm
+		 */
+		public function destroy():void {
+			manager.removeRhythm(this as IRhythm);
+		}
+		
+		/**
 		 * Boolean specifing if the trigger is running
 		 */		
 		public function get isRunning():Boolean {

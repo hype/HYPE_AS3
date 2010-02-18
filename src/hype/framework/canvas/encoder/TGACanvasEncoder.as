@@ -143,7 +143,7 @@ package hype.framework.canvas.encoder {
 				}
 				
 			}
-			
+
 			onEncodeProgress(_row/_height);
 		}
 	}
