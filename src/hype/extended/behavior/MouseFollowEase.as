@@ -41,5 +41,16 @@ package hype.extended.behavior {
 			myTarget.x += (myTarget.stage.mouseX - myTarget.x) * _ease;
 			myTarget.y += (myTarget.stage.mouseY - myTarget.y) * _ease;
 		}
+		
+		/**
+		 * Ease of the movement
+		 */
+		public function get ease():Number {
+			return _ease;
+		}
+		
+		public function set ease(ease:Number):void {
+			_ease = ease;
+		}
 	}
 }

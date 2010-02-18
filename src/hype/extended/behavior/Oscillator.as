@@ -31,6 +31,7 @@ package hype.extended.behavior {
 		 * @param min Minimum value of the property
 		 * @param max Maximum value of the property
 		 * @param offset Initial offset of the wave function
+		 * @param linkOffset Whether to link the offset to the frequency
 		 */
 		public function Oscillator(target:Object, prop:String, waveFunction:Function, freq:Number, min:Number, max:Number, offset:Number=0, linkOffset:Boolean=false) {
 			super(target);
@@ -120,6 +121,17 @@ package hype.extended.behavior {
 		
 		public function get amplitude():Number {
 			return _amp;
+		}		
+		
+		/**
+		 * Center value of the osciallator
+		 */
+		public function get center():Number {
+			return _center;
+		}
+		
+		public function set center(center:Number):void {
+			_center = center;
 		}		
 		
 		/**

@@ -4,16 +4,12 @@ package hype.framework.rhythm {
 	 * Abstract base class for all Rhythm classes
 	 */
 	public class AbstractRhythm {
-		public static var manager:RhythmManager;
+		public static var manager:RhythmManager = RhythmManager.getManager();
 		
 		/**
 		 * Constructor
 		 */
 		public function AbstractRhythm() {
-			if (manager == null) {
-				manager = new RhythmManager();
-			}
-			
 			manager.addRhythm(this as IRhythm);
 		}
 		

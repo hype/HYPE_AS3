@@ -66,6 +66,11 @@ package hype.extended.color {
 			_colorTable = new Object();
 		}
 		
+		/**
+		 * Randomly color all children of a sprite which are instances of InteractiveObject (Sprite or MovieClip)
+		 * 
+		 * @param sprite Sprite that should havee it's children colored
+		 */
 		public function colorChildren(sprite:Sprite):void {
 			var max:uint = sprite.numChildren;
 			var i:uint;
@@ -82,6 +87,11 @@ package hype.extended.color {
 			}
 		}
 		
+		/**
+		 * Get a random color from the color pool
+		 * 
+		 * @return integer color value
+		 */
 		public function getColor():uint {
 			return _colorList[Math.floor(Math.random() * _colorList.length)];
 		}

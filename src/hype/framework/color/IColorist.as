@@ -12,6 +12,12 @@ package hype.framework.color {
 		 * @param sprite Sprite to color
 		 */
 		function colorChildren(sprite:Sprite):void;
+		
+		/**
+		 * Get a random color
+		 * 
+		 * @returns integer color value
+		 */
 		function getColor():uint;
 	}
 }

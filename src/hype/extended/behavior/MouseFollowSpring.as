@@ -50,6 +50,28 @@ package hype.extended.behavior {
 			myTarget.x += _xSpeed;
 			myTarget.y += _ySpeed;
 		}
+		
+		/**
+		 * Springiness of the movement
+		 */
+		public function get spring():Number {
+			return _spring;
+		}
+		
+		public function set spring(spring:Number):void {
+			_spring = spring;
+		}
+		
+		/**
+		 * Ease of the movement
+		 */
+		public function get ease():Number {
+			return _ease;
+		}
+		
+		public function set ease(ease:Number):void {
+			_ease = ease;
+		}
 	}
 }
 

@@ -12,6 +12,7 @@ package hype.extended.behavior {
 		private var _spring:Number;
 		private var _ease:Number;
 		private var _min:Number;
+		private var _max:Number;
 		private var _range:Number; 
 		private var _speed:Number;
 
@@ -34,12 +35,13 @@ package hype.extended.behavior {
 				max += getProperty(prop);
 			}
 
-			_range = max - min;
 			_prop = prop;
 			_spring = spring;
 			_ease = ease;
 			_min = min;
+			_max = max;
 			_speed = 0;
+			_range = Math.abs(_max - _min);
 		}
 
 		/**
@@ -53,6 +55,51 @@ package hype.extended.behavior {
 			_speed = (_speed * _spring) + HypeMath.getDistance(_prop, value, goal) * _ease;
 
 			setProperty(_prop, value + _speed);
+		}
+		
+		/**
+		 * Springiness of the movement
+		 */
+		public function get spring():Number {
+			return _spring;
+		}
+		
+		public function set spring(spring:Number):void {
+			_spring = spring;
+		}
+		
+		/**
+		 * Ease of the movement
+		 */
+		public function get ease():Number {
+			return _ease;
+		}
+		
+		public function set ease(ease:Number):void {
+			_ease = ease;
+		}
+		
+		/**
+		 * Minimum range of the vibration
+		 */
+		public function get min():Number {
+			return _min;
+		}
+		
+		public function set min(min:Number):void {
+			_min = min;
+			_range = Math.abs(_max - _min);
+		}
+		
+		/**
+		 * Maximum range of the vibration
+		 */	
+		public function get max():Number {
+			return _max;
+		}
+		
+		public function set max(max:Number):void {
+			_max = max;
 		}
 	}
 }

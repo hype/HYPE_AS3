@@ -105,12 +105,21 @@ package hype.framework.core {
 		 * 
 		 * @return Whether the object was removed successfully
 		 */
-		public function remove(object:Object):Boolean {
-			var node:ObjectNode = ObjectNode(_table[object]);
+		public function remove(obj:Object):Boolean {
+			var node:ObjectNode = ObjectNode(_table[obj]);
 			
 			if (node == null)  {
 				return false;
 			} else {
+				
+				if (node == _head) {
+					_head = node.next;
+				}
+				
+				if (node == _tail) {
+					_tail = node.prev;
+				}
+				
 				if (node.prev) {
 					node.prev.next = node.next;
 				}
@@ -122,8 +131,8 @@ package hype.framework.core {
 				node.next = null;
 				node.prev = null;
 				node.obj = null;
-				_table[object] = null;
-				delete _table[object];
+				_table[obj] = null;
+				delete _table[obj];
 				--_length;
 				
 				return true;

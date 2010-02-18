@@ -45,5 +45,38 @@ package hype.extended.behavior {
 
 			setProperty(_prop, value + _speed);
 		}
+		
+		/**
+		 * Springiness of the vibration
+		 */
+		public function get spring():Number {
+			return _spring;
+		}
+		
+		public function set spring(spring:Number):void {
+			_spring = spring;
+		}
+		
+		/**
+		 * Ease of the vibration
+		 */
+		public function get ease():Number {
+			return _ease;
+		}
+		
+		public function set ease(ease:Number):void {
+			_ease = ease;
+		}
+		
+		/**
+		 * Range of the vibration
+		 */
+		public function get vibrationRange():Number {
+			return _vibrationRange;
+		}
+		
+		public function set vibrationRange(vibrationRange:Number):void {
+			_vibrationRange = vibrationRange;
+		}
 	}
 }

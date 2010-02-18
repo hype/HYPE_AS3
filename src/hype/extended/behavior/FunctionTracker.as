@@ -45,5 +45,16 @@ package hype.extended.behavior {
 			
 			setProperty(_prop, value);
 		}
+		
+		/**
+		 * Function to call
+		 */
+		public function get f():Function {
+			return _f;
+		}
+		
+		public function set f(f:Function):void {
+			_f = f;
+		}
 	}
 }

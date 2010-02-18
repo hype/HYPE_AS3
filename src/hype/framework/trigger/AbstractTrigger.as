@@ -1,12 +1,11 @@
 package hype.framework.trigger {
-	import hype.framework.rhythm.AbstractRhythm;
 	import hype.framework.rhythm.RhythmManager;
 
 	/**
 	 * Abstract base class for all Triggers
 	 */
 	public class AbstractTrigger{
-		public static var manager:RhythmManager;
+		public static var manager:RhythmManager = RhythmManager.getManager();
 		
 		private var _method:Function;
 		private var _target:Object;
@@ -18,14 +17,6 @@ package hype.framework.trigger {
 		 * @param target Target of the trigger
 		 */
 		public function AbstractTrigger(method:Function, target:Object) {
-			if (AbstractRhythm.manager == null) {
-				AbstractRhythm.manager = new RhythmManager();
-			}
-			
-			if (manager == null) {
-				manager = AbstractRhythm.manager;
-			}
-			
 			_method = method;
 			_target = target;
 			manager.addRhythm(this, runTrigger);

@@ -1,6 +1,5 @@
 package hype.framework.behavior {
 	import hype.framework.core.Accessor;
-	import hype.framework.rhythm.AbstractRhythm;
 	import hype.framework.rhythm.RhythmManager;
 
 	/**
@@ -10,7 +9,7 @@ package hype.framework.behavior {
 		/**
 		 * @private
 		 */
-		public static var manager:RhythmManager;
+		public static var manager:RhythmManager = RhythmManager.getManager();
 		
 		private static var _metaPropertyTable:Object;
 		
@@ -22,14 +21,6 @@ package hype.framework.behavior {
 		 * @param target Target object of this behavior
 		 */
 		public function AbstractBehavior(target:Object) {
-			if (AbstractRhythm.manager == null) {
-				AbstractRhythm.manager = new RhythmManager();
-			}
-			
-			if (manager == null) {
-				manager = AbstractRhythm.manager;
-			}
-			
 			if (_metaPropertyTable == null) {
 				_metaPropertyTable = new Object();
 				addMetaProperty("scale", AbstractBehavior.getScale, setScale);

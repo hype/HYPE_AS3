@@ -69,8 +69,16 @@ package hype.extended.util {
 		 * 
 		 * @param canvas Instance of ICanvas to use
 		 */
-		public function ContextSaveImage(canvas:BitmapCanvas, encoderClass:Class=null) {
-			_stage = canvas.stage;
+		public function ContextSaveImage(canvas:BitmapCanvas, encoderClass:Class=null, stage:Stage=null) {
+			
+			if (stage == null) {
+				_stage = canvas.stage;
+			}
+			
+			if (_stage == null) {
+				throw new Error("HYPE Error: Either canvas must be attached to stage or stage parameter must be specified");
+			}
+			
 			_progressDisplay = new Sprite();
 
 			_canvas = canvas;

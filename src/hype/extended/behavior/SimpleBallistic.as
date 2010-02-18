@@ -15,12 +15,14 @@ package hype.extended.behavior {
 		private var _gravityY:Number;
 		private var _xSpeed:Number;
 		private var _ySpeed:Number;
+		private var _gravity:Number;
+		private var _gravityAngle:Number;
 		
 		/**
 		 * Constructor
 		 * 
 		 * @param target Target display object
-		 * @param drag The amount of atomospheric drag to add to both axisis of movement
+		 * @param drag The amount of atomospheric drag to add to both axes of movement
 		 * @param minForce The minimum amount of force to apply to the object when it is shot
 		 * @param maxForce The maximum amount of force to apply to the object when it is shot
 		 * @param gravity The amount of gravitational force to apply to the target
@@ -34,13 +36,15 @@ package hype.extended.behavior {
 			
 			_drag = drag;
 			
-			_gravityX = Math.cos(gravityAngle * HypeMath.D2R) * gravity;
-			_gravityY = Math.sin(gravityAngle * HypeMath.D2R) * gravity;
+			_gravity = gravity;
+			_gravityAngle = gravityAngle;
+			
+			calculateGravity();
 
 			_xSpeed = force * Math.cos(angle);
 			_ySpeed = force * Math.sin(angle);
 		}
-		
+
 		public function run(target:Object):void {
 			var clip:DisplayObject = target as DisplayObject;
 			
@@ -52,6 +56,46 @@ package hype.extended.behavior {
 			
 			clip.x += _xSpeed;
 			clip.y += _ySpeed;
+		}
+		
+		/**
+		 * The amount of atomospheric drag to add to both axes of movement
+		 */
+		public function get drag():Number {
+			return _drag;
+		}
+		
+		public function set drag(drag:Number):void {
+			_drag = drag;
+		}
+		
+		/**
+		 * The amount of gravitational force to apply to the target
+		 */
+		public function get gravity():Number {
+			return _gravity;
+		}
+		
+		public function set gravity(gravity:Number):void {
+			_gravity = gravity;
+			calculateGravity();
+		}
+		
+		/**
+		 * The angle of gravity
+		 */
+		public function get gravityAngle():Number {
+			return _gravityAngle;
+		}
+		
+		public function set gravityAngle(gravityAngle:Number):void {
+			_gravityAngle = gravityAngle;
+			calculateGravity();
+		}		
+		
+		private function calculateGravity():void {
+			_gravityX = Math.cos(_gravityAngle * HypeMath.D2R) * _gravity;
+			_gravityY = Math.sin(_gravityAngle * HypeMath.D2R) * _gravity;			
 		}
 	}
 }

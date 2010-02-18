@@ -5,14 +5,18 @@ package hype.framework.core {
 	/**
 	 * Creates and manages pools of objects
 	 */
-	public class ObjectPool {
-		
+	public class ObjectPool {	
 		private var _objectClass:Class;
 		private var _classList:Array;
 		private var _max:uint;
 		private var _count:uint;
 		private var _activeSet:ObjectSet;
 		private var _inactiveSet:ObjectSet;
+		
+		/**
+		 * Whether to automatically attempt to remove any triggers and behaviors on an object when it is released back into the pool (defaults to true)
+		 */		
+		public var autoClean:Boolean = true;		
 		
 		/**
 		 * Callback for when new objects are created
@@ -94,9 +98,7 @@ package hype.framework.core {
 				obj = _inactiveSet.pull();
 				_activeSet.insert(obj);
 				onRequestObject(obj);
-				
-				trace("recycle");
-				
+
 				return obj;
 			} else if (_count < _max) {
 				obj = makeRandomObject();
@@ -130,8 +132,11 @@ package hype.framework.core {
 		public function release(object:Object):Boolean {
 			if (_activeSet.remove(object)) {
 				_inactiveSet.insert(object);
-				AbstractBehavior.removeBehaviorsFromObject(object);
-				AbstractTrigger.removeTriggersFromObject(object);
+
+				if (autoClean) {
+					AbstractBehavior.removeBehaviorsFromObject(object);
+					AbstractTrigger.removeTriggersFromObject(object);
+				}
 				onReleaseObject(object);
 				
 				return true;

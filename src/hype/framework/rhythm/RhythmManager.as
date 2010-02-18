@@ -11,6 +11,8 @@ package hype.framework.rhythm {
 	 * @private
 	 */
 	public class RhythmManager {
+		private static var instanceTable:Object = new Object();
+		
 		private var _rhythmTable:Dictionary;
 		private var _enterFrameHead:RhythmInfo;
 		private var _enterFrameTail:RhythmInfo;
@@ -29,6 +31,14 @@ package hype.framework.rhythm {
 			
 			_processingFlag = false;
 			_removeList = new Array();
+		}
+		
+		public static function getManager(name:String="default"):RhythmManager {
+			if (instanceTable[name] == null) {
+				instanceTable[name] = new RhythmManager();
+			}
+			
+			return instanceTable[name];
 		}
 		
 		public function toString():String {
