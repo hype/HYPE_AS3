@@ -1,7 +1,6 @@
 package hype.extended.util {
 	import hype.framework.canvas.encoder.AbstractCanvasEncoder;
 	import hype.framework.canvas.encoder.PNGCanvasEncoder;
-	import hype.framework.core.TimeType;
 	import hype.framework.display.BitmapCanvas;
 	import hype.framework.rhythm.SimpleRhythm;
 
@@ -144,11 +143,11 @@ package hype.extended.util {
 			
 			_progressDisplay.graphics.clear();
 			_progressDisplay.graphics.lineStyle(0, 0x000000);
-			_progressDisplay.graphics.beginFill(0xFFFFFF);
+			_progressDisplay.graphics.beginFill(0xFFFFFF, 0.7);
 			
 			_progressDisplay.graphics.drawRect(x, y, width, BAR_HEIGHT);
 			
-			_progressDisplay.graphics.beginFill(0x000000, 0.8);
+			_progressDisplay.graphics.beginFill(0x000000, 0.6);
 			_progressDisplay.graphics.drawRect(x + width, y, BAR_WIDTH - width, BAR_HEIGHT);
 			
 			if (onEncodeProgress != null) {
@@ -170,9 +169,9 @@ package hype.extended.util {
 			
 			for (i=0; i<BAR_SEGMENTS; ++i) {
 				if ((i - _busyOffset) % BAR_STEP == 0) {
-					_progressDisplay.graphics.beginFill(0xFFFFFF);
+					_progressDisplay.graphics.beginFill(0xFFFFFF, 0.7);
 				} else {
-					_progressDisplay.graphics.beginFill(0x000000, 0.8);
+					_progressDisplay.graphics.beginFill(0x000000, 0.6);
 				}
 				
 				_progressDisplay.graphics.drawRect(x + (i * segmentSize), y, segmentSize, BAR_HEIGHT);

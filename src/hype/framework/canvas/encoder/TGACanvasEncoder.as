@@ -17,7 +17,13 @@ package hype.framework.canvas.encoder {
 		private var _width:uint;
 		private var _height:uint;
 		private var _canvas:ICanvas;
-		
+		private var _nonRunBuffer:Vector.<int>;
+		private var _pixel:int;
+		private var _nextPixel:int;
+		private var _runCount:int;
+		private var _encodeCount:int = 0;
+		private var _encodeList:Array;
+
 		public function TGACanvasEncoder() {
 			_encodeRhythm = new SimpleRhythm(encodeOverTime);
 		}
@@ -63,88 +69,119 @@ package hype.framework.canvas.encoder {
 			_row = 0;
 			_col = 0;
 			
+			_nonRunBuffer = new Vector.<int>();
+			
+			startRow();
+			
 			_encodeRhythm.start();
 		}
 		
 		private function encodeOverTime(r:SimpleRhythm):void {
-			var i:int;
-			var max:int;
-			var j:int;
 			var s:uint = getTimer();
-			var pixel:uint;
-			var nextPixel:uint;
-			var count:uint;
-			var buffer:Array = new Array();
-			while (getTimer() - s < 35) {
-				if (_row == _height) {
-					onEncodeComplete(_tga);
-					r.stop();
-					return;
-				} else {
-					i = 0;
-					// handle a single row of the image
-					while (i < _width) {
-						count = 0;
-						
-						pixel = _canvas.getPixel32(i, _row);
-						
-						// handle the special case of the last pixel
-						if (i == _width - 1) {
-							_tga.writeByte(0);
-							_tga.writeUnsignedInt(pixel);
-							++i;
-						} else {
-							nextPixel = _canvas.getPixel32(i+1, _row);
-							
-							// handle runs of the same color
-							if (pixel == nextPixel) {
-								do {
-									++i;
-									++count;								
-								} while (i < _width - 1 && count < 127 && _canvas.getPixel32(i+1, _row) == pixel);
-							
-								_tga.writeByte(128 + count);
-								_tga.writeUnsignedInt(pixel);
+			// get that pixel
+			r;	
+			
+			while (getTimer() - s < 50) {
+				++_col;
+				
+				if (_col == _width) {					
+					
+					if (_runCount > 1) {		
+						writeRun();		
+					} else if (_nonRunBuffer.length == 128) {
+						writeNonRun();
+					} else {
+						_nonRunBuffer.push(_pixel);
+						writeNonRun();
+					}
+
+					_col = 0;
+					++_row;
 								
-								++i;
-								
-							// handle runs of different colors
-							} else {
-								while (i < _width - 2 && buffer.length < 128 && pixel != nextPixel) {
-									++i;
-									buffer.push(pixel);
-									pixel = nextPixel;
-									nextPixel = _canvas.getPixel32(i+1, _row);
-								}
-								
-								if (i == _width - 2) {
-									buffer.push(pixel);
-									buffer.push(nextPixel);
-									i += 2;
-								}
-								
-								if (buffer.length == 128) {
-									buffer.push(pixel);
-									++i;
-								}
-								
-								_tga.writeByte(buffer.length - 1);
-								max = buffer.length;
-								for (j=0; j<max; ++j) {
-									_tga.writeUnsignedInt(buffer[j]);
-								}
-								
-								buffer = new Array();
-							}
-						}
+					if (startRow()) {
+						continue;
+					} else {
+						break;
 					}
 					
-					++_row;
+				} else {
+					_nextPixel = _canvas.getPixel32(_col, _row);
 				}
 				
+				if (_pixel == _nextPixel) {
+					if (_nonRunBuffer.length > 0) {
+						writeNonRun();				
+					}
+					
+					// end the run if 128 or end of row
+					if (_runCount == 128) {
+						writeRun();
+						_pixel = _nextPixel;
+					} else {
+						++_runCount;
+					}				
+										
+				} else {
+					if (_runCount > 1) {
+						writeRun();
+					} else if (_nonRunBuffer.length == 128) {
+						writeNonRun();
+						_nonRunBuffer.push(_pixel);	
+					} else {
+						_nonRunBuffer.push(_pixel);			
+					}	
+					_pixel = _nextPixel;
+					
+				}
 			}
 
 			onEncodeProgress(_row/_height);
+		}	
+			
+		private function startRow():Boolean {
+			_encodeList = new Array();
+
+			if (_row == _height) {
+				
+				if (onEncodeComplete != null) {
+					onEncodeComplete(_tga);
+				}
+				_encodeRhythm.stop();
+				
+				return false;
+			} else {
+				_pixel = _canvas.getPixel32(_col, _row);
+				_nonRunBuffer = new Vector.<int>();
+				_runCount = 1;
+				_encodeCount = 0;
+					
+				return true;
+			}
+		}
+				
+		private function writeNonRun():void {
+			var max:int = _nonRunBuffer.length;
+			var i:int;
+			
+			_tga.writeByte(max - 1);
+			
+			for (i=0; i<max; ++i) {
+				_tga.writeUnsignedInt(_nonRunBuffer[i]);	
+			}
+			
+			_encodeCount += max;
+			_encodeList.push(-max);
+			
+			_nonRunBuffer = new Vector.<int>();
+		}
+		
+		private function writeRun():void {
+			_tga.writeByte(128 + (_runCount - 1));
+			_tga.writeUnsignedInt(_pixel);
+			
+			_encodeList.push(_runCount);
+			_encodeCount += _runCount;
+			_runCount = 1;		
 		}
 	}
 }
