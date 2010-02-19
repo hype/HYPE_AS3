@@ -210,6 +210,27 @@ Branden Hall & Joshua Davis
 
 Change Log
 -------------------------------------------------------------------------------
+1.1.5 / Bug fixes / Enhancements / Updates :
+    - fixed bugs in ObjectSet that were causing runtime errors
+
+    - exposed all properties of behaviors so they could be changed at runtime
+      (see Swarm behavior for example)
+
+    - deprecated ContextSavePNG in favor of generalized ContextSaveImage
+
+    - created hype-framework.swc and hype-extended.swc for use with either
+      Flash CS4+ or FlexBuilder/FlashBuilder
+
+    - added TGACanvasEncoder to output Targa (TGA) files
+      Targa output size is only limited by user RAM, PNG is limited to approx.
+      100,000 total pixels - at that point script timeout errors will occur
+
+    - moved Flash-based examples into own folder, added some basic pure AS3
+      examples (more coming in later releases)
+
+    - fixed all outstanding issues on GitHub 
+      (thanks sebleedelise and markstar!)
+
 1.1.1 / Updates :
     - moved all examples that use ContextSavePNG to their own folder and added
       a new example

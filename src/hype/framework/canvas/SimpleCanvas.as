@@ -4,6 +4,7 @@ package hype.framework.canvas {
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.filters.BitmapFilter;
+	import flash.geom.ColorTransform;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
@@ -18,6 +19,9 @@ package hype.framework.canvas {
 		private var _bitmapData:BitmapData;
 		private var _transparent:Boolean;
 		private var _fillColor:int;
+		
+		private var _canvasBlendMode:String = null;
+		private var _canvasColorTransform:ColorTransform = null;
 		
 		private var _captureFlag:Boolean;
 		private var _captureMethod:Function;
@@ -95,6 +99,28 @@ package hype.framework.canvas {
 		}
 		
 		/**
+		 * Blend mode to apply when capturing
+		 */
+		public function get canvasBlendMode():String {
+			return _canvasBlendMode;
+		}
+		
+		public function set canvasBlendMode(value:String):void {
+			_canvasBlendMode = value;
+		}
+		
+		/**
+		 * Color transform to apply when capturing
+		 */
+		public function get canvasColorTransform():ColorTransform {
+			return _canvasColorTransform;
+		}
+		
+		public function set canvasColorTransform(value:ColorTransform):void {
+			_canvasColorTransform = value;
+		}		
+		
+		/**
 		 * Start capturing the target into the bitmap
 		 * 
 		 * @param target DisplayObject to capture
@@ -146,7 +172,7 @@ package hype.framework.canvas {
 			if (!continuous) {
 				_bitmapData.fillRect(_rect, _fillColorAlpha);
 			}
-			_bitmapData.draw(_target);
+			_bitmapData.draw(_target, null, _canvasColorTransform, _canvasBlendMode);
 		}			
 		
 		/**

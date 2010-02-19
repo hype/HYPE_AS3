@@ -7,6 +7,7 @@ package hype.framework.canvas {
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.filters.BitmapFilter;
+	import flash.geom.ColorTransform;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -37,7 +38,9 @@ package hype.framework.canvas {
 		private var _gridList:Vector.<BitmapData>;
 		
 		private var _filterScalerTable:Object;
-	
+		private var _canvasBlendMode:String = null;
+		private var _canvasColorTransform:ColorTransform = null;
+
 		/**
 		 * Constructor
 		 * 
@@ -124,7 +127,29 @@ package hype.framework.canvas {
 		 */
 		public function get fillColor():int {
 			return _fillColor;
-		}		
+		}	
+		
+		/**
+		 * Blend mode to apply when capturing
+		 */
+		public function get canvasBlendMode():String {
+			return _canvasBlendMode;
+		}
+		
+		public function set canvasBlendMode(value:String):void {
+			_canvasBlendMode = value;
+		}
+		
+		/**
+		 * Color transform to apply when capturing
+		 */
+		public function get canvasColorTransform():ColorTransform {
+			return _canvasColorTransform;
+		}
+		
+		public function set canvasColorTransform(value:ColorTransform):void {
+			_canvasColorTransform = value;
+		}			
 		
 		/**
 		 * Start capturing the target into the bitmap
@@ -193,7 +218,7 @@ package hype.framework.canvas {
 				col = i % _gridWidth;
 				row = int(i / _gridWidth);
 				m = new Matrix(_scale, 0, 0, _scale, _border - (col * _gridSize), _border - (row * _gridSize));
-				_gridList[i].draw(_target, m);
+				_gridList[i].draw(_target, m, _canvasColorTransform, _canvasBlendMode);
 			}
 		}			
 		

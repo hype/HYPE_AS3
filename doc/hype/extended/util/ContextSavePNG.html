@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="ContextSavePNG,hype.extended.util.ContextSavePNG,onEncodeComplete,onEncodeProgress,onEncodeStart,onSaveCancel,onSaveComplete,onSaveError" name="keywords">
+<meta content="ContextSavePNG,hype.extended.util.ContextSavePNG" name="keywords">
 <title>hype.extended.util.ContextSavePNG</title>
 </head>
 <body>
@@ -37,9 +37,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr>
 <td class="classHeaderTableLabel">Class</td><td class="classSignature">public class ContextSavePNG</td>
 </tr>
+<tr>
+<td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ContextSavePNG <img class="inheritArrow" alt="Inheritance" title="Inheritance" src="../../../images/inherit-arrow.gif"> <a href="ContextSaveImage.html">ContextSaveImage</a></td>
+</tr>
 </table>
 <p></p>
-  Convenience class for adding context-menu encoding and saving of PNGs from BitmapCanvas instances.
+  Just a wrapper around the ContextSaveImage class to stay
+  backwards compatible with v1.1.1
   <p></p>
 <br>
 <hr>
@@ -47,45 +51,53 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a name="propertySummary"></a>
 <div class="summarySection">
 <div class="summaryTableTitle">Public Properties</div>
-<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<div class="showHideLinks">
+<div class="hideInheritedProperty" id="hideInheritedProperty">
+<a onclick="javascript:setInheritedVisible(false,'Property');" href="#propertySummary" class="showHideLink"><img src="../../../images/expanded.gif" class="showHideLinkImage"> Hide Inherited Public Properties</a>
+</div>
+<div class="showInheritedProperty" id="showInheritedProperty">
+<a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
+</div>
+</div>
+<table id="summaryTableProperty" class="summaryTable hideInheritedProperty" cellpadding="3" cellspacing="0">
 <tr>
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
 </tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onEncodeComplete">onEncodeComplete</a> : Function<div class="summaryTableDescription">
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="ContextSaveImage.html#onEncodeComplete">onEncodeComplete</a> : Function<div class="summaryTableDescription">
    Callback for when encoding is complete
    </div>
-</td><td class="summaryTableOwnerCol">ContextSavePNG</td>
+</td><td class="summaryTableOwnerCol"><a href="ContextSaveImage.html">ContextSaveImage</a></td>
 </tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onEncodeProgress">onEncodeProgress</a> : Function<div class="summaryTableDescription">
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="ContextSaveImage.html#onEncodeProgress">onEncodeProgress</a> : Function<div class="summaryTableDescription">
    Callback for encoding progress, passed percent complete
    </div>
-</td><td class="summaryTableOwnerCol">ContextSavePNG</td>
+</td><td class="summaryTableOwnerCol"><a href="ContextSaveImage.html">ContextSaveImage</a></td>
 </tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onEncodeStart">onEncodeStart</a> : Function<div class="summaryTableDescription">
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="ContextSaveImage.html#onEncodeStart">onEncodeStart</a> : Function<div class="summaryTableDescription">
    Callback for when encoding starts
    </div>
-</td><td class="summaryTableOwnerCol">ContextSavePNG</td>
+</td><td class="summaryTableOwnerCol"><a href="ContextSaveImage.html">ContextSaveImage</a></td>
 </tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onSaveCancel">onSaveCancel</a> : Function<div class="summaryTableDescription">
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="ContextSaveImage.html#onSaveCancel">onSaveCancel</a> : Function<div class="summaryTableDescription">
    Callback for when a save is canceled
    </div>
-</td><td class="summaryTableOwnerCol">ContextSavePNG</td>
+</td><td class="summaryTableOwnerCol"><a href="ContextSaveImage.html">ContextSaveImage</a></td>
 </tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onSaveComplete">onSaveComplete</a> : Function<div class="summaryTableDescription">
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="ContextSaveImage.html#onSaveComplete">onSaveComplete</a> : Function<div class="summaryTableDescription">
    Callback for when save is complete
    </div>
-</td><td class="summaryTableOwnerCol">ContextSavePNG</td>
+</td><td class="summaryTableOwnerCol"><a href="ContextSaveImage.html">ContextSaveImage</a></td>
 </tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#onSaveError">onSaveError</a> : Function<div class="summaryTableDescription">
+<tr class="hideInheritedProperty">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="ContextSaveImage.html#onSaveError">onSaveError</a> : Function<div class="summaryTableDescription">
    Callback for when a save errors
    </div>
-</td><td class="summaryTableOwnerCol">ContextSavePNG</td>
+</td><td class="summaryTableOwnerCol"><a href="ContextSaveImage.html">ContextSaveImage</a></td>
 </tr>
 </table>
 </div>
@@ -99,7 +111,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#ContextSavePNG()">ContextSavePNG</a>(canvas:<a href="../../framework/display/BitmapCanvas.html">BitmapCanvas</a>)</div>
+<a class="signatureLink" href="#ContextSavePNG()">ContextSavePNG</a>(canvas:<a href="../../framework/display/BitmapCanvas.html">BitmapCanvas</a>, stage:Stage = null)</div>
 <div class="summaryTableDescription">
    Constructor
    
@@ -113,68 +125,6 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 showHideInherited();
 --></script>
 <div class="MainContent">
-<a name="propertyDetail"></a>
-<div class="detailSectionHeader">Property detail</div>
-<a name="onEncodeComplete"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">onEncodeComplete</td><td class="detailHeaderType">property</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public var onEncodeComplete:Function</code><p>
-   Callback for when encoding is complete
-   </p></div>
-<a name="onEncodeProgress"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">onEncodeProgress</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public var onEncodeProgress:Function</code><p>
-   Callback for encoding progress, passed percent complete
-   </p></div>
-<a name="onEncodeStart"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">onEncodeStart</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public var onEncodeStart:Function</code><p>
-   Callback for when encoding starts
-   </p></div>
-<a name="onSaveCancel"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">onSaveCancel</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public var onSaveCancel:Function</code><p>
-   Callback for when a save is canceled
-   </p></div>
-<a name="onSaveComplete"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">onSaveComplete</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public var onSaveComplete:Function</code><p>
-   Callback for when save is complete
-   </p></div>
-<a name="onSaveError"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">onSaveError</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public var onSaveError:Function</code><p>
-   Callback for when a save errors
-   </p></div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
 <a name="ContextSavePNG()"></a>
@@ -184,13 +134,20 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function ContextSavePNG(canvas:<a href="../../framework/display/BitmapCanvas.html">BitmapCanvas</a>)</code><p>
+<code>public function ContextSavePNG(canvas:<a href="../../framework/display/BitmapCanvas.html">BitmapCanvas</a>, stage:Stage = null)</code><p>
    Constructor
    
    </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">canvas</span>:<a href="../../framework/display/BitmapCanvas.html">BitmapCanvas</a></code> &mdash; Instance of ICanvas to use
+<td width="20px"></td><td><code><span class="label">canvas</span>:<a href="../../framework/display/BitmapCanvas.html">BitmapCanvas</a></code> &mdash; The BitmapCanvas class to capture
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">stage</span>:Stage</code> (default = <code>null</code>)<code></code> &mdash; The stage (optional if canvas is currently added to the stage)
    </td>
 </tr>
 </table>

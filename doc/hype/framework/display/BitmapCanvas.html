@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="BitmapCanvas,hype.framework.display.BitmapCanvas,bitmap,fillColor,isCapturing,largeCanvas,rect,target,transparent,applyFilter,capture,clear,getPixel32,setupLargeCanvas,startCapture,stopCapture" name="keywords">
+<meta content="BitmapCanvas,hype.framework.display.BitmapCanvas,bitmap,canvasBlendMode,canvasColorTransform,fillColor,isCapturing,largeCanvas,rect,target,transparent,applyFilter,capture,clear,getPixel32,setupLargeCanvas,startCapture,stopCapture" name="keywords">
 <title>hype.framework.display.BitmapCanvas</title>
 </head>
 <body>
@@ -64,7 +64,21 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">BitmapCanvas</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fillColor">fillColor</a> : int<div class="summaryTableDescription">[read-only]</div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#canvasBlendMode">canvasBlendMode</a> : String<div class="summaryTableDescription">
+   Blend mode to apply when canvas captures
+   </div>
+</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#canvasColorTransform">canvasColorTransform</a> : ColorTransform<div class="summaryTableDescription">
+   Color transform to apply when canvas captures
+   </div>
+</td><td class="summaryTableOwnerCol">BitmapCanvas</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#fillColor">fillColor</a> : int<div class="summaryTableDescription">[read-only]
+   Fill color of the canvas
+   </div>
 </td><td class="summaryTableOwnerCol">BitmapCanvas</td>
 </tr>
 <tr class="">
@@ -75,7 +89,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </tr>
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#largeCanvas">largeCanvas</a> : <a href="../canvas/GridCanvas.html">GridCanvas</a>
-<div class="summaryTableDescription">[read-only]</div>
+<div class="summaryTableDescription">[read-only]
+   The GridCanvas being used to upscale the image (if any)
+   </div>
 </td><td class="summaryTableOwnerCol">BitmapCanvas</td>
 </tr>
 <tr class="">
@@ -89,7 +105,9 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 </td><td class="summaryTableOwnerCol">BitmapCanvas</td>
 </tr>
 <tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#transparent">transparent</a> : Boolean<div class="summaryTableDescription">[read-only]</div>
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#transparent">transparent</a> : Boolean<div class="summaryTableDescription">[read-only]
+   Whether the canvas is transparent
+   </div>
 </td><td class="summaryTableOwnerCol">BitmapCanvas</td>
 </tr>
 </table>
@@ -122,7 +140,10 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
 <a class="signatureLink" href="#capture()">capture</a>(continuous:Boolean = true):void</div>
-<div class="summaryTableDescription"></div>
+<div class="summaryTableDescription">
+   Manually capture the canvas
+   
+   </div>
 </td><td class="summaryTableOwnerCol">BitmapCanvas</td>
 </tr>
 <tr class="">
@@ -144,7 +165,7 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
-<a class="signatureLink" href="#setupLargeCanvas()">setupLargeCanvas</a>(scale:Number):void</div>
+<a class="signatureLink" href="#setupLargeCanvas()">setupLargeCanvas</a>(scale:Number, gridSize:int = 1024, border:int = 128):void</div>
 <div class="summaryTableDescription"></div>
 </td><td class="summaryTableOwnerCol">BitmapCanvas</td>
 </tr>
@@ -190,6 +211,38 @@ showHideInherited();
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get bitmap():Bitmap</code>
 <br>
 </div>
+<a name="canvasBlendMode"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">canvasBlendMode</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>canvasBlendMode:String</code>&nbsp;&nbsp;[read-write]<p>
+   Blend mode to apply when canvas captures
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get canvasBlendMode():String</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set canvasBlendMode(value:String):void</code>
+<br>
+</div>
+<a name="canvasColorTransform"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">canvasColorTransform</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>canvasColorTransform:ColorTransform</code>&nbsp;&nbsp;[read-write]<p>
+   Color transform to apply when canvas captures
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get canvasColorTransform():ColorTransform</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set canvasColorTransform(value:ColorTransform):void</code>
+<br>
+</div>
 <a name="fillColor"></a>
 <table cellspacing="0" cellpadding="0" class="detailHeader">
 <tr>
@@ -197,7 +250,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>fillColor:int</code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
+<code>fillColor:int</code>&nbsp;&nbsp;[read-only]<p>
+   Fill color of the canvas
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get fillColor():int</code>
 <br>
@@ -223,7 +278,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>largeCanvas:<a href="../canvas/GridCanvas.html">GridCanvas</a></code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
+<code>largeCanvas:<a href="../canvas/GridCanvas.html">GridCanvas</a></code>&nbsp;&nbsp;[read-only]<p>
+   The GridCanvas being used to upscale the image (if any)
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get largeCanvas():<a href="../canvas/GridCanvas.html">GridCanvas</a></code>
 <br>
@@ -263,7 +320,9 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>transparent:Boolean</code>&nbsp;&nbsp;[read-only]<span class="label">Implementation</span>
+<code>transparent:Boolean</code>&nbsp;&nbsp;[read-only]<p>
+   Whether the canvas is transparent
+   </p><span class="label">Implementation</span>
 <br>
 <code>&nbsp;&nbsp;&nbsp;&nbsp;public function get transparent():Boolean</code>
 <br>
@@ -332,10 +391,14 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function capture(continuous:Boolean = true):void</code><span class="label">Parameters</span>
+<code>public function capture(continuous:Boolean = true):void</code><p>
+   Manually capture the canvas
+   
+   </p><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
-<td width="20px"></td><td><code><span class="label">continuous</span>:Boolean</code> (default = <code>true</code>)<code></code></td>
+<td width="20px"></td><td><code><span class="label">continuous</span>:Boolean</code> (default = <code>true</code>)<code></code> &mdash; Whether to NOT erase the canvas first (defaults to true)
+   </td>
 </tr>
 </table>
 </div>
@@ -383,10 +446,22 @@ showHideInherited();
 </tr>
 </table>
 <div class="detailBody">
-<code>public function setupLargeCanvas(scale:Number):void</code><span class="label">Parameters</span>
+<code>public function setupLargeCanvas(scale:Number, gridSize:int = 1024, border:int = 128):void</code><span class="label">Parameters</span>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td width="20px"></td><td><code><span class="label">scale</span>:Number</code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">gridSize</span>:int</code> (default = <code>1024</code>)<code></code></td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">border</span>:int</code> (default = <code>128</code>)<code></code></td>
 </tr>
 </table>
 </div>

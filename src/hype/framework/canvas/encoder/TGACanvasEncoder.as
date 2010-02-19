@@ -7,7 +7,7 @@ package hype.framework.canvas.encoder {
 	import flash.utils.getTimer;
 
 	/**
-	 * Class that encodes an ICanvas into a PNG
+	 * Class that encodes an ICanvas into a TGA (Targa image)
 	 */
 	public class TGACanvasEncoder extends AbstractCanvasEncoder implements ICanvasEncoder {
 		private var _encodeRhythm:SimpleRhythm;

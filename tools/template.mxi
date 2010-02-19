@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<macromedia-extension name="HYPE" version="[[VERSION]]" type="actionscript" requires-restart="false">
+
+	<!-- Describe the extension -->
+
+	<!-- Describe the author -->
+
+	<author name="Branden Hall & Joshua Davis" />
+
+	<!-- List the required/compatible products -->
+
+	<products>
+		<product name="Flash" version="10" primary="true" />
+	</products>
+
+	<!-- Describe the extension -->
+
+	<description>
+		<![CDATA[The HYPE Framework]]>
+	</description>
+
+	<!-- Describe where the extension shows in the UI of the product -->
+
+	<ui-access>
+		<![CDATA[ Be sure to run "Setup Classpath.jsfl", then you can just import the classes. ]]>
+	</ui-access>
+
+	<!-- Describe the files that comprise the extension -->
+
+	<files>
+[[FILE_SET]]
+	</files>
+
+</macromedia-extension>

@@ -7,6 +7,7 @@ package hype.framework.display {
 	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.filters.BitmapFilter;
+	import flash.geom.ColorTransform;
 	import flash.geom.Rectangle;
 
 	/**
@@ -17,6 +18,8 @@ package hype.framework.display {
 		private var _canvas:SimpleCanvas;
 		private var _largeCanvas:GridCanvas;
 		private var _bitmap:Bitmap;
+		private var _canvasBlendMode:String;
+		private var _canvasColorTransform:ColorTransform;
 
 		/**
 		 * Constructor
@@ -69,24 +72,66 @@ package hype.framework.display {
 			return _canvas.isCapturing;
 		}
 		
+		/**
+		 * Whether the canvas is transparent
+		 */
 		public function get transparent():Boolean {
 			return _canvas.transparent;
 		}
 		
+		/**
+		 * Fill color of the canvas
+		 */
 		public function get fillColor():int {
 			return _canvas.fillColor;
 		}
 		
+		/**
+		 * The GridCanvas being used to upscale the image (if any)
+		 */
 		public function get largeCanvas():GridCanvas {
 			return _largeCanvas;		
 		}
 		
-		public function setupLargeCanvas(scale:Number):void {
+		/**
+		 * Color transform to apply when canvas captures
+		 */
+		public function get canvasColorTransform():ColorTransform {
+			return _canvasColorTransform;
+		}
+		
+		public function set canvasColorTransform(canvasColorTransform:ColorTransform):void {
+			_canvasColorTransform = canvasColorTransform;
+			_canvas.canvasColorTransform = canvasColorTransform;
+			
+			if (_largeCanvas) {
+				_largeCanvas.canvasColorTransform = canvasColorTransform;
+			}
+		}
+		
+		/**
+		 * Blend mode to apply when canvas captures
+		 */
+		public function get canvasBlendMode():String {
+			return _canvasBlendMode;
+		}
+		
+		public function set canvasBlendMode(canvasBlendMode:String):void {
+			_canvasBlendMode = canvasBlendMode;
+			_canvas.canvasBlendMode = canvasBlendMode;
+			
+			if (_largeCanvas) {
+				_largeCanvas.canvasBlendMode = canvasBlendMode;
+			}
+		}		
+		
+		
+		public function setupLargeCanvas(scale:Number, gridSize:int=1024, border:int=128):void {
 			_largeCanvas = new GridCanvas(Math.ceil(_canvas.rect.width * scale), 
 											Math.ceil(_canvas.rect.height * scale),
 											scale, 
 											_canvas.transparent, 
-											_canvas.fillColor);	
+											_canvas.fillColor, gridSize, border);	
 		}
 		
 		/**
@@ -122,6 +167,11 @@ package hype.framework.display {
 			return _canvas.stopCapture();
 		}
 		
+		/**
+		 * Manually capture the canvas
+		 * 
+		 * @param continuous Whether to NOT erase the canvas first (defaults to true)
+		 */
 		public function capture(continuous:Boolean=true):void {
 			_canvas.capture(continuous);
 			if (_largeCanvas) {
@@ -146,5 +196,6 @@ package hype.framework.display {
 		public function getPixel32(x:int, y:int):int {
 			return _canvas.getPixel32(x, y);
 		}
+		
 	}
 }

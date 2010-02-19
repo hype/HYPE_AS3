@@ -4,7 +4,7 @@
 <META http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
 <link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="VariableVibration,hype.extended.behavior.VariableVibration" name="keywords">
+<meta content="VariableVibration,hype.extended.behavior.VariableVibration,ease,spring,vibrationRange" name="keywords">
 <title>hype.extended.behavior.VariableVibration</title>
 </head>
 <body>
@@ -61,9 +61,15 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <a onclick="javascript:setInheritedVisible(true,'Property');" href="#propertySummary" class="showHideLink"><img src="../../../images/collapsed.gif" class="showHideLinkImage"> Show Inherited Public Properties</a>
 </div>
 </div>
-<table id="summaryTableProperty" class="summaryTable hideInheritedProperty" cellpadding="3" cellspacing="0">
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
 <tr>
 <th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#ease">ease</a> : Number<div class="summaryTableDescription">
+   Ease of the vibration
+   </div>
+</td><td class="summaryTableOwnerCol">VariableVibration</td>
 </tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../framework/behavior/AbstractBehavior.html#isRunning">isRunning</a> : Boolean<div class="summaryTableDescription">
@@ -71,11 +77,23 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
    </div>
 </td><td class="summaryTableOwnerCol"><a href="../../framework/behavior/AbstractBehavior.html">AbstractBehavior</a></td>
 </tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#spring">spring</a> : Number<div class="summaryTableDescription">
+   Springiness of the vibration
+   </div>
+</td><td class="summaryTableOwnerCol">VariableVibration</td>
+</tr>
 <tr class="hideInheritedProperty">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol"><a class="signatureLink" href="../../framework/behavior/AbstractBehavior.html#target">target</a> : Object<div class="summaryTableDescription">
    Target of the behavior
    </div>
 </td><td class="summaryTableOwnerCol"><a href="../../framework/behavior/AbstractBehavior.html">AbstractBehavior</a></td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#vibrationRange">vibrationRange</a> : Number<div class="summaryTableDescription">
+   Range of the vibration
+   </div>
+</td><td class="summaryTableOwnerCol">VariableVibration</td>
 </tr>
 </table>
 </div>
@@ -136,6 +154,13 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 <tr class="hideInheritedMethod">
 <td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
 <div class="summarySignature">
+<a class="signatureLink" href="../../framework/behavior/AbstractBehavior.html#resume()">resume</a>():Boolean</div>
+<div class="summaryTableDescription"></div>
+</td><td class="summaryTableOwnerCol"><a href="../../framework/behavior/AbstractBehavior.html">AbstractBehavior</a></td>
+</tr>
+<tr class="hideInheritedMethod">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol"><img class="inheritedSummaryImage" title="Inherited" alt="Inherited" src="../../../images/inheritedSummary.gif"></td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
 <a class="signatureLink" href="../../framework/behavior/AbstractBehavior.html#start()">start</a>(type:String = "enter_frame", interval:uint = 1):Boolean</div>
 <div class="summaryTableDescription">
    Start running this behavior
@@ -169,6 +194,56 @@ if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Cl
 showHideInherited();
 --></script>
 <div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="ease"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ease</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>ease:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Ease of the vibration
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get ease():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set ease(value:Number):void</code>
+<br>
+</div>
+<a name="spring"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">spring</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>spring:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Springiness of the vibration
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get spring():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set spring(value:Number):void</code>
+<br>
+</div>
+<a name="vibrationRange"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">vibrationRange</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>vibrationRange:Number</code>&nbsp;&nbsp;[read-write]<p>
+   Range of the vibration
+   </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function get vibrationRange():Number</code>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public function set vibrationRange(value:Number):void</code>
+<br>
+</div>
 <a name="constructorDetail"></a>
 <div class="detailSectionHeader">Constructor detail</div>
 <a name="VariableVibration()"></a>
