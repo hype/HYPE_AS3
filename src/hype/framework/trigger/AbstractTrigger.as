@@ -34,7 +34,6 @@ package hype.framework.trigger {
 			
 			for (i=0; i<max; ++i) {
 				if ((list[i] as AbstractTrigger).target == object) {
-					manager.stopRhythm(list[i]);
 					manager.removeRhythm(list[i]);
 				}
 			}

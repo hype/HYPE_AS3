@@ -69,7 +69,6 @@ package hype.framework.behavior {
 			
 			for (i=0; i<max; ++i) {
 				if ((list[i] as AbstractBehavior).target == object) {
-					manager.stopRhythm(list[i]);
 					manager.removeRhythm(list[i]);
 				}
 			}		

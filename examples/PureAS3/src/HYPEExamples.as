@@ -11,7 +11,7 @@ package {
 	 * Uncomment the example you would like to view.
 	 * 
 	 * Compile with:
-	 * mxmlc HYPEExamples.as --output ../bin/HYPEExamples.swf --target-player 10 --library-path ../../../hype-framework.swc ../../../hype-extended.swc
+	 * mxmlc HYPEExamples.as --output ../bin/HYPEExamples.swf --target-player 10 --use-network true --library-path ../../../hype-framework.swc ../../../hype-extended.swc
 	 */
 
 	[SWF(width="640", height="360", backgroundColor="#111111", frameRate="30")] 
