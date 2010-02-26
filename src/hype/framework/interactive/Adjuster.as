@@ -57,6 +57,13 @@ package hype.framework.interactive {
 			}
 		}
 		
+		/**
+		 * The currently active clip
+		 */
+		public function get activeClip():Sprite {
+			return _activeClip;
+		}
+		
 		private function onSelectClip(event:MouseEvent):void {
 			var clip:Sprite = event.target as Sprite;
 			
