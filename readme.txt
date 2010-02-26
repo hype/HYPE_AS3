@@ -210,6 +210,19 @@ Branden Hall & Joshua Davis
 
 Change Log
 -------------------------------------------------------------------------------
+1.1.7 / Enhancements / Updates :
+    - modified 01_adjuster example
+    - added 02_adjuster example
+    - the Adjuster class now exposes activeClip property
+    - modified PixelColorist to deal with multiple children in the target sprite
+    - added DepthShuffle behavior
+    - added examples 01_depthShuffle, 02_depthShuffle, 03_depthShuffle,
+      04_depthShuffle, and 05_depthShuffle
+
+1.1.6 / Bug fixes
+    - Fixed nasty bug in ObjectPool
+    - Added applyLayout to ILayout (thanks markstar!)
+
 1.1.5 / Bug fixes / Enhancements / Updates :
     - fixed bugs in ObjectSet that were causing runtime errors
 
