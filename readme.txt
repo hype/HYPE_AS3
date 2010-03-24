@@ -210,6 +210,10 @@ Branden Hall & Joshua Davis
 
 Change Log
 -------------------------------------------------------------------------------
+1.1.8 / Enhancements / Updates :
+    - updated all FLA-based examples for increased clarity
+    - added SimpleProximity behavior
+
 1.1.7 / Enhancements / Updates :
     - modified 01_adjuster example
     - added 02_adjuster example
@@ -220,8 +224,8 @@ Change Log
       04_depthShuffle, and 05_depthShuffle
 
 1.1.6 / Bug fixes
-    - Fixed nasty bug in ObjectPool
-    - Added applyLayout to ILayout (thanks markstar!)
+    - fixed nasty bug in ObjectPool
+    - added applyLayout to ILayout (thanks markstar!)
 
 1.1.5 / Bug fixes / Enhancements / Updates :
     - fixed bugs in ObjectSet that were causing runtime errors
