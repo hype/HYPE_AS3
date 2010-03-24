@@ -10,7 +10,7 @@ package hype.extended.behavior {
 	 */
 	public class SimpleProximity extends AbstractBehavior implements IBehavior {
 		private var _prop:String;
-		private var _base:Number;
+		private var _min:Number;
 		private var _max:Number;
 		private var _radius:Number;
 		private var _radiusSq:Number;
@@ -24,24 +24,24 @@ package hype.extended.behavior {
 		 * 
 		 * @param target Target object
 		 * @param prop Target property
-		 * @param base Base value of the property (when outside of the radius)
-		 * @param max Value when the mouse cursor is directly on top of the target
-		 * @param radius Radius of the circle in which this behavior will have an affect
 		 * @param spring The springiness of the movement
 		 * @param ease The ease of the movement
+		 * @param min Base value of the property (when outside of the radius)
+		 * @param max Value when the mouse cursor is directly on top of the target
+		 * @param radius Radius of the circle in which this behavior will have an affect
 		 */
-		public function SimpleProximity(target:Object, prop:String, base:Number, max:Number, radius:Number, spring:Number=0, ease:Number=1) {
+		public function SimpleProximity(target:Object, prop:String, spring:Number, ease:Number, min:Number, max:Number, radius:Number) {
 			super(target);
 
 			_prop = prop;
-			_base = base;
+			_min = min;
 			_max = max;
 			_radius = radius;
 			_radiusSq = radius * radius;			
 			_spring = spring;
 			_ease = ease;
 			_speed = 0;
-			_range = (_max - _base);
+			_range = (_max - _min);
 		}
 
 		/**
@@ -55,9 +55,9 @@ package hype.extended.behavior {
 							  Math.pow(sprite.x - sprite.parent.mouseX, 2);	
 							  
 			if (dist < _radiusSq) {
-				goal = (1 - (dist / _radiusSq)) * _range + _base;
+				goal = (1 - (dist / _radiusSq)) * _range + _min;
 			} else {
-				goal = _base;
+				goal = _min;
 			}
 			
 			_speed = (_speed * _spring) + (HypeMath.getDistance(_prop, value, goal) * _ease);
@@ -94,21 +94,21 @@ package hype.extended.behavior {
 			return _max;
 		}
 		
-		public function set max(max:Number):void {
-			_max = max;
-			_range = (_max - _base);
+		public function set max(value:Number):void {
+			_max = value;
+			_range = (_max - _min);
 		}
 		
 		/**
 		 * Value when the mouse is fully outside of the radius
 		 */
-		public function get base():Number {
-			return _base;
+		public function get min():Number {
+			return _min;
 		}
 		
-		public function set base(base:Number):void {
-			_base = base;
-			_range = (_max - _base);
+		public function set min(value:Number):void {
+			_min = value;
+			_range = (_max - _min);
 		}
 		
 		/**
