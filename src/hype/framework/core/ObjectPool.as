@@ -96,6 +96,7 @@ package hype.framework.core {
 			
 			if (_inactiveSet.length > 0) {
 				obj = _inactiveSet.pull();
+				++_count;
 				_activeSet.insert(obj);
 				onRequestObject(obj);
 
@@ -131,6 +132,7 @@ package hype.framework.core {
 		 */
 		public function release(object:Object):Boolean {
 			if (_activeSet.remove(object)) {
+				--_count;
 				_inactiveSet.insert(object);
 
 				if (autoClean) {
