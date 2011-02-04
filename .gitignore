@@ -2,3 +2,6 @@
 .as3_classpath
 .project
 .settings
+
+#windows noise
+desktop.ini
