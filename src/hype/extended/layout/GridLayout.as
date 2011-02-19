@@ -8,12 +8,12 @@ package hype.extended.layout {
 	 * Layout that produces a simple grid
 	 */
 	public class GridLayout extends AbstractLayout implements ILayout {
-		private var _index:uint;
-		private var _x:Number;
-		private var _y:Number;
-		private var _xSpace:Number;
-		private var _ySpace:Number;
-		private var _columns:uint;
+		protected var _index:uint;
+		protected var _x:Number;
+		protected var _y:Number;
+		protected var _xSpace:Number;
+		protected var _ySpace:Number;
+		protected var _columns:uint;
 
 		/**
 		 * Constructor

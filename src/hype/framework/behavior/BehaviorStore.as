@@ -8,8 +8,8 @@ package hype.framework.behavior {
 	 */
 	public class BehaviorStore {
 		
-		private static var _table:Dictionary = new Dictionary(true);
-		private static var _pauseFlag:Boolean = false;
+		protected static var _table:Dictionary = new Dictionary(true);
+		protected static var _pauseFlag:Boolean = false;
 		
 		/**
 		 * Store a behavior

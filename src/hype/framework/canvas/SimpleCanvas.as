@@ -5,6 +5,7 @@ package hype.framework.canvas {
 	import flash.display.DisplayObject;
 	import flash.filters.BitmapFilter;
 	import flash.geom.ColorTransform;
+	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 
@@ -12,20 +13,20 @@ package hype.framework.canvas {
 	 * Captures a specifed target DisplayObject to a bitmap
 	 */
 	public class SimpleCanvas implements ICanvas {
-		private var _target:DisplayObject;
-		private var _rect:Rectangle;
-		private var _zeroPoint:Point;
-		private var _fillColorAlpha:uint;
-		private var _bitmapData:BitmapData;
-		private var _transparent:Boolean;
-		private var _fillColor:int;
+		protected var _targetList:Array;
+		protected var _rect:Rectangle;
+		protected var _zeroPoint:Point;
+		protected var _fillColor:uint;
+		protected var _bitmapData:BitmapData;
+		protected var _transparent:Boolean;
 		
-		private var _canvasBlendMode:String = null;
-		private var _canvasColorTransform:ColorTransform = null;
+		protected var _canvasBlendMode:String = null;
+		protected var _canvasColorTransform:ColorTransform = null;
 		
-		private var _captureFlag:Boolean;
-		private var _captureMethod:Function;
-		private var _rhythm:SimpleRhythm;
+		protected var _captureFlag:Boolean;
+		protected var _captureMethod:Function;
+		protected var _rhythm:SimpleRhythm;
+		protected var _matrix:Matrix;
 		
 		/**
 		 * Constructor
@@ -35,9 +36,12 @@ package hype.framework.canvas {
 		 * @param transparent Boolean specifying if the bitmap is transparent
 		 * @param fillColor Default fill color of the bitmap
 		 */
-		public function SimpleCanvas(width:Number, height:Number, transparent:Boolean=true, fillColor:uint = 0xFFFFFF) {
+		public function SimpleCanvas(width:Number, height:Number, scale:Number=1, transparent:Boolean=true, fillColor:uint = 0x00000000) {
+			_matrix = new Matrix();
+			_matrix.scale(scale, scale);
+			
 			_rect = new Rectangle(0, 0, width, height);
-			_fillColorAlpha = fillColor << 8 & (transparent ? 0xFF : 0x00);	
+			_fillColor = fillColor;
 			_zeroPoint = new Point(0, 0);
 			_captureFlag = false;
 			
@@ -48,20 +52,6 @@ package hype.framework.canvas {
 			
 			_rhythm = new SimpleRhythm(null);
 		}
-		
-		/**
-		 * Target being captured to bitmap
-		 */
-		public function get target():DisplayObject {
-			return _target;
-		}
-		
-		/**
-		 * Set target being captured to bitmap
-		 */
-		public function set target(value:DisplayObject):void {
-			_target = value;
-		}		
 		
 		/**
 		 * The instance of BitmapData used by this SimpleCanvas
@@ -134,9 +124,23 @@ package hype.framework.canvas {
 		 * 
 		 * @see hype.framework.core.TimeType
 		 */
-		public function startCapture(target:DisplayObject, continuous:Boolean = false, type:String="enter_frame", interval:int=1):Boolean {
+		public function startCapture(target:*, continuous:Boolean = false, type:String="enter_frame", interval:int=1):Boolean {
+			var max:int;
+			var i:int;
+			
+			_targetList = new Array();
+			
 			if (!_captureFlag) {
-				_target = target;
+				if (target is DisplayObject) {
+					_targetList[0] = target;
+				} else if (target is Vector || target is Array) {
+					max = target["length"];
+					for (i=0; i<max; ++i) {
+						_targetList[i] = target[i];
+					}
+				} else {
+					return false;
+				}
 				
 				_rhythm.callback = function():void {
 					capture(continuous);
@@ -169,17 +173,23 @@ package hype.framework.canvas {
 		 * @param continuous Whether to erase (false) or not erase (true) before capturing
 		 */		
 		public function capture(continuous:Boolean=true):void {
+			var max:int = _targetList.length;
+			var i:int;
+			
 			if (!continuous) {
-				_bitmapData.fillRect(_rect, _fillColorAlpha);
+				_bitmapData.fillRect(_rect, _fillColor);
 			}
-			_bitmapData.draw(_target, null, _canvasColorTransform, _canvasBlendMode);
+			
+			for (i=0; i<max; ++i) {
+				_bitmapData.draw(_targetList[i], _matrix, _canvasColorTransform, _canvasBlendMode);
+			}
 		}			
 		
 		/**
 		 * Clear the canvas back to it's base color (by default, 0xFFFFFFFF)
 		 */
 		public function clear():void {
-			_bitmapData.fillRect(_rect, _fillColorAlpha);
+			_bitmapData.fillRect(_rect, _fillColor);
 		}
 
 		/**
@@ -189,8 +199,12 @@ package hype.framework.canvas {
 			_bitmapData.applyFilter(_bitmapData, _rect, new Point(0, 0), filter);
 		}
 
+		public function colorTransform(transform:ColorTransform):void {
+			_bitmapData.colorTransform(_rect, transform);
+		}
+
 		/**
-		 * Get the 32-bit colot value for a particular pixel
+		 * Get the 32-bit color value for a particular pixel
 		 * 
 		 * @param x horizonal position of pixel
 		 * @param y verital position of pixel

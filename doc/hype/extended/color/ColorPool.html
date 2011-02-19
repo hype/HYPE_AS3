@@ -1,254 +1,59 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
-<link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
-<meta content="ColorPool,hype.extended.color.ColorPool,addColor,colorChildren,getColor,hasColor,reset" name="keywords">
-<title>hype.extended.color.ColorPool</title>
-</head>
-<body>
-<script type="text/javascript" language="javascript" src="../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../cookies.js"></script><script type="text/javascript" language="javascript">
-<!--
-				asdocTitle = 'ColorPool - HYPE';
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="ColorPool,hype.extended.color.ColorPool,_colorList,_colorTable,_height,_imageBitmapData,_width,addColor,colorChildren,colorChildren,getColor,getColor,getColorAt,hasColor,reset"><title>hype.extended.color.ColorPool</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'ColorPool - HYPE API';
 				var baseRef = '../../../';
 				window.onload = configPage;
 			--></script>
-<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
-<tr>
-<td align="left" class="titleTableTitle">API Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?hype/extended/color/ColorPool.html&amp;hype/extended/color/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
-</tr>
-<tr class="titleTableRow2">
-<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;ColorPool</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#methodSummary">Methods</a></td>
-</tr>
-<tr class="titleTableRow3">
-<td colspan="2">&nbsp;</td>
-</tr>
-</table>
-<script type="text/javascript" language="javascript">
-<!--
-if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class ColorPool"); titleBar_setSubNav(false,false,false,false,false,false,true,false,false,false,false,false,false,false);}
---></script>
-<div class="MainContent">
-<table cellspacing="0" cellpadding="0" class="classHeaderTable">
-<tr>
-<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">hype.extended.color</a></td>
-</tr>
-<tr>
-<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class ColorPool</td>
-</tr>
-<tr>
-<td class="classHeaderTableLabel">Implements</td><td><a href="../../framework/color/IColorist.html">IColorist</a></td>
-</tr>
-</table>
-<p></p>
-  Colorist that applies colors from a specified pool
-  <p></p>
-<br>
-<hr>
-</div>
-<a name="methodSummary"></a>
-<div class="summarySection">
-<div class="summaryTableTitle">Public Methods</div>
-<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
-<tr>
-<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#ColorPool()">ColorPool</a>(... rest)</div>
-<div class="summaryTableDescription">
-   Constructor
-   
-   </div>
-</td><td class="summaryTableOwnerCol">ColorPool</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#addColor()">addColor</a>(color:uint, count:uint = 1):void</div>
-<div class="summaryTableDescription">
-   Add a color to the pool (prevents duplicates)
-   
-   </div>
-</td><td class="summaryTableOwnerCol">ColorPool</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#colorChildren()">colorChildren</a>(sprite:Sprite):void</div>
-<div class="summaryTableDescription">
-   Randomly color all children of a sprite which are instances of InteractiveObject (Sprite or MovieClip)
-   
-   </div>
-</td><td class="summaryTableOwnerCol">ColorPool</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#getColor()">getColor</a>():uint</div>
-<div class="summaryTableDescription">
-   Get a random color from the color pool
-   
-   </div>
-</td><td class="summaryTableOwnerCol">ColorPool</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#hasColor()">hasColor</a>(color:uint):Boolean</div>
-<div class="summaryTableDescription">
-   Determine if the pool contains the specified color
-   
-   </div>
-</td><td class="summaryTableOwnerCol">ColorPool</td>
-</tr>
-<tr class="">
-<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
-<div class="summarySignature">
-<a class="signatureLink" href="#reset()">reset</a>():void</div>
-<div class="summaryTableDescription">
-   Resets the color pool (removes all colors)
-   </div>
-</td><td class="summaryTableOwnerCol">ColorPool</td>
-</tr>
-</table>
-</div>
-<script type="text/javascript" language="javascript">
-<!--
-showHideInherited();
---></script>
-<div class="MainContent">
-<a name="constructorDetail"></a>
-<div class="detailSectionHeader">Constructor detail</div>
-<a name="ColorPool()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">ColorPool</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">constructor</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function ColorPool(... rest)</code><p>
-   Constructor
-   
-   </p><span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code>... <span class="label">rest</span></code> &mdash; Colors to be added to the pool (uint)
-   </td>
-</tr>
-</table>
-</div>
-<a name="methodDetail"></a>
-<div class="detailSectionHeader">Method detail</div>
-<a name="addColor()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">addColor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function addColor(color:uint, count:uint = 1):void</code><p>
-   Add a color to the pool (prevents duplicates)
-   
-   </p><span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code><span class="label">color</span>:uint</code> &mdash; Color to add to the pool (uint)
-   </td>
-</tr>
-<tr>
-<td class="paramSpacer">&nbsp;</td>
-</tr>
-<tr>
-<td width="20px"></td><td><code><span class="label">count</span>:uint</code> (default = <code>1</code>)<code></code> &mdash; Number of times to add this color
-   </td>
-</tr>
-</table>
-</div>
-<a name="colorChildren()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">colorChildren</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function colorChildren(sprite:Sprite):void</code><p>
-   Randomly color all children of a sprite which are instances of InteractiveObject (Sprite or MovieClip)
-   
-   </p><span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code><span class="label">sprite</span>:Sprite</code> &mdash; Sprite that should havee it's children colored
-   </td>
-</tr>
-</table>
-</div>
-<a name="getColor()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">getColor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function getColor():uint</code><p>
-   Get a random color from the color pool
-   
-   </p><p></p>
-<span class="label">Returns</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20"></td><td><code>uint</code> &mdash; integer color value
-   </td>
-</tr>
-</table>
-</div>
-<a name="hasColor()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">hasColor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function hasColor(color:uint):Boolean</code><p>
-   Determine if the pool contains the specified color
-   
-   </p><span class="label">Parameters</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20px"></td><td><code><span class="label">color</span>:uint</code> &mdash; Color to test
-   
-   </td>
-</tr>
-</table>
-<p></p>
-<span class="label">Returns</span>
-<table border="0" cellspacing="0" cellpadding="0">
-<tr>
-<td width="20"></td><td><code>Boolean</code> &mdash; Whether this pool contains the color
-   </td>
-</tr>
-</table>
-</div>
-<a name="reset()"></a>
-<table cellspacing="0" cellpadding="0" class="detailHeader">
-<tr>
-<td class="detailHeaderName">reset</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
-</tr>
-</table>
-<div class="detailBody">
-<code>public function reset():void</code><p>
-   Resets the color pool (removes all colors)
-   </p></div>
-<br>
-<br>
-<hr>
-<br>
-<p></p>
-<center class="copyright"> 
-</center>
-</div>
-</body>
-</html>
-<!-- -->
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">HYPE</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?hype/extended/color/ColorPool.html&amp;hype/extended/color/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">ColorPool</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("ColorPool"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">hype.extended.color</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  ColorPool</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ColorPool  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr><tr><td class="classHeaderTableLabel">Implements</td><td> <a href="../../../hype/framework/color/IColorist.html">IColorist</a></td></tr></table><p></p><p></p><p></p>
+	 Colorist that applies colors from a specified pool
+	 <p></p><br/><hr></div><a name="propertySummary"></a><a name="protectedPropertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Protected Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProtectedProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_colorList" class="signatureLink">_colorList</a> : Array<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">ColorPool</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#_colorTable" class="signatureLink">_colorTable</a> : Object<div class="summaryTableDescription"></div></td><td class="summaryTableOwnerCol">ColorPool</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#ColorPool()" class="signatureLink">ColorPool</a>(... rest)</div><div class="summaryTableDescription">
+		 Constructor
+		 
+		 </div></td><td class="summaryTableOwnerCol">ColorPool</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#addColor()" class="signatureLink">addColor</a>(color:uint, count:uint = 1):void</div><div class="summaryTableDescription">
+		 Add a color to the pool (prevents duplicates)
+		 
+		 </div></td><td class="summaryTableOwnerCol">ColorPool</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#colorChildren()" class="signatureLink">colorChildren</a>(sprite:Sprite):void</div><div class="summaryTableDescription">
+		 Randomly color all children of a sprite which are instances of InteractiveObject (Sprite or MovieClip)
+		 
+		 </div></td><td class="summaryTableOwnerCol">ColorPool</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getColor()" class="signatureLink">getColor</a>():uint</div><div class="summaryTableDescription">
+		 Get a random color from the color pool
+		 
+		 </div></td><td class="summaryTableOwnerCol">ColorPool</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#hasColor()" class="signatureLink">hasColor</a>(color:uint):Boolean</div><div class="summaryTableDescription">
+		 Determine if the pool contains the specified color
+		 
+		 </div></td><td class="summaryTableOwnerCol">ColorPool</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#reset()" class="signatureLink">reset</a>():void</div><div class="summaryTableDescription">
+		 Resets the color pool (removes all colors)
+		 </div></td><td class="summaryTableOwnerCol">ColorPool</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="_colorList"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_colorList</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>protected var _colorList:Array</code><p></p></div><a name="propertyDetail"></a><a name="_colorTable"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">_colorTable</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>protected var _colorTable:Object</code><p></p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="ColorPool()"></a><a name="ColorPool(restParam)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">ColorPool</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function ColorPool(... rest)</code><p></p><p>
+		 Constructor
+		 
+		 </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code>... <span class="label">rest</span></code> &mdash; Colors to be added to the pool (uint)
+		 </td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="addColor()"></a><a name="addColor(uint,uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">addColor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public function addColor(color:uint, count:uint = 1):void</code><p></p><p></p><p>
+		 Add a color to the pool (prevents duplicates)
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">color</span>:uint</code> &mdash; Color to add to the pool (uint)
+		 </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">count</span>:uint</code> (default = <code>1</code>)<code></code> &mdash; Number of times to add this color
+		 </td></tr></table></p></div><a name="colorChildren()"></a><a name="colorChildren(flash.display.Sprite)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">colorChildren</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function colorChildren(sprite:Sprite):void</code><p></p><p></p><p>
+		 Randomly color all children of a sprite which are instances of InteractiveObject (Sprite or MovieClip)
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">sprite</span>:Sprite</code> &mdash; Sprite that should havee it's children colored
+		 </td></tr></table></p></div><a name="getColor()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getColor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getColor():uint</code><p></p><p></p><p>
+		 Get a random color from the color pool
+		 
+		 </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>uint</code> &mdash; integer color value
+		 </td></tr></table></div><a name="hasColor()"></a><a name="hasColor(uint)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">hasColor</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function hasColor(color:uint):Boolean</code><p></p><p></p><p>
+		 Determine if the pool contains the specified color
+		 
+		 </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">color</span>:uint</code> &mdash; Color to test
+		 
+		 </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; Whether this pool contains the color
+		 </td></tr></table></div><a name="reset()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">reset</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function reset():void</code><p></p><p></p><p>
+		 Resets the color pool (removes all colors)
+		 </p></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Copyright 2011 Branden Hall and Joshua Davis</footer><br/>Fri Feb 18 2011, 10:35 PM -05:00  </center></div></body></html><!--Copyright 2011 Branden Hall and Joshua Davis<br/>Fri Feb 18 2011, 10:35 PM -05:00  -->

@@ -7,10 +7,10 @@ package hype.framework.interactive {
 	 * Maps functions to key combinations 
 	 */
 	public class HotKey {
-		private var _owner:InteractiveObject;
-		private var _comboTable:Dictionary;
-		private var _keyCodeTable:Object;
-		private var _charCodeTable:Object;
+		protected var _owner:InteractiveObject;
+		protected var _comboTable:Dictionary;
+		protected var _keyCodeTable:Object;
+		protected var _charCodeTable:Object;
 		
 		/**
 		 * Constructor
@@ -99,7 +99,7 @@ package hype.framework.interactive {
 			return (_charCodeTable[char.toLowerCase().charCodeAt(0)] == true);
 		}
 		
-		private function onKeyDown(event:KeyboardEvent):void {
+		protected function onKeyDown(event:KeyboardEvent):void {
 			var comboList:Array;
 			var i:uint;
 			var numKeys:uint;
@@ -138,12 +138,12 @@ package hype.framework.interactive {
 			}		
 		}
 		
-		private function onKeyUp(event:KeyboardEvent):void {
+		protected function onKeyUp(event:KeyboardEvent):void {
 			delete _keyCodeTable[event.keyCode];
 			delete _charCodeTable[event.charCode];
 		}
 		
-		private function parseKey(key:*):KeyData {
+		protected function parseKey(key:*):KeyData {
 			if (key is int) {				
 				return new KeyData(int(key), true);
 				

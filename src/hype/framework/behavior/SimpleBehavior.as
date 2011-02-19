@@ -7,7 +7,7 @@ package hype.framework.behavior {
 	 */
 	public class SimpleBehavior extends AbstractBehavior implements IBehavior {
 		
-		private var _callback:Function;
+		protected var _callback:Function;
 		
 		/**
 		 * Constructor
@@ -33,7 +33,7 @@ package hype.framework.behavior {
 		}		
 		
 		/**
-		 * @private
+		 * @protected
 		 */
 		public function run(target:Object):void {
 			_callback(target);

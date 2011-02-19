@@ -6,20 +6,20 @@ package hype.extended.behavior {
 	 * Oscillates a property with a specifed wave function
 	 */
 	public class Oscillator extends AbstractBehavior implements IBehavior {
-		private static const TWO_PI:Number = Math.PI * 2;
+		protected static const TWO_PI:Number = Math.PI * 2;
 		
-		private var _prop:String;
-		private var _waveFunction:Function;
+		protected var _prop:String;
+		protected var _waveFunction:Function;
 		
-		private var _freq:Number;
-		private var _offset:Number;
-		private var _amp:Number;
+		protected var _freq:Number;
+		protected var _offset:Number;
+		protected var _amp:Number;
 
-		private var _center:Number;		
-		private var _range:Number;
-		private var _step:Number;
+		protected var _center:Number;		
+		protected var _range:Number;
+		protected var _step:Number;
 
-		private var _linkOffset:Boolean = false;
+		protected var _linkOffset:Boolean = false;
 		
 		/**
 		 * Constructor
@@ -135,7 +135,7 @@ package hype.extended.behavior {
 		}		
 		
 		/**
-		 * @private
+		 * @protected
 		 */
 		public function run(target:Object) : void {
 			var value:Number = _step + _offset;

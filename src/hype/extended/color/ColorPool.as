@@ -11,8 +11,8 @@ package hype.extended.color {
 	 */
 	public class ColorPool implements IColorist {
 		
-		private var _colorList:Array;
-		private var _colorTable:Object;
+		protected var _colorList:Array;
+		protected var _colorTable:Object;
 		
 		/**
 		 * Constructor

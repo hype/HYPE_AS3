@@ -11,8 +11,8 @@ package hype.extended.layout {
 	 */
 	public class ShapeLayout extends AbstractLayout implements ILayout {
 
-		private var _target : Sprite;
-		private var _rect : Rectangle;
+		protected var _target : Sprite;
+		protected var _rect : Rectangle;
 
 		/**
 		 * Constructor

@@ -6,9 +6,9 @@ package hype.extended.behavior {
 	 * Behavior that runs a specific function and maps it to a property of the target object
 	 */
 	public class FunctionTracker extends AbstractBehavior implements IBehavior {
-		private var _prop:String;
-		private var _f:Function;
-		private var _argumentList:Array;
+		protected var _prop:String;
+		protected var _f:Function;
+		protected var _argumentList:Array;
 		
 		/**
 		 * Constructor
@@ -38,7 +38,7 @@ package hype.extended.behavior {
 		}
 		
 		/**
-		 * @private
+		 * @protected
 		 */
 		public function run(target:Object) : void {
 			var value:Number = _f.apply(null, _argumentList);

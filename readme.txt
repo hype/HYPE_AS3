@@ -9,36 +9,33 @@ Installation & Setup
 
 You and HYPE have a play date in about 5 minutes! Let's make sure you're ready!
 
-First, you have to have Flash Professional CS4 installed on your computer. PC
-or Mac, it doesn't matter.
+First, you have to have Flash Professional CS4 or later  installed on your 
+computer. PC or Mac, it doesn't matter.
 
-Now take a look at all of the other files that came long with this readme.
+To install HYPE for use in a project you simply need to tell Flash to include
+the "hype.swc" file. There are two ways to do this - globally or on a per-FLA
+basis. You will probably want to just install it globally (don't worry, none
+of the HYPE classes are included in a SWF unless you use them!)
 
-If you're crusty developer type, grab the "src" folder, look at the docs and
-examples and get down with your bad self - I'll see you in a few paragraphs if
-you still want to go through the tutorial, otherwise, have fun!
+To install the SWC globally you need to open the main application preferences
+for Flash. Then select the "ActionScript" option on the left. Next click the
+"ActionScript 3.0 Settings..." button. In the middle you will see a section
+labeled "Library path:". Press the red and white button with the "f" on it and
+browse to the "hype.swc" file. Now just click "Ok" and you're all set!
 
-For folks who want a slightly easier route, go ahead and double click on the
-"HYPE.mxp" file. Check out the window-o'-legalese and click "Accept". You've
-now copied all of the source files that make up HYPE into your personal library
-area that Flash sets up when it gets installed.
+It's a very similar procedure if you want to just link the SWC to a particular
+FLA. To do that open the publish settings of your FLA and select the Flash tab.
+Then, in the middle of the panel select the "Library" tab. Finally, click the
+red and white button with the "f" on it and browse to the "hype.swc" file.
+Click "Ok" and you're all done!
 
-(If you get some kind of goofy error you probably have an older version of
-Flash still installed on your computer. That's not a problem, just make sure
-that you open the MXP file with "Adobe Extension Manager CS4".)
-
-There's just one more step - you need to open the "Setup Classpaths.jsfl" file
-with Flash CS4. You should be able to just double-click on it, but in case that
-doesn't work just use the Commands > Run Command... menu inside of Flash to run
-it. This just makes sure that Flash knows about where that MXP just stashed the
-HYPE source code.
-
-
+If you ever run into a problem where Flash complains that it doesn't know
+about some HYPE class, you usually just forgot to link in the "hype.swc" file.
 
 Play Time!
 -------------------------------------------------------------------------------
 
-First thing's first, crack open Flash CS4 and create a new ActionScript 3 FLA.
+First thing's first, crack open Flash Pro and create a new ActionScript 3 FLA.
 Now, go ahead and draw a circle (you can get all artsy and draw a rhombus or
 something, but I'm going to keep calling it a circle so don't get confused!).
 Now select your circle and open the Modify > Convert to Symbol... menu. Name
@@ -198,18 +195,50 @@ also follows the mouse. Have fun, and if you get stuck, check out the
 "docs.html" file - it will launch the asdocs for HYPE. These are simple
 explanations for all of the parts of HYPE, their syntax, and how they work.
 
-Get playing!
+If you have any questions about HYPE or want to just chat with fellow HYPE
+users please join the official HYPE mailing list:
+
+http://groups.google.com/group/hypeframework/
+
+Now, get playing!
 
 ~ Love,
 
 Branden Hall & Joshua Davis
 
+@hypeframework
+@waxpraxis
+@joshuadavis
 
 
 -------------------------------------------------------------------------------
 
 Change Log
 -------------------------------------------------------------------------------
+1.1.9 / Enhancements / Updates / Bug Fixes :
+    - added destroy method to ObjectPool (thanks nodename!)
+    - split ICanvas into two interfaces, ICanvas and IEncodable
+    - changed ICanvas so that startCapture can accept either a DisplayObject 
+      or a Vector or Array of DisplayObjects
+    - added colorTransform method to ICanvas
+    - removed get/set target from ICanvas
+    - updated encoder infrastructure to use IEncoder rather than ICanavs
+    - added new BitmapCanvasCompositor class that can be used to combine 
+      multiple BitmapCanvas instances with alpha compositing
+    - added new scale parameter to BitmapCanvas so that content can be scaled 
+      before it is captured
+    - fixed issue on BitmapCanvas where clear wouldn't clear the large canvas
+    - added colorTransform method to BitmapCanvas
+    - changed PixelColorist so it supports either passing the constructor a 
+      class that subclasses BitmapData or an instance of BitmapData
+    - added getColorAt method to get the color at a specific x and y location
+    - added automatic support for BitmapCanvasCompositor to ContextSaveImage
+    - added destroyManager and destroy methods to RhythmManager 
+      (thanks magicbruno!)
+    - removed MXP package
+    - combined hype_framework.swc and hype_extended.swc into hype.swc
+    - now compiled with mxmlc 4.1.0
+
 1.1.8 / Enhancements / Updates :
     - updated all FLA-based examples for increased clarity
     - added SimpleProximity behavior

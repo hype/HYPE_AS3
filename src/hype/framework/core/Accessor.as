@@ -3,7 +3,7 @@ package hype.framework.core {
 	/**
 	 * @private
 	 */
-	public class Accessor {
+	public final class Accessor {
 		public var getter:Function;
 		public var setter:Function;
 		

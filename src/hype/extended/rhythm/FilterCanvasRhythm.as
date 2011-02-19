@@ -7,8 +7,8 @@ package hype.extended.rhythm {
 	 * Rhythm to continuously apply a set of filters to an ICanvas instance
 	 */
 	public class FilterCanvasRhythm extends AbstractRhythm implements IRhythm {
-		private var _filterList:Array;
-		private var _canvas:ICanvas;
+		protected var _filterList:Array;
+		protected var _canvas:ICanvas;
 		
 		/**
 		 * Constructor

@@ -1,5 +1,5 @@
 package hype.framework.canvas.encoder {
-	import hype.framework.canvas.ICanvas;
+	import hype.framework.canvas.IEncodable;
 
 	/**
 	 * Abstract base class for classes that encode classes that implement ICanvas instances into a bitmap format
@@ -18,7 +18,7 @@ package hype.framework.canvas.encoder {
 		/**
 		 * 
 		 */
-		public function encode(canvas:ICanvas):void {
+		public function encode(canvas:IEncodable):void {
 					
 		}
 		

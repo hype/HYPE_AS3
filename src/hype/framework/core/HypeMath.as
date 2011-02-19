@@ -3,7 +3,7 @@ package hype.framework.core {
 	/**
 	 * Utility class full of helpful math-related static properties/methods
 	 */
-	public class HypeMath {
+	public final class HypeMath {
 		/**
 		 * Constant to convert from degrees to radians
 		 */

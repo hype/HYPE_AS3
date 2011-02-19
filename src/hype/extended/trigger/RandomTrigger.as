@@ -6,7 +6,7 @@ package hype.extended.trigger {
 	 * Trigger that fires randomly given a set proability.
 	 */
 	public class RandomTrigger extends AbstractTrigger implements ITrigger {
-		private var _chance:uint;
+		protected var _chance:uint;
 
 		/**
 		 * Constructor

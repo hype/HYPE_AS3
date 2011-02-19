@@ -1,5 +1,5 @@
 package hype.framework.canvas.encoder {
-	import hype.framework.canvas.ICanvas;
+	import hype.framework.canvas.IEncodable;
 	import hype.framework.rhythm.SimpleRhythm;
 
 	import flash.utils.ByteArray;
@@ -11,19 +11,19 @@ package hype.framework.canvas.encoder {
 	public class PNGCanvasEncoder extends AbstractCanvasEncoder implements ICanvasEncoder {
 		public static var FRAME_TIME:int = 35;
 		
-		private static const ROW_MODE:int = 0;
-		private static const COMPRESS_MODE:int = 2;
-		private static const WRITE_MODE:int = 3;
+		protected static const ROW_MODE:int = 0;
+		protected static const COMPRESS_MODE:int = 2;
+		protected static const WRITE_MODE:int = 3;
 
-		private var _png:ByteArray;	
-		private var _width:int;
-		private var _height:int;
-		private var _IDAT:ByteArray;
-	    private var _crcTable:Array;	
-		private var _encodeRhythm:SimpleRhythm;
-		private var _row:int;
-		private var _img:ICanvas;
-		private var _mode:int = 0;
+		protected var _png:ByteArray;	
+		protected var _width:int;
+		protected var _height:int;
+		protected var _IDAT:ByteArray;
+	    protected var _crcTable:Array;	
+		protected var _encodeRhythm:SimpleRhythm;
+		protected var _row:int;
+		protected var _img:IEncodable;
+		protected var _mode:int = 0;
 		
 		public function PNGCanvasEncoder() {
 			var c:uint;
@@ -54,7 +54,7 @@ package hype.framework.canvas.encoder {
 		 *
 		 * @param image The ICanvas that will be converted into the PNG format.
 		 */			
-	    override public function encode(img:ICanvas):void {
+	    override public function encode(img:IEncodable):void {
 	    	_png = new ByteArray();
 	    	_mode = ROW_MODE;
 	    	
@@ -79,7 +79,7 @@ package hype.framework.canvas.encoder {
 			_encodeRhythm.start();
 	    }
 	    
-	    private function encodeOverTime(r:SimpleRhythm):void {
+	    protected function encodeOverTime(r:SimpleRhythm):void {
 	    	var startTime:int = getTimer();
 
 			switch (_mode) {
@@ -136,7 +136,7 @@ package hype.framework.canvas.encoder {
 			}
 	    }
 	
-	    private function writeChunk(png:ByteArray, type:uint, data:ByteArray):void {
+	    protected function writeChunk(png:ByteArray, type:uint, data:ByteArray):void {
 			var c:uint;
 	        var len:uint = 0;
 	        

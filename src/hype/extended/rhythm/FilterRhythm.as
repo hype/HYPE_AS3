@@ -9,10 +9,10 @@ package hype.extended.rhythm {
 	 * Rhythm to continuously apply a set of filters to a BitmapData instance
 	 */
 	public class FilterRhythm extends AbstractRhythm implements IRhythm {
-		private static var _zeroPoint:Point = new Point(0, 0);
+		protected static var _zeroPoint:Point = new Point(0, 0);
 		
-		private var _filterList:Array;
-		private var _bitmapData:BitmapData;
+		protected var _filterList:Array;
+		protected var _bitmapData:BitmapData;
 		
 		/**
 		 * Constructor

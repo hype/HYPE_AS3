@@ -8,7 +8,7 @@ package hype.extended.behavior {
 	 * Change the depth of a target DisplayObjectContainer's children
 	 */
 	public class DepthShuffle extends AbstractBehavior implements IBehavior {
-		private var _method:Function;
+		protected var _method:Function;
 		
 		public function DepthShuffle(target:Object, method:Function) {
 			super(target);

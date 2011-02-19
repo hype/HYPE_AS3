@@ -8,11 +8,11 @@ package hype.extended.behavior {
 	 */
 	public class VariableVibration extends AbstractBehavior implements IBehavior {
 
-		private var _prop:String;
-		private var _spring:Number;
-		private var _ease:Number;
-		private var _vibrationRange:Number; 
-		private var _speed:Number;
+		protected var _prop:String;
+		protected var _spring:Number;
+		protected var _ease:Number;
+		protected var _vibrationRange:Number; 
+		protected var _speed:Number;
 
 		/**
 		 * Constructor
@@ -34,7 +34,7 @@ package hype.extended.behavior {
 		}
 
 		/**
-		 * @private
+		 * @protected
 		 */
 		public function run(target:Object):void {
 			var goal:Number;

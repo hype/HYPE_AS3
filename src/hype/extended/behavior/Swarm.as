@@ -10,10 +10,10 @@ package hype.extended.behavior {
 	 * Makes the target object chase after a point
 	 */
 	public class Swarm extends AbstractBehavior implements IBehavior {
-		private var _point:Point;
-		private var _speed:Number;
-		private var _turnEase:Number;
-		private var _twitch:Number;
+		protected var _point:Point;
+		protected var _speed:Number;
+		protected var _turnEase:Number;
+		protected var _twitch:Number;
 		
 		/**
 		 * Constructor
@@ -34,7 +34,7 @@ package hype.extended.behavior {
 		}
 		
 		/**
-		 * @private
+		 * @protected
 		 */
 		public function run(target:Object):void {
 			var clip:DisplayObject = target as DisplayObject;

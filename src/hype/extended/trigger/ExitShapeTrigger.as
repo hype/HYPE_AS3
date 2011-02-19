@@ -8,9 +8,9 @@ package hype.extended.trigger {
 	 * Trigger that fires when an object has exited from a shape.
 	 */
 	public class ExitShapeTrigger extends AbstractTrigger implements ITrigger {
-		private var _shape:DisplayObject;
-		private var _shapeFlag:Boolean;
-		private var _enterFlag:Boolean;
+		protected var _shape:DisplayObject;
+		protected var _shapeFlag:Boolean;
+		protected var _enterFlag:Boolean;
 		
 		
 		/**

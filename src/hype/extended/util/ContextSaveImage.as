@@ -3,6 +3,8 @@ package hype.extended.util {
 	import hype.framework.canvas.encoder.PNGCanvasEncoder;
 	import hype.framework.display.BitmapCanvas;
 	import hype.framework.rhythm.SimpleRhythm;
+	
+	import hype.extended.util.BitmapCanvasCompositor;	
 
 	import flash.display.InteractiveObject;
 	import flash.display.Sprite;
@@ -19,27 +21,27 @@ package hype.extended.util {
 	 * Convenience class for adding context-menu encoding and saving of images from BitmapCanvas instances.
 	 */
 	public class ContextSaveImage {
-		private static const BAR_WIDTH:Number=100;
-		private static const BAR_HEIGHT:Number=5;		
-		private static const BAR_STEP:Number=4;
-		private static const BAR_SEGMENTS:Number=30;
+		protected static const BAR_WIDTH:Number=100;
+		protected static const BAR_HEIGHT:Number=5;		
+		protected static const BAR_STEP:Number=4;
+		protected static const BAR_SEGMENTS:Number=30;
 
-		private var _stage:Stage;
-		private var _progressDisplay:Sprite;
-		private var _encoder:AbstractCanvasEncoder;
-		private var _canvas:BitmapCanvas;
-		private var _encodeMenu:ContextMenu;
-		private var _encodeItem:ContextMenuItem;
-		private var _saveMenu:ContextMenu;
-		private var _saveItem:ContextMenuItem;
-		private var _waitMenu:ContextMenu;
-		private var _waitItem:ContextMenuItem;	
-		private var _data:ByteArray;
-		private var _busyOffset:int=0;
-		private var _busyRhythm:SimpleRhythm;
-		private var _menuOwner:InteractiveObject;	
+		protected var _stage:Stage;
+		protected var _progressDisplay:Sprite;
+		protected var _encoder:AbstractCanvasEncoder;
+		protected var _encodeMenu:ContextMenu;
+		protected var _encodeItem:ContextMenuItem;
+		protected var _saveMenu:ContextMenu;
+		protected var _saveItem:ContextMenuItem;
+		protected var _waitMenu:ContextMenu;
+		protected var _waitItem:ContextMenuItem;	
+		protected var _data:ByteArray;
+		protected var _busyOffset:int=0;
+		protected var _busyRhythm:SimpleRhythm;
+		protected var _menuOwner:InteractiveObject;
+		protected var _canvasList:Vector.<BitmapCanvas>;
 
-		private var _fileReference:FileReference;
+		protected var _fileReference:FileReference;
 
 		/**
 		 * Callback for when encoding starts
@@ -74,16 +76,36 @@ package hype.extended.util {
 		/**
 		 * Constructor
 		 * 
-		 * @param canvas Instance of ICanvas to use
+		 * @param canvas Instance of BitmapCanvas or an Array or Vector of BitmapCanvas instances
 		 * @param encoderClass encoder to use
 		 * @param owner owner of the menu (only needed if your canvas is not on the stage)
 		 */
-		public function ContextSaveImage(canvas:BitmapCanvas, encoderClass:Class=null, owner:InteractiveObject=null) {
+		public function ContextSaveImage(canvas:*, encoderClass:Class=null, owner:InteractiveObject=null) {
+			var max:int;
+			var i:int;
+			
+			_canvasList = new Vector.<BitmapCanvas>();
+			
+			if (canvas is BitmapCanvas) {
+				_canvasList[0] = canvas;
+			} else {
+				if (canvas["length"] > 0) {
+					max = canvas["length"];
+					for (i=0; i<max; ++i) {
+						_canvasList[i] = canvas[i];
+					}
+				} else {
+					throw new Error("The first argument must be a BitmapCanvas or an Array/Vector of BitmapCanvas");
+				}
+			}
+			
 			
 			if (owner == null) {
-				_stage = canvas.stage;
+				_stage = _canvasList[0].stage;
+				_menuOwner = _canvasList[0];
 			} else {
 				_stage = owner.stage;
+				_menuOwner = owner;
 			}
 			
 			if (_stage == null) {
@@ -91,8 +113,6 @@ package hype.extended.util {
 			}
 			
 			_progressDisplay = new Sprite();
-
-			_canvas = canvas;
 			
 			_busyRhythm = new SimpleRhythm(drawBusy);
 			
@@ -125,34 +145,37 @@ package hype.extended.util {
 			_saveMenu.hideBuiltInItems();
 			_saveMenu.customItems.push(_saveItem);
 			_saveItem.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, onContextSave);
-             
-			if (_canvas.stage) {
-				_menuOwner = _canvas;
-			} else {
-				_menuOwner = owner;
-			}
 			
 			_menuOwner.contextMenu = _encodeMenu;
 		}
+		
+		public function encode():void {
+			onContextEncode(null);
+		}
 
-		private function onContextEncode(event:ContextMenuEvent):void {
+		protected function onContextEncode(event:ContextMenuEvent):void {
 			if (onEncodeStart != null) {
 				onEncodeStart();
 			}
 			
 			_menuOwner.contextMenu = _waitMenu;
 			
-			if (_canvas.largeCanvas) {
-				_encoder.encode(_canvas.largeCanvas);
+			if (_canvasList.length > 1) {
+				_encoder.encode(new BitmapCanvasCompositor(_canvasList));
 			} else {
-				_encoder.encode(_canvas);
+				if (_canvasList[0].largeCanvas) {
+					_encoder.encode(_canvasList[0].largeCanvas);
+				} else {
+					_encoder.encode(_canvasList[0]);
+				}
+				_canvasList[0].stopCapture();				
 			}
-			_canvas.stopCapture();
+
 			
 			_stage.addChild(_progressDisplay);
 		}
 
-		private function onContextEncodeProgress(percent:Number):void {
+		protected function onContextEncodeProgress(percent:Number):void {
 			var x:Number=(_stage.stageWidth - BAR_WIDTH) / 2;
 			var y:Number=(_stage.stageHeight - BAR_HEIGHT) / 2;
 			var width:Number=percent * BAR_WIDTH;
@@ -171,7 +194,7 @@ package hype.extended.util {
 			}
 		}
 
-		private function drawBusy(rhythm:SimpleRhythm):void {
+		protected function drawBusy(rhythm:SimpleRhythm):void {
 			var segmentSize:Number=BAR_WIDTH / BAR_SEGMENTS;
 			var x:Number=(_stage.stageWidth - BAR_WIDTH) / 2;
 			var y:Number=(_stage.stageHeight - BAR_HEIGHT) / 2;
@@ -200,7 +223,7 @@ package hype.extended.util {
 			_progressDisplay.graphics.beginFill(0x000000, 0.8);
 		}
 
-		private function onContextEncodeComplete(data:ByteArray):void {
+		protected function onContextEncodeComplete(data:ByteArray):void {
 			if (onEncodeComplete != null) {
 				onEncodeComplete();
 			}
@@ -212,13 +235,13 @@ package hype.extended.util {
 			_menuOwner.contextMenu = _saveMenu;
 		}
 
-		private function onContextSave(event:ContextMenuEvent):void {
+		protected function onContextSave(event:ContextMenuEvent):void {
 			_fileReference.save(_data, "hype." + _encoder.fileExtension.toLowerCase());	
 			_busyRhythm.start();
 			_stage.addChild(_progressDisplay);
 		}
 
-		private function onContextSaveComplete(event:Event):void {
+		protected function onContextSaveComplete(event:Event):void {
 			_menuOwner.contextMenu = _encodeMenu;
 			if(onSaveComplete != null) {
 				onSaveComplete();
@@ -228,7 +251,7 @@ package hype.extended.util {
 			_stage.removeChild(_progressDisplay);
 		}
 
-		private function onContextSaveError(event:IOErrorEvent):void {
+		protected function onContextSaveError(event:IOErrorEvent):void {
 			_menuOwner.contextMenu = _saveMenu;
 			
 			if (onSaveError != null) {
@@ -240,7 +263,7 @@ package hype.extended.util {
 			_stage.removeChild(_progressDisplay);			
 		}
 
-		private function onContextSaveCancel(event:Event):void {
+		protected function onContextSaveCancel(event:Event):void {
 			_menuOwner.contextMenu = _saveMenu;
 			
 			if (onSaveCancel != null) {

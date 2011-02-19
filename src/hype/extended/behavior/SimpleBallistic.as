@@ -10,13 +10,13 @@ package hype.extended.behavior {
 	 */
 	public class SimpleBallistic extends AbstractBehavior implements IBehavior {
 		
-		private var _drag:Number;
-		private var _gravityX:Number;
-		private var _gravityY:Number;
-		private var _xSpeed:Number;
-		private var _ySpeed:Number;
-		private var _gravity:Number;
-		private var _gravityAngle:Number;
+		protected var _drag:Number;
+		protected var _gravityX:Number;
+		protected var _gravityY:Number;
+		protected var _xSpeed:Number;
+		protected var _ySpeed:Number;
+		protected var _gravity:Number;
+		protected var _gravityAngle:Number;
 		
 		/**
 		 * Constructor
@@ -93,7 +93,7 @@ package hype.extended.behavior {
 			calculateGravity();
 		}		
 		
-		private function calculateGravity():void {
+		protected function calculateGravity():void {
 			_gravityX = Math.cos(_gravityAngle * HypeMath.D2R) * _gravity;
 			_gravityY = Math.sin(_gravityAngle * HypeMath.D2R) * _gravity;			
 		}

@@ -18,28 +18,26 @@ package hype.framework.canvas {
 	 * Supports images larger than Flash can support by splitting the image into a grid.
 	 */
 	public class GridCanvas implements ICanvas {
-		private var _border:int;
-		private var _gridWidth:int;
-		private var _gridHeight:int;
-		private var _scale:Number;
-		private var _gridSize:int;
-		private var _target:DisplayObject;
-		private var _rect:Rectangle;
-		private var _gridRect:Rectangle;
-		private var _zeroPoint:Point = new Point(0, 0);
-		private var _fillColorAlpha:uint;
-		private var _bitmapData:BitmapData;
-		private var _transparent:Boolean;
-		private var _fillColor:int;
+		protected var _border:int;
+		protected var _gridWidth:int;
+		protected var _gridHeight:int;
+		protected var _scale:Number;
+		protected var _gridSize:int;
+		protected var _targetList:Array;
+		protected var _rect:Rectangle;
+		protected var _gridRect:Rectangle;
+		protected var _zeroPoint:Point = new Point(0, 0);
+		protected var _fillColor:uint;
+		protected var _transparent:Boolean;
 		
-		private var _captureFlag:Boolean;
-		private var _captureMethod:Function;
-		private var _rhythm:SimpleRhythm;
-		private var _gridList:Vector.<BitmapData>;
+		protected var _captureFlag:Boolean;
+		protected var _captureMethod:Function;
+		protected var _rhythm:SimpleRhythm;
+		protected var _gridList:Vector.<BitmapData>;
 		
-		private var _filterScalerTable:Object;
-		private var _canvasBlendMode:String = null;
-		private var _canvasColorTransform:ColorTransform = null;
+		protected var _filterScalerTable:Object;
+		protected var _canvasBlendMode:String = null;
+		protected var _canvasColorTransform:ColorTransform = null;
 
 		/**
 		 * Constructor
@@ -52,7 +50,7 @@ package hype.framework.canvas {
 		 * @param gridSize Size of each grid square (defaults to 1024px)
 		 * @param borderSize Size of the overlap for each grid square (defaults to 128)
 		 */		
-		public function GridCanvas(width:int, height:int, scale:Number=1, transparent:Boolean=true, fillColor:uint=0xFFFFFFFF, gridSize:int=1024, border:int=128) {
+		public function GridCanvas(width:int, height:int, scale:Number=1, transparent:Boolean=true, fillColor:uint=0x00000000, gridSize:int=1024, border:int=128) {
 			var i:int;
 			var j:int;
 			
@@ -64,13 +62,12 @@ package hype.framework.canvas {
 			_gridRect = new Rectangle(0, 0, _gridSize + (border * 2), _gridSize + (border * 2));	
 			
 			_rect = new Rectangle(0, 0, width, height);
-			_fillColorAlpha = fillColor << 8 & (transparent ? 0xFF : 0x00);	
+			_fillColor = fillColor;	
 			_zeroPoint = new Point(0, 0);
 			_captureFlag = false;
 			_border = border;
 			
 			_transparent = transparent;
-			_fillColor = fillColor;
 			
 			_gridList = new Vector.<BitmapData>();
 			for (i=0; i<_gridHeight; ++i) {
@@ -85,21 +82,7 @@ package hype.framework.canvas {
 			
 			registerFilterScaler("flash.filters::BlurFilter", new BlurFilterScaler());
 			registerFilterScaler("flash.filters::GlowFilter", new GlowFilterScaler());
-		}
-		
-		/**
-		 * Target being captured to bitmap
-		 */
-		public function get target():DisplayObject {
-			return _target;
-		}
-		
-		/**
-		 * Set target being captured to bitmap
-		 */
-		public function set target(value:DisplayObject):void {
-			_target = value;
-		}		
+		}	
 		
 		/**
 		 * The rectangle that describes the boundary of the image
@@ -165,9 +148,24 @@ package hype.framework.canvas {
 		 * 
 		 * @see hype.framework.core.TimeType
 		 */
-		public function startCapture(target:DisplayObject, continuous:Boolean = false, type:String="enter_frame", interval:int=1):Boolean {
+		public function startCapture(target:*, continuous:Boolean = false, type:String="enter_frame", interval:int=1):Boolean {
+			var max:int;
+			var i:int;
+			
 			if (!_captureFlag) {
-				_target = target;
+				
+				_targetList = new Array();
+				
+				if (target is DisplayObject) {
+					_targetList[0] = target;
+				} else if (target is Array || target is Vector) {
+					max = target["length"];
+					for (i=0; i<max; ++i) {
+						_targetList[i] = target[i];
+					}
+				} else {
+					return false;
+				}
 				
 				_rhythm.callback = function():void {
 					capture(continuous);
@@ -205,12 +203,14 @@ package hype.framework.canvas {
 			var i:int;
 			var col:int;
 			var row:int;
+			var j:int;
+			var numTargets:int = _targetList.length;
 
 		
 			
 			if (!continuous) {
 				for (i=0; i<max; ++i) {
-					_gridList[i].fillRect(_rect, _fillColorAlpha);
+					_gridList[i].fillRect(_rect, _fillColor);
 				}
 			}
 			
@@ -218,7 +218,10 @@ package hype.framework.canvas {
 				col = i % _gridWidth;
 				row = int(i / _gridWidth);
 				m = new Matrix(_scale, 0, 0, _scale, _border - (col * _gridSize), _border - (row * _gridSize));
-				_gridList[i].draw(_target, m, _canvasColorTransform, _canvasBlendMode);
+				
+				for (j=0; j<numTargets; ++j) {
+					_gridList[i].draw(_targetList[j], m, _canvasColorTransform, _canvasBlendMode);
+				}
 			}
 		}			
 		
@@ -232,9 +235,8 @@ package hype.framework.canvas {
 			var gridRect:Rectangle = new Rectangle(0, 0, width, width);
 			
 			for (i=0; i<max; ++i) {
-				_gridList[i].fillRect(gridRect, _fillColorAlpha);
+				_gridList[i].fillRect(gridRect, _fillColor);
 			}			
-			_bitmapData.fillRect(_rect, _fillColorAlpha);
 		}
 
 		/**
@@ -253,6 +255,17 @@ package hype.framework.canvas {
 			for (i=0; i<max; ++i) {
 				data = _gridList[i];	
 				data.applyFilter(data, _gridRect, _zeroPoint, filter);
+			}
+		}
+		
+		public function colorTransform(transform:ColorTransform):void {
+			var max:int = _gridList.length;
+			var data:BitmapData;
+			var i:int;
+			
+			for (i=0; i<max; ++i) {
+				data = _gridList[i];	
+				data.colorTransform(_gridRect, transform);
 			}
 		}
 

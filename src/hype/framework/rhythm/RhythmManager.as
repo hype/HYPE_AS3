@@ -8,7 +8,8 @@ package hype.framework.rhythm {
 	import flash.utils.setInterval;
 	
 	/**
-	 * @private
+	 * Manages all Rhythms used in HYPE. You should only need to utilize this class to kill
+	 * off HYPE when it's in a SWF that is being unloaded.
 	 */
 	public class RhythmManager {
 		private static var instanceTable:Object = new Object();
@@ -33,12 +34,45 @@ package hype.framework.rhythm {
 			_removeList = new Array();
 		}
 		
+		/**
+		 * Get a particular RhythmManager
+		 * 
+		 * @param name Name of the manager (defaults to "default")
+		 */
 		public static function getManager(name:String="default"):RhythmManager {
 			if (instanceTable[name] == null) {
 				instanceTable[name] = new RhythmManager();
 			}
 			
 			return instanceTable[name];
+		}
+		
+		/**
+		 * Destroy a particular RhythmManager
+		 * 
+		 * @param name Name of the manager (defaults to "default")
+		 */
+		public static function destroyManager(name:String="default"):void {
+			(instanceTable[name] as RhythmManager).destroy();			
+		}
+		
+		/**
+		 * Destroy the RhythmManager and remove all events and timers
+		 * 
+		 */		
+		public function destroy():void {
+			var p:*;
+			
+			for (p in _rhythmTable) {
+	            removeRhythm(p);
+    	    }
+    	    		
+			_helperSprite.removeEventListener(Event.ENTER_FRAME, processEnterFrame);
+			_removeList = null;
+			_enterFrameHead = null;
+			_enterFrameTail = null;
+			_exitFrameHead = null;
+			_exitFrameTail = null;
 		}
 		
 		public function toString():String {

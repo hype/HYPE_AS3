@@ -1,5 +1,5 @@
 package hype.framework.canvas.encoder {
-	import hype.framework.canvas.ICanvas;
+	import hype.framework.canvas.IEncodable;
 	import hype.framework.rhythm.SimpleRhythm;
 
 	import flash.utils.ByteArray;
@@ -10,19 +10,19 @@ package hype.framework.canvas.encoder {
 	 * Class that encodes an ICanvas into a TGA (Targa image)
 	 */
 	public class TGACanvasEncoder extends AbstractCanvasEncoder implements ICanvasEncoder {
-		private var _encodeRhythm:SimpleRhythm;
-		private var _tga:ByteArray;
-		private var _row:uint;
-		private var _col:uint;
-		private var _width:uint;
-		private var _height:uint;
-		private var _canvas:ICanvas;
-		private var _nonRunBuffer:Vector.<int>;
-		private var _pixel:int;
-		private var _nextPixel:int;
-		private var _runCount:int;
-		private var _encodeCount:int = 0;
-		private var _encodeList:Array;
+		protected var _encodeRhythm:SimpleRhythm;
+		protected var _tga:ByteArray;
+		protected var _row:uint;
+		protected var _col:uint;
+		protected var _width:uint;
+		protected var _height:uint;
+		protected var _canvas:IEncodable;
+		protected var _nonRunBuffer:Vector.<int>;
+		protected var _pixel:int;
+		protected var _nextPixel:int;
+		protected var _runCount:int;
+		protected var _encodeCount:int = 0;
+		protected var _encodeList:Array;
 
 		public function TGACanvasEncoder() {
 			_encodeRhythm = new SimpleRhythm(encodeOverTime);
@@ -32,7 +32,7 @@ package hype.framework.canvas.encoder {
 			return "TGA";
 		}
 		
-		override public function encode(canvas:ICanvas):void {
+		override public function encode(canvas:IEncodable):void {
 			_canvas = canvas;
 			
 			_tga = new ByteArray();
@@ -76,7 +76,7 @@ package hype.framework.canvas.encoder {
 			_encodeRhythm.start();
 		}
 		
-		private function encodeOverTime(r:SimpleRhythm):void {
+		protected function encodeOverTime(r:SimpleRhythm):void {
 			var s:uint = getTimer();
 			// get that pixel
 			r;	
@@ -138,7 +138,7 @@ package hype.framework.canvas.encoder {
 			onEncodeProgress(_row/_height);
 		}	
 			
-		private function startRow():Boolean {
+		protected function startRow():Boolean {
 			_encodeList = new Array();
 
 			if (_row == _height) {
@@ -159,7 +159,7 @@ package hype.framework.canvas.encoder {
 			}
 		}
 				
-		private function writeNonRun():void {
+		protected function writeNonRun():void {
 			var max:int = _nonRunBuffer.length;
 			var i:int;
 			
@@ -175,7 +175,7 @@ package hype.framework.canvas.encoder {
 			_nonRunBuffer = new Vector.<int>();
 		}
 		
-		private function writeRun():void {
+		protected function writeRun():void {
 			_tga.writeByte(128 + (_runCount - 1));
 			_tga.writeUnsignedInt(_pixel);
 			

@@ -9,15 +9,15 @@ package hype.extended.behavior {
 	 * Make a property change in proportion to the distance from the mouse cursor
 	 */
 	public class SimpleProximity extends AbstractBehavior implements IBehavior {
-		private var _prop:String;
-		private var _min:Number;
-		private var _max:Number;
-		private var _radius:Number;
-		private var _radiusSq:Number;
-		private var _spring:Number;
-		private var _ease:Number;
-		private var _speed:Number;
-		private var _range:Number;
+		protected var _prop:String;
+		protected var _min:Number;
+		protected var _max:Number;
+		protected var _radius:Number;
+		protected var _radiusSq:Number;
+		protected var _spring:Number;
+		protected var _ease:Number;
+		protected var _speed:Number;
+		protected var _range:Number;
 
 		/**
 		 * Constructor
@@ -45,7 +45,7 @@ package hype.extended.behavior {
 		}
 
 		/**
-		 * @private
+		 * @protected
 		 */
 		public function run(target:Object):void {
 			var goal:Number;

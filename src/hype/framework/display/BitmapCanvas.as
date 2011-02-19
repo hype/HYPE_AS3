@@ -4,7 +4,6 @@ package hype.framework.display {
 	import hype.framework.canvas.SimpleCanvas;
 
 	import flash.display.Bitmap;
-	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.filters.BitmapFilter;
 	import flash.geom.ColorTransform;
@@ -15,11 +14,14 @@ package hype.framework.display {
 	 */
 	public class BitmapCanvas extends Sprite implements ICanvas {
 
-		private var _canvas:SimpleCanvas;
-		private var _largeCanvas:GridCanvas;
-		private var _bitmap:Bitmap;
-		private var _canvasBlendMode:String;
-		private var _canvasColorTransform:ColorTransform;
+		protected var _canvas:SimpleCanvas;
+		protected var _largeCanvas:GridCanvas;
+		protected var _bitmap:Bitmap;
+		protected var _canvasBlendMode:String;
+		protected var _canvasColorTransform:ColorTransform;
+		protected var _width:Number;
+		protected var _height:Number;
+		protected var _scale:Number;
 
 		/**
 		 * Constructor
@@ -29,29 +31,16 @@ package hype.framework.display {
 		 * @param transparent Boolean specifying if the bitmap is transparent
 		 * @param fillColor Default fill color of the bitmap
 		 */
-		public function BitmapCanvas(width:Number, height:Number, transparent:Boolean=true, fillColor:uint = 0xFFFFFF) {
-			_canvas = new SimpleCanvas(width, height, transparent, fillColor);
+		public function BitmapCanvas(w:Number, h:Number, scale:Number=1, transparent:Boolean=true, fillColor:uint=0x00000000) {
+			_canvas = new SimpleCanvas(w, h, scale, transparent, fillColor);
+			
+			
+			_width = w;
+			_height = h;
+			_scale = scale;
 			
 			_bitmap = new Bitmap(_canvas.bitmapData);
 			addChild(_bitmap);
-		}
-		
-		/**
-		 * Target being captured to bitmap
-		 */
-		public function get target():DisplayObject {
-			return _canvas.target;
-		}
-		
-		/**
-		 * Set target being captured to bitmap
-		 */
-		public function set target(value:DisplayObject):void {
-			_canvas.target = value;
-			if (_largeCanvas) {
-				_largeCanvas.target = target; 
-			}			
-			
 		}		
 		
 		/**
@@ -126,9 +115,9 @@ package hype.framework.display {
 		}		
 		
 		
-		public function setupLargeCanvas(scale:Number, gridSize:int=1024, border:int=128):void {
-			_largeCanvas = new GridCanvas(Math.ceil(_canvas.rect.width * scale), 
-											Math.ceil(_canvas.rect.height * scale),
+		public function setupLargeCanvas(scale:Number, gridSize:int=1024, border:int=128):void { 
+			_largeCanvas = new GridCanvas(Math.ceil(_width/_scale * scale), 
+											Math.ceil(_height/_scale * scale),
 											scale, 
 											_canvas.transparent, 
 											_canvas.fillColor, gridSize, border);	
@@ -148,7 +137,7 @@ package hype.framework.display {
 		 * 
 		 * @see hype.framework.core.TimeType
 		 */
-		public function startCapture(target:DisplayObject, continuous:Boolean=false, type:String="enter_frame", interval:int=1):Boolean {
+		public function startCapture(target:*, continuous:Boolean=false, type:String="enter_frame", interval:int=1):Boolean {
 			if (_largeCanvas) {
 				_largeCanvas.startCapture(target, continuous, type, interval);
 			}
@@ -184,12 +173,22 @@ package hype.framework.display {
 		 */
 		public function clear():void {
 			_canvas.clear();
+			if (_largeCanvas) {
+				_largeCanvas.clear();
+			}
 		}
 		
 		public function applyFilter(filter:BitmapFilter):void {
 			_canvas.applyFilter(filter);
 			if (_largeCanvas) {
 				_largeCanvas.applyFilter(filter);
+			}
+		}
+		
+		public function colorTransform(transform:ColorTransform):void {
+			_canvas.colorTransform(transform);
+			if (_largeCanvas) {
+				_largeCanvas.colorTransform(transform);
 			}
 		}
 		

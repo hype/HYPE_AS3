@@ -6,12 +6,11 @@ package hype.framework.core {
 	 * Creates and manages pools of objects
 	 */
 	public class ObjectPool {	
-		private var _objectClass:Class;
-		private var _classList:Array;
-		private var _max:uint;
-		private var _count:uint;
-		private var _activeSet:ObjectSet;
-		private var _inactiveSet:ObjectSet;
+		protected var _classList:Array;
+		protected var _max:uint;
+		protected var _count:uint;
+		protected var _activeSet:ObjectSet;
+		protected var _inactiveSet:ObjectSet;
 		
 		/**
 		 * Whether to automatically attempt to remove any triggers and behaviors on an object when it is released back into the pool (defaults to true)
@@ -70,6 +69,18 @@ package hype.framework.core {
 		public function get isFull():Boolean {
 			return _max == _count;
 		}
+		
+		/**
+		 * Destroy the ObjectPool and remove all callbacks
+		 */		
+		public function destroy():void {
+			_classList = null;
+			_activeSet.destroy();
+			_activeSet = null;
+			_inactiveSet.destroy();
+			_inactiveSet = null;
+			onCreateObject = onRequestObject = onReleaseObject = null;
+		}		
 				
 		/**
 		 * Add an additional class
@@ -96,7 +107,6 @@ package hype.framework.core {
 			
 			if (_inactiveSet.length > 0) {
 				obj = _inactiveSet.pull();
-				++_count;
 				_activeSet.insert(obj);
 				onRequestObject(obj);
 
@@ -132,7 +142,6 @@ package hype.framework.core {
 		 */
 		public function release(object:Object):Boolean {
 			if (_activeSet.remove(object)) {
-				--_count;
 				_inactiveSet.insert(object);
 
 				if (autoClean) {
@@ -147,7 +156,7 @@ package hype.framework.core {
 			}
 		}
 		
-		private function makeRandomObject():Object {
+		protected function makeRandomObject():Object {
 			var i:int = int(Math.random() * _classList.length);
 			return new _classList[i];
 		}

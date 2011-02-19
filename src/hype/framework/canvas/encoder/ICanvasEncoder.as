@@ -1,11 +1,11 @@
 package hype.framework.canvas.encoder {
+	import hype.framework.canvas.IEncodable;
 
-	import hype.framework.canvas.ICanvas;
 	/**
 	 * @author bhall
 	 */
 	public interface ICanvasEncoder {
-		function encode(canvas:ICanvas):void;
+		function encode(canvas:IEncodable):void;
 		function get fileExtension():String;
 	}
 }

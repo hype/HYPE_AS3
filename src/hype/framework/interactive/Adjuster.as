@@ -13,8 +13,8 @@ package hype.framework.interactive {
 	 * the backspace key.</p>
 	 */
 	public class Adjuster extends Sprite {
-		private var _activeClip:Sprite;
-		private var _hotKey:HotKey;
+		protected var _activeClip:Sprite;
+		protected var _hotKey:HotKey;
 		
 		/**
 		 * Constructor
@@ -23,7 +23,7 @@ package hype.framework.interactive {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 		}
 		
-		private function onAddedToStage(event:Event):void {
+		protected function onAddedToStage(event:Event):void {
 			_hotKey = new HotKey(stage);
 			stage.addEventListener(MouseEvent.MOUSE_DOWN, onDeselect, false, 0, true);
 		}
@@ -64,7 +64,7 @@ package hype.framework.interactive {
 			return _activeClip;
 		}
 		
-		private function onSelectClip(event:MouseEvent):void {
+		protected function onSelectClip(event:MouseEvent):void {
 			var clip:Sprite = event.target as Sprite;
 			
 			if (_activeClip) {
@@ -83,31 +83,31 @@ package hype.framework.interactive {
 			event.stopPropagation();
 		}
 		
-		private function removeClip():void {
+		protected function removeClip():void {
 			_activeClip.parent.removeChild(_activeClip);
 			graphics.clear();
 			_activeClip = null;
 		}
 		
-		private function onInteractClip(event:MouseEvent):void {
+		protected function onInteractClip(event:MouseEvent):void {
 			_activeClip.startDrag();
 			stage.addEventListener(MouseEvent.MOUSE_MOVE, onTrackClip, false, 0, true);
 			stage.addEventListener(MouseEvent.MOUSE_UP, onDropClip, false, 0, true);
 			event.stopPropagation();
 		}
 		
-		private function onTrackClip(event:MouseEvent):void {
+		protected function onTrackClip(event:MouseEvent):void {
 			drawBoundingBox();
 			event.updateAfterEvent();
 		}
 		
-		private function onDropClip(event:MouseEvent):void {
+		protected function onDropClip(event:MouseEvent):void {
 			_activeClip.stopDrag();
 			stage.removeEventListener(MouseEvent.MOUSE_MOVE, onTrackClip);
 			stage.removeEventListener(MouseEvent.MOUSE_UP, onDropClip);			
 		}
 		
-		private function onDeselect(event:MouseEvent):void {
+		protected function onDeselect(event:MouseEvent):void {
 			if (_activeClip) {
 				_activeClip.addEventListener(MouseEvent.MOUSE_DOWN, onSelectClip, false, 0, true);
 				_activeClip.removeEventListener(MouseEvent.MOUSE_DOWN, onInteractClip);
@@ -117,7 +117,7 @@ package hype.framework.interactive {
 			_activeClip = null;
 		}
 		
-		private function drawBoundingBox():void {
+		protected function drawBoundingBox():void {
 			var rect:Rectangle = _activeClip.getBounds(stage);
 			graphics.clear();
 			

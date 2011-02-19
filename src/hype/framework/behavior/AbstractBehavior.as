@@ -7,13 +7,13 @@ package hype.framework.behavior {
 	 */
 	public class AbstractBehavior {
 		/**
-		 * @private
+		 * @protected
 		 */
 		public static var manager:RhythmManager = RhythmManager.getManager();
 		
-		private static var _metaPropertyTable:Object;
+		protected static var _metaPropertyTable:Object;
 		
-		private var _target:Object;
+		protected var _target:Object;
 		
 		/**
 		 * Constructor
@@ -44,14 +44,14 @@ package hype.framework.behavior {
 		}
 		
 		/**
-		 * @private
+		 * @protected
 		 */
 		public static function getScale(target:Object):Number {
 			return target["scaleX"];
 		}
 		
 		/**
-		 * @private
+		 * @protected
 		 */
 		public static function setScale(target:Object, value:Number):void {
 			target["scaleX"] = target["scaleY"] = value;
@@ -75,7 +75,7 @@ package hype.framework.behavior {
 		}				
 		
 		/**
-		 * @private
+		 * @protected
 		 */
 		public function runBehavior():void {
 			(this as IBehavior).run(_target);
@@ -136,7 +136,7 @@ package hype.framework.behavior {
 		}
 		
 		/**
-		 * @private
+		 * @protected
 		 */
 		protected function getProperty(name:String):Number {
 			var accessor:Accessor = Accessor(_metaPropertyTable[name]);
@@ -149,7 +149,7 @@ package hype.framework.behavior {
 		}
 		
 		/**
-		 * @private
+		 * @protected
 		 */
 		protected function setProperty(name:String, value:Number):void {
 			var accessor:Accessor = Accessor(_metaPropertyTable[name]);

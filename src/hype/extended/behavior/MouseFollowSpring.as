@@ -19,10 +19,10 @@ package hype.extended.behavior {
 	 */
 	public class MouseFollowSpring extends AbstractBehavior implements IBehavior {
 
-		private var _spring:Number;
-		private var _ease:Number;
-		private var _xSpeed:Number;
-		private var _ySpeed:Number;
+		protected var _spring:Number;
+		protected var _ease:Number;
+		protected var _xSpeed:Number;
+		protected var _ySpeed:Number;
 
 		/**
 		 * Constructor
@@ -40,7 +40,7 @@ package hype.extended.behavior {
 		}
 
 		/**
-		 * @private
+		 * @protected
 		 */
 		public function run(target:Object):void {
 			var myTarget:DisplayObject = target as DisplayObject;

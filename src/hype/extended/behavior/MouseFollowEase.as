@@ -19,7 +19,7 @@ package hype.extended.behavior {
 	 */
 	public class MouseFollowEase extends AbstractBehavior implements IBehavior {
 
-		private var _ease:Number;
+		protected var _ease:Number;
 
 		/**
 		 * Constructor
@@ -33,7 +33,7 @@ package hype.extended.behavior {
 		}
 
 		/**
-		 * @private
+		 * @protected
 		 */
 		public function run(target:Object):void {
 			var myTarget:DisplayObject = target as DisplayObject;
