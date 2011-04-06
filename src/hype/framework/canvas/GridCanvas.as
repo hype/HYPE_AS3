@@ -234,7 +234,7 @@ package hype.framework.canvas {
 			for (i=0; i<max; ++i) {
 				col = i % _gridWidth;
 				row = int(i / _gridWidth);
-				offsetMatrix = new Matrix(1, 0, 0, 1, _border - (col * _gridSize), _border - (row * _gridSize));
+				offsetMatrix = new Matrix(_scaleFactor, 0, 0, _scaleFactor, _border - (col * _gridSize), _border - (row * _gridSize));
 				matrix = _matrix.clone();
 				matrix.concat(offsetMatrix);
 				
