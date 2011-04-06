@@ -2,6 +2,8 @@ package hype.framework.canvas.encoder {
 	import hype.framework.canvas.IEncodable;
 	import hype.framework.rhythm.SimpleRhythm;
 
+    import flash.geom.Rectangle;
+    
 	import flash.utils.ByteArray;
 	import flash.utils.Endian;
 	import flash.utils.getTimer;
@@ -23,6 +25,7 @@ package hype.framework.canvas.encoder {
 		protected var _runCount:int;
 		protected var _encodeCount:int = 0;
 		protected var _encodeList:Array;
+		protected var _crop:Rectangle;
 
 		public function TGACanvasEncoder() {
 			_encodeRhythm = new SimpleRhythm(encodeOverTime);
@@ -32,14 +35,26 @@ package hype.framework.canvas.encoder {
 			return "TGA";
 		}
 		
-		override public function encode(canvas:IEncodable):void {
+		/**
+		 * Created a TGA image from the specified ICanvas
+		 *
+		 * @param image The ICanvas that will be converted into the PNG format.
+		 * @param crop The Rectangle with which to crop the image
+		 */		
+		override public function encode(canvas:IEncodable, crop:Rectangle=null):void {
 			_canvas = canvas;
+			
+			if (crop == null) {
+			    _crop = canvas.rect;
+			} else {
+			    _crop = crop;
+			}
 			
 			_tga = new ByteArray();
 			_tga.endian = Endian.LITTLE_ENDIAN;
 			
-			_width = canvas.rect.width;
-			_height = canvas.rect.height;
+			_width = _crop.width;
+			_height = _crop.height;
 			
 			// id length
 			_tga.writeByte(0);
@@ -105,7 +120,7 @@ package hype.framework.canvas.encoder {
 					}
 					
 				} else {
-					_nextPixel = _canvas.getPixel32(_col, _row);
+					_nextPixel = _canvas.getPixel32(_col + _crop.x, _row + _crop.y);
 				}
 				
 				if (_pixel == _nextPixel) {
@@ -150,7 +165,7 @@ package hype.framework.canvas.encoder {
 				
 				return false;
 			} else {
-				_pixel = _canvas.getPixel32(_col, _row);
+				_pixel = _canvas.getPixel32(_col + _crop.x, _row + _crop.y);
 				_nonRunBuffer = new Vector.<int>();
 				_runCount = 1;
 				_encodeCount = 0;

@@ -2,6 +2,8 @@ package hype.framework.canvas.encoder {
 	import hype.framework.canvas.IEncodable;
 	import hype.framework.rhythm.SimpleRhythm;
 
+    import flash.geom.Rectangle;
+    
 	import flash.utils.ByteArray;
 	import flash.utils.getTimer;
 
@@ -24,6 +26,7 @@ package hype.framework.canvas.encoder {
 		protected var _row:int;
 		protected var _img:IEncodable;
 		protected var _mode:int = 0;
+		protected var _crop:Rectangle;
 		
 		public function PNGCanvasEncoder() {
 			var c:uint;
@@ -53,10 +56,17 @@ package hype.framework.canvas.encoder {
 		 * Created a PNG image from the specified ICanvas
 		 *
 		 * @param image The ICanvas that will be converted into the PNG format.
+		 * @param crop The Rectangle with which to crop the image
 		 */			
-	    override public function encode(img:IEncodable):void {
+	    override public function encode(img:IEncodable, crop:Rectangle=null):void {
 	    	_png = new ByteArray();
 	    	_mode = ROW_MODE;
+	    	
+	    	if (crop == null) {
+	    	    _crop = img.rect;
+	    	} else {
+	    	    _crop = crop;
+	    	}
 	    	
 	    	_img = img;
 	        // Write PNG signature
@@ -64,16 +74,16 @@ package hype.framework.canvas.encoder {
 	        _png.writeUnsignedInt(0x0D0A1A0A);
 	        // Build IHDR chunk
 	        var IHDR:ByteArray = new ByteArray();
-	        IHDR.writeInt(int(img.rect.width));
-	        IHDR.writeInt(int(img.rect.height));
+	        IHDR.writeInt(int(_crop.width));
+	        IHDR.writeInt(int(_crop.height));
 	        IHDR.writeUnsignedInt(0x08060000); // 32bit RGBA
 	        IHDR.writeByte(0);
 	        writeChunk(_png,0x49484452,IHDR);
 	        // Build IDAT chunk
 	        _IDAT= new ByteArray();
 	        
-	        _width = Math.ceil(img.rect.width);
-	        _height = Math.ceil(img.rect.height);
+	        _width = Math.ceil(_crop.width);
+	        _height = Math.ceil(_crop.height);
 	        _row = 0;
 	        
 			_encodeRhythm.start();
@@ -90,7 +100,7 @@ package hype.framework.canvas.encoder {
 							var p:uint;
 							var j:int;
 							for(j=0; j<_width; j++) {
-								p = _img.getPixel32(j,_row);
+								p = _img.getPixel32(j + _crop.x, _row + _crop.y);
 								_IDAT.writeUnsignedInt(uint(((p&0xFFFFFF) << 8) | (p>>>24)));
 							}
 			                

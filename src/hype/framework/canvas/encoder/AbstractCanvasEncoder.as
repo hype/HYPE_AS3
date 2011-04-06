@@ -1,6 +1,8 @@
 package hype.framework.canvas.encoder {
 	import hype.framework.canvas.IEncodable;
 
+    import flash.geom.Rectangle;
+
 	/**
 	 * Abstract base class for classes that encode classes that implement ICanvas instances into a bitmap format
 	 */
@@ -16,9 +18,12 @@ package hype.framework.canvas.encoder {
 		public var onEncodeComplete:Function;
 		
 		/**
-		 * 
+		 * Created an image from the specified ICanvas
+		 *
+		 * @param image The ICanvas that will be converted into the PNG format.
+		 * @param crop The Rectangle with which to crop the image
 		 */
-		public function encode(canvas:IEncodable):void {
+		public function encode(canvas:IEncodable, crop:Rectangle=null):void {
 					
 		}
 		
