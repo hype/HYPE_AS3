@@ -35,10 +35,14 @@ package hype.framework.canvas {
 		 * @param height Height of the bitmap (pixels)
 		 * @param transparent Boolean specifying if the bitmap is transparent
 		 * @param fillColor Default fill color of the bitmap
+		 * @param matrix Matrix for manipulating the content before it is captured
 		 */
-		public function SimpleCanvas(width:Number, height:Number, scale:Number=1, transparent:Boolean=true, fillColor:uint = 0x00000000) {
-			_matrix = new Matrix();
-			_matrix.scale(scale, scale);
+		public function SimpleCanvas(width:Number, height:Number, transparent:Boolean=true, fillColor:uint = 0x00000000, matrix:Matrix=null) {
+		    if (matrix == null) {
+			    _matrix = new Matrix();
+			} else {
+			    _matrix = matrix;
+			}
 			
 			_rect = new Rectangle(0, 0, width, height);
 			_fillColor = fillColor;

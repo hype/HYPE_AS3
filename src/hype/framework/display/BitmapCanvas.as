@@ -7,6 +7,7 @@ package hype.framework.display {
 	import flash.display.Sprite;
 	import flash.filters.BitmapFilter;
 	import flash.geom.ColorTransform;
+	import flash.geom.Matrix;
 	import flash.geom.Rectangle;
 
 	/**
@@ -21,7 +22,7 @@ package hype.framework.display {
 		protected var _canvasColorTransform:ColorTransform;
 		protected var _width:Number;
 		protected var _height:Number;
-		protected var _scale:Number;
+		protected var _matrix:Matrix;
 
 		/**
 		 * Constructor
@@ -30,14 +31,19 @@ package hype.framework.display {
 		 * @param height Height of the bitmap (pixels)
 		 * @param transparent Boolean specifying if the bitmap is transparent
 		 * @param fillColor Default fill color of the bitmap
+		 * @param matrix Matrix for manipulating the content before it is captured
 		 */
-		public function BitmapCanvas(w:Number, h:Number, scale:Number=1, transparent:Boolean=true, fillColor:uint=0x00000000) {
-			_canvas = new SimpleCanvas(w, h, scale, transparent, fillColor);
-			
+		public function BitmapCanvas(w:Number, h:Number, transparent:Boolean=true, fillColor:uint=0x00000000, matrix:Matrix=null) {
+			if (matrix == null) {
+			    _matrix = new Matrix();
+			} else {
+			    _matrix = matrix;
+			}		    
+		    
+			_canvas = new SimpleCanvas(w, h, transparent, fillColor, _matrix);
 			
 			_width = w;
 			_height = h;
-			_scale = scale;
 			
 			_bitmap = new Bitmap(_canvas.bitmapData);
 			addChild(_bitmap);
@@ -50,6 +56,9 @@ package hype.framework.display {
 			return _bitmap;
 		}
 		
+		/**
+		* The visible rectangle of the canvas
+		*/
 		public function get rect():Rectangle {
 			return _canvas.rect;
 		}
@@ -115,12 +124,19 @@ package hype.framework.display {
 		}		
 		
 		
-		public function setupLargeCanvas(scale:Number, gridSize:int=1024, border:int=128):void { 
-			_largeCanvas = new GridCanvas(Math.ceil(_width/_scale * scale), 
-											Math.ceil(_height/_scale * scale),
-											scale, 
+		public function setupLargeCanvas(scaleFactor:Number, matrix:Matrix=null, gridSize:int=1024, border:int=128):void {
+		    if (matrix == null) {
+		        matrix = _matrix;
+		    }
+		    
+			_largeCanvas = new GridCanvas(Math.ceil(_width * scaleFactor), 
+											Math.ceil(_height * scaleFactor),
 											_canvas.transparent, 
-											_canvas.fillColor, gridSize, border);	
+											_canvas.fillColor,
+											matrix,
+											gridSize,
+											border);
+			_largeCanvas.scaleFactor = scaleFactor;
 		}
 		
 		/**

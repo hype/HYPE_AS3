@@ -21,7 +21,8 @@ package hype.framework.canvas {
 		protected var _border:int;
 		protected var _gridWidth:int;
 		protected var _gridHeight:int;
-		protected var _scale:Number;
+		protected var _matrix:Matrix;
+		protected var _scaleFactor:Number = 1;
 		protected var _gridSize:int;
 		protected var _targetList:Array;
 		protected var _rect:Rectangle;
@@ -44,17 +45,21 @@ package hype.framework.canvas {
 		 * 
 		 * @param width Width of the bitmap (pixels)
 		 * @param height Height of the bitmap (pixels)
-		 * @param scale Scale amount for the image
 		 * @param transparent Boolean specifying if the bitmap is transparent
 		 * @param fillColor Default fill color of the bitmap
+		 * @param matrix Matrix for manipulating the content before it is captured		 
 		 * @param gridSize Size of each grid square (defaults to 1024px)
 		 * @param borderSize Size of the overlap for each grid square (defaults to 128)
 		 */		
-		public function GridCanvas(width:int, height:int, scale:Number=1, transparent:Boolean=true, fillColor:uint=0x00000000, gridSize:int=1024, border:int=128) {
+		public function GridCanvas(width:int, height:int, transparent:Boolean=true, fillColor:uint=0x00000000, matrix:Matrix=null, gridSize:int=1024, border:int=128) {
 			var i:int;
 			var j:int;
 			
-			_scale = scale;
+			if (matrix == null) {
+			    _matrix = new Matrix();
+			} else {
+			    _matrix = matrix;
+			}
 			_gridSize = gridSize;
 			
 			_gridWidth = Math.ceil(width/_gridSize);
@@ -132,7 +137,18 @@ package hype.framework.canvas {
 		
 		public function set canvasColorTransform(value:ColorTransform):void {
 			_canvasColorTransform = value;
-		}			
+		}
+		
+		/**
+		 * Scale factor - used when adjusting filters for scale
+		 */
+		public function get scaleFactor():Number {
+			return _scaleFactor;
+		}
+		
+		public function set scaleFactor(value:Number):void {
+			_scaleFactor = value;
+		}		
 		
 		/**
 		 * Start capturing the target into the bitmap
@@ -198,7 +214,8 @@ package hype.framework.canvas {
 		 * @param continuous Whether to erase (false) or not erase (true) before capturing
 		 */
 		public function capture(continuous:Boolean=true):void {
-			var m:Matrix;
+			var matrix:Matrix;
+			var offsetMatrix:Matrix;
 			var max:int = _gridList.length;
 			var i:int;
 			var col:int;
@@ -217,10 +234,12 @@ package hype.framework.canvas {
 			for (i=0; i<max; ++i) {
 				col = i % _gridWidth;
 				row = int(i / _gridWidth);
-				m = new Matrix(_scale, 0, 0, _scale, _border - (col * _gridSize), _border - (row * _gridSize));
+				offsetMatrix = new Matrix(1, 0, 0, 1, _border - (col * _gridSize), _border - (row * _gridSize));
+				matrix = _matrix.clone();
+				matrix.concat(offsetMatrix);
 				
 				for (j=0; j<numTargets; ++j) {
-					_gridList[i].draw(_targetList[j], m, _canvasColorTransform, _canvasBlendMode);
+					_gridList[i].draw(_targetList[j], matrix, _canvasColorTransform, _canvasBlendMode);
 				}
 			}
 		}			
@@ -249,7 +268,7 @@ package hype.framework.canvas {
 			var filterScaler:IFilterScaler = _filterScalerTable[getQualifiedClassName(filter)];
 			
 			if (filterScaler != null) {
-				filter = filterScaler.scale(filter, _scale);
+				filter = filterScaler.scale(filter, _scaleFactor);
 			}
 			
 			for (i=0; i<max; ++i) {
