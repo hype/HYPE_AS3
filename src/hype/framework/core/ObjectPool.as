@@ -94,8 +94,17 @@ package hype.framework.core {
 		 	for (i=0; i<numTimes; ++i) {
 		 		_classList.push(objectClass);
 		 	}
+		 	_inactiveSet = new ObjectSet();
 		 }
-				
+		 
+		/**
+		 * Sets the current set of classes
+		 */		
+		 public function set classList(list:Array):void {
+		     _classList = list;
+		     _inactiveSet = new ObjectSet();
+		 }
+
 		
 		/**
 		 * Request a new object. If no objects are available, null is returned.
@@ -141,8 +150,24 @@ package hype.framework.core {
 		 * @return Whether the object was returned successfully
 		 */
 		public function release(object:Object):Boolean {
+			var max:int;
+			var i:int;
+			var reusable:Boolean = false;
+	
 			if (_activeSet.remove(object)) {
-				_inactiveSet.insert(object);
+				max = _classList.length;
+		
+				for (i=0; i<max; ++i) {
+ 					if (object is _classList[i]) {
+						_inactiveSet.insert(object)
+						reusable = true;
+						break;
+					}
+				}
+				
+				if (!reusable) {
+					--_count;
+				}
 
 				if (autoClean) {
 					AbstractBehavior.removeBehaviorsFromObject(object);
