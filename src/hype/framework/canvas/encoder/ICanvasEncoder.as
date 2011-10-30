@@ -1,6 +1,6 @@
 package hype.framework.canvas.encoder {
 	import hype.framework.canvas.IEncodable;
-	
+
 	import flash.geom.Rectangle;
 
 	/**

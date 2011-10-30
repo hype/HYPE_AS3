@@ -21,7 +21,7 @@ package hype.extended.behavior {
 
 		/**
 		 * Constructor
-		 * 
+		 *
 		 * @param target Target object
 		 * @param prop Target property
 		 * @param spring The springiness of the movement
@@ -37,7 +37,7 @@ package hype.extended.behavior {
 			_min = min;
 			_max = max;
 			_radius = radius;
-			_radiusSq = radius * radius;			
+			_radiusSq = radius * radius;
 			_spring = spring;
 			_ease = ease;
 			_speed = 0;
@@ -51,73 +51,73 @@ package hype.extended.behavior {
 			var goal:Number;
 			var value:Number = getProperty(_prop);
 			var sprite:Sprite = target as Sprite;
-			var dist:Number = Math.pow(sprite.y - sprite.parent.mouseY, 2) + 
-							  Math.pow(sprite.x - sprite.parent.mouseX, 2);	
-							  
+			var dist:Number = Math.pow(sprite.y - sprite.parent.mouseY, 2) +
+							  Math.pow(sprite.x - sprite.parent.mouseX, 2);
+
 			if (dist < _radiusSq) {
 				goal = (1 - (dist / _radiusSq)) * _range + _min;
 			} else {
 				goal = _min;
 			}
-			
+
 			_speed = (_speed * _spring) + (HypeMath.getDistance(_prop, value, goal) * _ease);
-			
+
 			setProperty(_prop, value + _speed);
 		}
-		
+
 		/**
 		 * Springiness of the movement
 		 */
 		public function get spring():Number {
 			return _spring;
 		}
-		
+
 		public function set spring(spring:Number):void {
 			_spring = spring;
 		}
-		
+
 		/**
 		 * Ease of the movement
 		 */
 		public function get ease():Number {
 			return _ease;
 		}
-		
+
 		public function set ease(ease:Number):void {
 			_ease = ease;
 		}
-		
+
 		/**
 		 * Value when the mouse is directly on top of the target
-		 */	
+		 */
 		public function get max():Number {
 			return _max;
 		}
-		
+
 		public function set max(value:Number):void {
 			_max = value;
 			_range = (_max - _min);
 		}
-		
+
 		/**
 		 * Value when the mouse is fully outside of the radius
 		 */
 		public function get min():Number {
 			return _min;
 		}
-		
+
 		public function set min(value:Number):void {
 			_min = value;
 			_range = (_max - _min);
 		}
-		
+
 		/**
 		 * Radius of the interaction area
 		 */
 		public function get radius():Number {
 			return _radius;
 		}
-		
+
 		public function set radius(radius:Number):void {
 			_radius = radius;
 			_radiusSq = radius * radius;

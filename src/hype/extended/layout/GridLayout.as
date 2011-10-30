@@ -17,7 +17,7 @@ package hype.extended.layout {
 
 		/**
 		 * Constructor
-		 * 
+		 *
 		 * @param x Initial x position of the grid
 		 * @param y Initial y position of the grid
 		 * @param xSpace Horizontal space between points in the grid
@@ -37,12 +37,12 @@ package hype.extended.layout {
 			var pt:Point = new Point();
 			var row:uint = Math.floor(_index / _columns);
 			var col:uint = _index % _columns;
-			
+
 			pt.x = _x + (col * _xSpace);
 			pt.y = _y + (row * _ySpace);
-			
+
 			++_index;
-			
+
 			return pt;
 		}
 	}

@@ -7,7 +7,7 @@
  *   Sep 25, 2009
  *
  */
- 
+
 package hype.extended.behavior {
 	import hype.framework.behavior.AbstractBehavior;
 	import hype.framework.behavior.IBehavior;
@@ -26,7 +26,7 @@ package hype.extended.behavior {
 
 		/**
 		 * Constructor
-		 * 
+		 *
 		 * @param target Target object
 		 * @param spring Springiness of the movement
 		 * @param ease Ease of the movement
@@ -44,31 +44,31 @@ package hype.extended.behavior {
 		 */
 		public function run(target:Object):void {
 			var myTarget:DisplayObject = target as DisplayObject;
-			
+
 			_xSpeed = (_xSpeed * _spring) + (myTarget.stage.mouseX - myTarget.x) * _ease;
 			_ySpeed = (_ySpeed * _spring) + (myTarget.stage.mouseY - myTarget.y) * _ease;
 			myTarget.x += _xSpeed;
 			myTarget.y += _ySpeed;
 		}
-		
+
 		/**
 		 * Springiness of the movement
 		 */
 		public function get spring():Number {
 			return _spring;
 		}
-		
+
 		public function set spring(spring:Number):void {
 			_spring = spring;
 		}
-		
+
 		/**
 		 * Ease of the movement
 		 */
 		public function get ease():Number {
 			return _ease;
 		}
-		
+
 		public function set ease(ease:Number):void {
 			_ease = ease;
 		}

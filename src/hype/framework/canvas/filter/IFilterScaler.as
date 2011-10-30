@@ -7,10 +7,10 @@ package hype.framework.canvas.filter {
 	public interface IFilterScaler {
 		/*
 		 * Scale a filter
-		 * 
+		 *
 		 * @param filter BitmapFilter
 		 * @param scale Amount to scale
-		 */	
+		 */
 		function scale(filter:BitmapFilter, scale:Number):BitmapFilter;
 	}
 }

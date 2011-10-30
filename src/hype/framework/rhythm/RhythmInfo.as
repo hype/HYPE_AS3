@@ -11,22 +11,22 @@ package hype.framework.rhythm {
 		public var timerId:int;
 		public var isRunning:Boolean;
 		public var counter:uint;
-		
+
 		public var prev:RhythmInfo;
 		public var next:RhythmInfo;
-		
+
 		private var _manager:RhythmManager;
-		
+
 		public function RhythmInfo(manager:RhythmManager, rhythm:Object, method:Function) {
 			_manager = manager;
 			this.rhythm = rhythm;
 			this.method = method;
-			
+
 			timerId = 0;
 			isRunning = false;
 			counter = 0;
 		}
-		
+
 		public function destroy():void {
 			_manager = null;
 			rhythm = null;
@@ -45,7 +45,7 @@ package hype.framework.rhythm {
 			str = (prev == null) ? "   " : "<- ";
 			str += type;
 			str += (next == null) ? "   " : " ->";
-			
+
 			return str;
 		}
 	}
