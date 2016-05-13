@@ -11,7 +11,7 @@ package hype.framework.display {
 	import flash.geom.Rectangle;
 
 	/**
-	 * Captures a specifed target DisplayObject to a bitmap and displays it. 
+	 * Captures a specifed target DisplayObject to a bitmap and displays it.
 	 */
 	public class BitmapCanvas extends Sprite implements ICanvas {
 
@@ -26,7 +26,7 @@ package hype.framework.display {
 
 		/**
 		 * Constructor
-		 * 
+		 *
 		 * @param width Width of the bitmap (pixels)
 		 * @param height Height of the bitmap (pixels)
 		 * @param transparent Boolean specifying if the bitmap is transparent
@@ -38,129 +38,129 @@ package hype.framework.display {
 			    _matrix = new Matrix();
 			} else {
 			    _matrix = matrix;
-			}		    
-		    
+			}
+
 			_canvas = new SimpleCanvas(w, h, transparent, fillColor, _matrix);
-			
+
 			_width = w;
 			_height = h;
-			
+
 			_bitmap = new Bitmap(_canvas.bitmapData);
 			addChild(_bitmap);
-		}		
-		
+		}
+
 		/**
 		 * The instance of Bitmap displayed by this BitmapCanvas
 		 */
 		public function get bitmap():Bitmap {
 			return _bitmap;
 		}
-		
+
 		/**
 		* The visible rectangle of the canvas
 		*/
 		public function get rect():Rectangle {
 			return _canvas.rect;
 		}
-		
+
 		/**
 		 * Whether this BitmapCanvas is currently capturing
 		 */
 		public function get isCapturing():Boolean {
 			return _canvas.isCapturing;
 		}
-		
+
 		/**
 		 * Whether the canvas is transparent
 		 */
 		public function get transparent():Boolean {
 			return _canvas.transparent;
 		}
-		
+
 		/**
 		 * Fill color of the canvas
 		 */
 		public function get fillColor():int {
 			return _canvas.fillColor;
 		}
-		
+
 		/**
 		 * The GridCanvas being used to upscale the image (if any)
 		 */
 		public function get largeCanvas():GridCanvas {
-			return _largeCanvas;		
+			return _largeCanvas;
 		}
-		
+
 		/**
 		 * Color transform to apply when canvas captures
 		 */
 		public function get canvasColorTransform():ColorTransform {
 			return _canvasColorTransform;
 		}
-		
+
 		public function set canvasColorTransform(canvasColorTransform:ColorTransform):void {
 			_canvasColorTransform = canvasColorTransform;
 			_canvas.canvasColorTransform = canvasColorTransform;
-			
+
 			if (_largeCanvas) {
 				_largeCanvas.canvasColorTransform = canvasColorTransform;
 			}
 		}
-		
+
 		/**
 		 * Blend mode to apply when canvas captures
 		 */
 		public function get canvasBlendMode():String {
 			return _canvasBlendMode;
 		}
-		
+
 		public function set canvasBlendMode(canvasBlendMode:String):void {
 			_canvasBlendMode = canvasBlendMode;
 			_canvas.canvasBlendMode = canvasBlendMode;
-			
+
 			if (_largeCanvas) {
 				_largeCanvas.canvasBlendMode = canvasBlendMode;
 			}
-		}		
-		
-		
+		}
+
+
 		public function setupLargeCanvas(scaleFactor:Number, matrix:Matrix=null, gridSize:int=1024, border:int=128):void {
 		    if (matrix == null) {
 		        matrix = _matrix;
 		    }
-		    
-			_largeCanvas = new GridCanvas(Math.ceil(_width * scaleFactor), 
+
+			_largeCanvas = new GridCanvas(Math.ceil(_width * scaleFactor),
 											Math.ceil(_height * scaleFactor),
-											_canvas.transparent, 
+											_canvas.transparent,
 											_canvas.fillColor,
 											matrix,
 											gridSize,
 											border);
 			_largeCanvas.scaleFactor = scaleFactor;
 		}
-		
+
 		/**
 		 * Start capturing the target into the bitmap
-		 * 
+		 *
 		 * @param target DisplayObject to capture
 		 * @param continuous Flag specifying if the bitmap should be cleared
 		 * after each capture (true to NOT erase after each capture)
 		 * @param type Time type to use
 		 * @param interval Interval between captures
-		 * 
+		 *
 		 * @return Whether the capture started or not (false if capture is
 		 * already occurring)
-		 * 
+		 *
 		 * @see hype.framework.core.TimeType
 		 */
 		public function startCapture(target:*, continuous:Boolean=false, type:String="enter_frame", interval:int=1):Boolean {
 			if (_largeCanvas) {
 				_largeCanvas.startCapture(target, continuous, type, interval);
 			}
-			
+
 			return _canvas.startCapture(target, continuous, type, interval);
 		}
-		
+
 		/**
 		 * Stop capturing
 		 */
@@ -168,13 +168,13 @@ package hype.framework.display {
 			if (_largeCanvas) {
 				_largeCanvas.stopCapture();
 			}
-			
+
 			return _canvas.stopCapture();
 		}
-		
+
 		/**
 		 * Manually capture the canvas
-		 * 
+		 *
 		 * @param continuous Whether to NOT erase the canvas first (defaults to true)
 		 */
 		public function capture(continuous:Boolean=true):void {
@@ -183,7 +183,7 @@ package hype.framework.display {
 				_largeCanvas.capture(continuous);
 			}
 		}
-		
+
 		/**
 		 * Clear the canvas back to it's base color (by default, 0xFFFFFFFF)
 		 */
@@ -193,24 +193,24 @@ package hype.framework.display {
 				_largeCanvas.clear();
 			}
 		}
-		
+
 		public function applyFilter(filter:BitmapFilter):void {
 			_canvas.applyFilter(filter);
 			if (_largeCanvas) {
 				_largeCanvas.applyFilter(filter);
 			}
 		}
-		
+
 		public function colorTransform(transform:ColorTransform):void {
 			_canvas.colorTransform(transform);
 			if (_largeCanvas) {
 				_largeCanvas.colorTransform(transform);
 			}
 		}
-		
+
 		public function getPixel32(x:int, y:int):int {
 			return _canvas.getPixel32(x, y);
 		}
-		
+
 	}
 }

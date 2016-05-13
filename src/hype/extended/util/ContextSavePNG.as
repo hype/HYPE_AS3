@@ -9,10 +9,10 @@ package hype.extended.util {
 	 * backwards compatible with v1.1.1
 	 */
 	public class ContextSavePNG extends ContextSaveImage {
-		
+
 		/**
 		 * Constructor
-		 * 
+		 *
 		 * @param canvas The BitmapCanvas class to capture
 		 * @param stage The stage (optional if canvas is currently added to the stage)
 		 */

@@ -14,19 +14,19 @@ function closePopup()
 {
   window.close();
 }
-function scrollToNameAnchor() 
+function scrollToNameAnchor()
 {
 	var nameAnchor = window.location.href;
 	var value = nameAnchor.split("nameAnchor=");
-	
-	if (value[1] != null) { 
+
+	if (value[1] != null) {
 		document.location =value[0]+"#"+ value[1];
 	}
 }
 // HIDES AND SHOWS LARGE GRAPHICS IN THE CONTENT PAGES
-function showHideImage(thisID, obj) 
+function showHideImage(thisID, obj)
 {
-	
+
 	var imgElement = document.getElementById(thisID);
 	var imgText = obj;
 
@@ -75,7 +75,7 @@ function toggleLayer(whichLayer) {
 		img.setAttribute("src","images/on.gif");
 		var styleatt = obj.style;
 		styleatt.display = styleatt.display? "":"block";
-		
+
 		//change the class of the h3 per design
 		if (obj.previousSibling.className === "topictitle3")	{
 			obj.previousSibling.className ="topictitle3off";
@@ -83,7 +83,7 @@ function toggleLayer(whichLayer) {
 		} else if (obj.previousSibling.className === "topictitle3off")	{
 			obj.previousSibling.className ="topictitle3";
 			img.setAttribute("src","images/off.gif");
-		} 
+		}
 	}
 	else if (document.all) {
 		// this is the way old msie versions work
@@ -114,28 +114,28 @@ var navigationCookie = "";
 ////////////// COOKIE-RELATED FUNCTIONS /////////////////////////////////////////
 //  test the navigator object for cookie enabling
 //  additional code would need to be added for
-//  to support browsers pre navigator 4 or IE5 or 
+//  to support browsers pre navigator 4 or IE5 or
 //  other browsers that dont support
-//  the navigator object if any .. 
- function cookiesNotEnabled() 
+//  the navigator object if any ..
+ function cookiesNotEnabled()
 {
 	return true;     // We're not going to use cookies
 }
 /*
- * This function parses comma-separated name=value 
- * argument pairs from the query string of the URL. 
- * It stores the name=value pairs in 
+ * This function parses comma-separated name=value
+ * argument pairs from the query string of the URL.
+ * It stores the name=value pairs in
  * properties of an object and returns that object.
  */
-function getArgs() 
+function getArgs()
 {
 	var args = new Object();
-	var query = window.location.search.substring(1); 
+	var query = window.location.search.substring(1);
 	// Get query string
 	if (query.length > 0)	{
 		var pairs = query.split(",");
 		// Break at comma
-		for(var i = 0; i < pairs.length; i++) 
+		for(var i = 0; i < pairs.length; i++)
 		{
 			var pos = pairs[i].indexOf('=');
 			  // Look for "name=value"
@@ -147,11 +147,11 @@ function getArgs()
 			  // Extract the value
 			args[argname] = unescape(value);
 		  	  // Store as a property
-			  // In JavaScript 1.5, use decodeURIComponent(  ) 
+			  // In JavaScript 1.5, use decodeURIComponent(  )
 			  // instead of escape(  )
 		}
 	} else {
-		args[name] = false;		
+		args[name] = false;
 	}
 	return args;     // Return the object
 }
@@ -172,15 +172,15 @@ function GetCookie(name) {
   if (cookiesNotEnabled())
   {
 	var args = getArgs();
-	if (args[name] !== false) { 
+	if (args[name] !== false) {
 		return args[name];
-	}	
+	}
   } else {
 	  while(i<clen){
 	    var j=i+alen;
 	    if(document.cookie.substring(i,j)==arg)return getCookieVal(j);
 	    i=document.cookie.indexOf(" ",i)+1;
-	    if(i==0)break; 
+	    if(i==0)break;
 	  }
 	  return null;
 	}
@@ -199,7 +199,7 @@ function GetTopCookie(name) {
     var j=i+alen;
     if(document.cookie.substring(i,j)==arg)return getTopCookieVal(j);
     i=document.cookie.indexOf(" ",i)+1;
-    if(i==0)break; 
+    if(i==0)break;
   }
   return null;
 }
@@ -226,12 +226,12 @@ function getContentCookie()
 
 	// What does this expression mean?
 	// (contentCookie.indexOf("htm") != -1)
-	if ( (contentCookie != null) && (contentCookie.indexOf("htm") != -1) ) 
+	if ( (contentCookie != null) && (contentCookie.indexOf("htm") != -1) )
 	{
 		document.cookie = "content="; // Wipe out the cookie
 		document.cookie = "histR=" + contentCookie;
 		location.replace(contentCookie);
-	}			
+	}
 }
 // getNavigationCookie
 // -------------------
@@ -244,20 +244,20 @@ function getNavigationCookie()
 
 	// What does this expression mean?
 	// (navigationCookie.indexOf("htm") != -1)
-	if ( (navigationCookie != null) && (navigationCookie.indexOf("htm") != -1) ) 
+	if ( (navigationCookie != null) && (navigationCookie.indexOf("htm") != -1) )
 	{
 		document.cookie = "navigation="; // Wipe out the cookie
 		document.cookie = "histL=" + navigationCookie;
 		location.replace(navigationCookie);
 	}
-				
+
 }
 
 // handleContext
 // -------------
 // This function is called from content pages. It sets a cookie as soon
 // as the page is loaded. If the content page is not in it's proper place
-// in the frameset, the frameset will be loaded and the page will be 
+// in the frameset, the frameset will be loaded and the page will be
 // restored using the value in this cookie.
 //
 function handleContext(which)
@@ -271,11 +271,11 @@ function lastNodeOf(e)
 	var expr = "" + e;
 	var to = expr.indexOf("?");
 	if( to !== -1) {
-		var path = expr.substring(0,to);		
+		var path = expr.substring(0,to);
 		var pieces = path.split("/");
 		return pieces[pieces.length -1];
-	}  else	{	
-		var pos = expr.lastIndexOf("/");	
+	}  else	{
+		var pos = expr.lastIndexOf("/");
 		if( (pos != -1) && (pos+1 != expr.length) ) {
 			return expr.substr(pos+1);
 		} else {
@@ -308,7 +308,7 @@ function bubbleSortWithShadow(a,b)
 	var temp;
 	for(var j=1; j<a.length; j++) {
 		for(var i=0; i<j; i++) {
-			if( a[i] < a[j] ) {	
+			if( a[i] < a[j] ) {
 				temp = a[j];a[j] = a[i];a[i] = temp;
 				temp = b[j];b[j] = b[i];b[i] = temp;
 			}
@@ -356,11 +356,11 @@ function buildResultsStrOneLine(a,b)
 // checkForHits
 //  Break up the search term into words.
 //  Check each of those words against...
-//		(a) cached titles and 
-//		(b) cached content lines 
-//  Perform the hit detection for each one, 
-//  storing the results into (hits-ordered) 
-//		'matchesArrIndices' and 
+//		(a) cached titles and
+//		(b) cached content lines
+//  Perform the hit detection for each one,
+//  storing the results into (hits-ordered)
+//		'matchesArrIndices' and
 //		'matchesArrHits'.
 //---------------------------------------------------
 function checkForHits()
@@ -409,7 +409,7 @@ function checkForHits()
 			}
 		}
 
-	// From the final 'maskArr', generate 'matchesArrHits' and 'matchesArrIndices'	
+	// From the final 'maskArr', generate 'matchesArrHits' and 'matchesArrIndices'
 		for( var ndx = 0; ndx < maskArr.length; ndx++ ) {
 			if( maskArr[ndx] ) {
 				matchesArrHits[matchesArrHits.length] = maskArr[ndx];
@@ -423,10 +423,10 @@ function checkForHits()
 		}
 }
 //---------------------------------------------------
-function checkForHitsWordAgainstPages(w)		
+function checkForHitsWordAgainstPages(w)
 {
 	var hitAnywhere = 0;
-	
+
 	if(showInputStringAlerts){alert( "Length of sc2: " + sc2.length );}
 
 	// Process each of the content lines (one per file/page)
@@ -437,7 +437,7 @@ function checkForHitsWordAgainstPages(w)
 
 			// Put the cached content line into glob_phrase
 				glob_phrase = sc2[ndx];
-				
+
 			if( maskArr[ndx] ) {
 			// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				if( document.isDblByte ) {
@@ -513,7 +513,7 @@ function checkForHitsWordAgainstTitleAndLine2(w, lineNdx)
 }
 //---------------------------------------------------
 // checkTheInputString
-// 
+//
 //  returns...
 //		empty string - if there is valid input to search
 //		message string - if there is NO VALID INPUT to search
@@ -531,11 +531,11 @@ function checkTheInputString()
 	searchTerm = searchTerm.toLowerCase();
 
 	searchTerm = filterTheChars(searchTerm);
-		
+
 	handleWhitespaceRemoval();
 
 	if( searchTerm.length ) {
-		
+
 		// Split the searchTerm
 			tempArr = searchTerm.split(" ",100);
 			if(showInputStringAlerts){alert( "size of tempArr: " + tempArr.length );}
@@ -549,12 +549,12 @@ function checkTheInputString()
 					tempArr[ndx] = tempArr[ndx].substr(0,tempArr[ndx].length-1);
 				}
 			}
-			
+
 		// Do stopwords and shortwords removal
 			for( var ndx = 0; ndx < tempArr.length; ndx++ ) {
 				var word = tempArr[ndx];
 				if(showInputStringAlerts){alert( "Checking word: " + word );}
-				
+
 				if( ! sw[word] ) {
 					if( word.length < 2 ) {
 						foundStopOrShortWord = 1;
@@ -580,13 +580,13 @@ function checkTheInputString()
 		handleWhitespaceRemoval();
 
 		if(showInputStringAlerts){alert( "FINAL SEARCH TERM: *" + searchTerm + "*" );}
-			
+
 		if( foundStopOrShortWord && ! searchTerm.length ) {
 			return MSG_stopAndShortWords;
 		}
 		srch_input_massaged = searchTerm;
 		return "";
-	} 
+	}
 	else {
 		return MSG_noSearchTermEntered;
 	}
@@ -625,16 +625,16 @@ if(showInputStringAlerts){alert( "Massaged search term: " + searchTerm );}
 function doIEsearch()
 {
 	var stStr = "";
-			
+
 	document.forms[0].sh_term.value = srch_input_verbatim;
-	
+
 	if( srch_message.length ) {
 		document.getElementById("results").innerHTML = srch_message;
 		srch_message = "";
 	}
 	else if( srch_1_shot ) {
 		srch_1_shot = 0;
-		
+
 		searchTerm = srch_input_massaged;
 		checkForHits();	// Sets: 'matchesArrIndices' and 'matchesArrHits'
 
@@ -657,7 +657,7 @@ function getInstanceCount( lineIndex, wordIndex )
 {
 	var instancesStr = instances[lineIndex];	// e.g. "1432931"
 	var ch = instancesStr.substr(wordIndex,1);
-	
+
 	return parseInt(ch);
 }
 //---------------------------------------------------
@@ -694,7 +694,7 @@ function handleWhitespaceRemoval()
 function isAcceptableChar(chrNdx)
 {
 	var acceptableChars = new Array( 32, 46, 95 );	// space, period, underscore
-	
+
 	for( var ndx = 0; ndx < acceptableChars.length; ndx++ ) {
 		if( chrNdx == acceptableChars[ndx] ) {
 			return true;
@@ -722,12 +722,12 @@ function filterTheChars(line)
 	var retStr = "",tempStr;
 	var ch, chCode, retChr;
 	var ndx;
-	
+
 	for( ndx = 0; ndx < line.length; ndx++ ) {
 		ch = line.substr(ndx,1);
 		chCode = ch.charCodeAt(0);
-		
-		
+
+
 			if( (chCode >= 192) && (chCode <= 221) ) {	// Handle capital upper-ASCII characters
 				chCode = chCode + 32;
 				retChr = ASCII_to_char(chCode);
@@ -741,7 +741,7 @@ function filterTheChars(line)
 				if( tempStr.length ) {	//Don't replace ligatures.
 					retChr = ch;
 				}
-				else {		// Turn all else into space	
+				else {		// Turn all else into space
 					retChr = " ";
 				}
 			}
@@ -749,7 +749,7 @@ function filterTheChars(line)
 		// Grow the return string
 			retStr += retChr;
 	}
-	
+
 	return retStr;
 }
 //--------------------------------------------------
@@ -764,52 +764,52 @@ function isLigatureChar(codeToCheck) {
 			break;
 		}
 	}
-	
+
 	return replStr;
 }
 //--------------------------------------------------
-function respondToSearchButton() 
+function respondToSearchButton()
 {
 	var myStr;
-	document.getElementById("results").innerHTML = ""; //We don't expect this to be slow enough to need a message.	
+	document.getElementById("results").innerHTML = ""; //We don't expect this to be slow enough to need a message.
 	srch_input_verbatim = document.forms[0].sh_term.value;
 	searchTerm = document.forms[0].sh_term.value;
-	
+
 	if( document.isDblByte ) {
 		myStr = checkTheInputString2();
 	}
 	else {
-		myStr = checkTheInputString();	
+		myStr = checkTheInputString();
 	}
-	
+
 	srch_message = myStr;
 	srch_1_shot = srch_message.length ? 0 : 1;
-	
+
 	doIEsearch();
 }
 //--------------------------------------------------
-function respondToSearchLoad() 
+function respondToSearchLoad()
 {
 	var externalQuery = GetCookie("externalQuery");
-	if (externalQuery == null) { 
+	if (externalQuery == null) {
 			externalQuery = GetCookie("sh_term");
 	}
 
-	if (externalQuery != null) { 
+	if (externalQuery != null) {
 		var myStr;
 		srch_input_verbatim = externalQuery;
 		searchTerm = externalQuery;
-	
+
 		if(document.isDblByte ) {
 		  myStr = checkTheInputString2();
 		}
 		else {
-		  myStr = checkTheInputString();	
+		  myStr = checkTheInputString();
 		}
-		
+
 		srch_message = myStr;
 		srch_1_shot = srch_message.length ? 0 : 1;
-		
+
 		doIEsearch();
 	}
 }
@@ -819,7 +819,7 @@ function strReplace(orig,src,dest)
 	var startPos=0;
 	var matchPos = orig.indexOf(src,startPos);
 	var retLine="";
-	
+
 	while(matchPos != -1) {
 		retLine = retLine + orig.substring(startPos,matchPos) + dest;
 		startPos = matchPos+1;
@@ -830,14 +830,14 @@ function strReplace(orig,src,dest)
 }
 //--------------------------------------------------
 function withinAcceptableRanges(chrNdx)
-{	
+{
 	var acceptableRanges = new Array( "48-57","65-90","97-122","224-229","231-239","241-246","248-253","255-255");
-	
+
 	for( var ndx = 0; ndx < acceptableRanges.length; ndx++ ) {
 		var start_finish = new Array();
 
 		start_finish = acceptableRanges[ndx].split("-");
-		
+
 		if( (chrNdx >= start_finish[0]) && (chrNdx <= start_finish[1]) ) {
 			return true;
 		}
@@ -849,10 +849,10 @@ function ASCII_to_char(num_in)
 {
 	var str_out = "";
 	var num_out = parseInt(num_in);
-	
+
 	num_out = unescape('%' + num_out.toString(16));
 	str_out += num_out;
-	
+
 	return unescape(str_out);
 }
 //--------------------------------------------------

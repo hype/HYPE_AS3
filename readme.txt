@@ -9,7 +9,7 @@ Installation & Setup
 
 You and HYPE have a play date in about 5 minutes! Let's make sure you're ready!
 
-First, you have to have Flash Professional CS4 or later  installed on your 
+First, you have to have Flash Professional CS4 or later  installed on your
 computer. PC or Mac, it doesn't matter.
 
 To install HYPE for use in a project you simply need to tell Flash to include
@@ -158,8 +158,8 @@ Then add the following to the bottom of your code:
  blurRhythm.start();
 
 This code makes a new BlurFilter (this is a built-in class). Then, it makes an
-instance of FilterCanvasRhythm and tells it the only filter it will use is the 
-blur filter instance and to use the BitmapData instance that's part of our 
+instance of FilterCanvasRhythm and tells it the only filter it will use is the
+blur filter instance and to use the BitmapData instance that's part of our
 canvas!
 
 Finally, the code tells the rhythm to get started. Now run the code. Yes it's
@@ -218,22 +218,22 @@ Change Log
 1.1.9 / Enhancements / Updates / Bug Fixes :
     - added destroy method to ObjectPool (thanks nodename!)
     - split ICanvas into two interfaces, ICanvas and IEncodable
-    - changed ICanvas so that startCapture can accept either a DisplayObject 
+    - changed ICanvas so that startCapture can accept either a DisplayObject
       or a Vector or Array of DisplayObjects
     - added colorTransform method to ICanvas
     - removed get/set target from ICanvas
     - updated encoder infrastructure to use IEncoder rather than ICanavs
-    - added new BitmapCanvasCompositor class that can be used to combine 
+    - added new BitmapCanvasCompositor class that can be used to combine
       multiple BitmapCanvas instances with alpha compositing
-    - added new scale parameter to BitmapCanvas so that content can be scaled 
+    - added new scale parameter to BitmapCanvas so that content can be scaled
       before it is captured
     - fixed issue on BitmapCanvas where clear wouldn't clear the large canvas
     - added colorTransform method to BitmapCanvas
-    - changed PixelColorist so it supports either passing the constructor a 
+    - changed PixelColorist so it supports either passing the constructor a
       class that subclasses BitmapData or an instance of BitmapData
     - added getColorAt method to get the color at a specific x and y location
     - added automatic support for BitmapCanvasCompositor to ContextSaveImage
-    - added destroyManager and destroy methods to RhythmManager 
+    - added destroyManager and destroy methods to RhythmManager
       (thanks magicbruno!)
     - removed MXP package
     - combined hype_framework.swc and hype_extended.swc into hype.swc
@@ -274,7 +274,7 @@ Change Log
     - moved Flash-based examples into own folder, added some basic pure AS3
       examples (more coming in later releases)
 
-    - fixed all outstanding issues on GitHub 
+    - fixed all outstanding issues on GitHub
       (thanks sebleedelise and markstar!)
 
 1.1.1 / Updates :

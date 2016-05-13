@@ -8,12 +8,12 @@ package hype.framework.core {
 		 * Track time using the Event.ENTER_FRAME event
 		 */
 		public static const ENTER_FRAME:String = "enter_frame";
-		
+
 		/**
 		 * Track time using the Event.EXIT_FRAME event
 		 */
 		public static const EXIT_FRAME:String = "exit_frame";
-		
+
 		/**
 		 * Track time using wall (clock) time
 		 */

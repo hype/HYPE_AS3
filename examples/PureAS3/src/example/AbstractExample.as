@@ -7,7 +7,7 @@ package example {
 	 */
 	public class AbstractExample extends Sprite {
 		protected var _area:Rectangle;
-		
+
 		public function AbstractExample(area:Rectangle) {
 			_area = area;
 		}

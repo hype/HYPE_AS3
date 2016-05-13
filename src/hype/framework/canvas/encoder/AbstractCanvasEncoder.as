@@ -9,14 +9,14 @@ package hype.framework.canvas.encoder {
 	public class AbstractCanvasEncoder implements ICanvasEncoder {
 		/**
 		 * Callback for encoding progress, passed the percent complete
-		 */		
+		 */
 		public var onEncodeProgress:Function;
-		
+
 		/**
 		 * Callback for encoding complete, passed the encoded ByteArray
-		 */		
+		 */
 		public var onEncodeComplete:Function;
-		
+
 		/**
 		 * Created an image from the specified ICanvas
 		 *
@@ -24,9 +24,9 @@ package hype.framework.canvas.encoder {
 		 * @param crop The Rectangle with which to crop the image
 		 */
 		public function encode(canvas:IEncodable, crop:Rectangle=null):void {
-					
+
 		}
-		
+
 		public function get fileExtension():String {
 			return "null";
 		}

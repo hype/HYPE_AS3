@@ -8,10 +8,10 @@ package hype.framework.canvas.filter {
 	public class BlurFilterScaler implements IFilterScaler {
 		public function scale(filter:BitmapFilter, scale:Number):BitmapFilter {
 			var blurFilter:BlurFilter = filter.clone() as BlurFilter;
-			
+
 			blurFilter.blurX *= scale;
 			blurFilter.blurY *= scale;
-			
+
 			return blurFilter;
 		}
 	}

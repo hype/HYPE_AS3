@@ -9,14 +9,14 @@ package hype.framework.layout {
 
 		/**
 		 * Get the next point from the layout and apply it to a DisplayObject
-		 * 
+		 *
 		 * @param object The DisplayObject to position
-		 */		
-		function applyLayout(object:DisplayObject):void 
-		
+		 */
+		function applyLayout(object:DisplayObject):void
+
 		/**
 		 * Get the next point from the layout
-		 * 
+		 *
 		 * @return Next point from the layout
 		 */
 		function getNextPoint():Point;
